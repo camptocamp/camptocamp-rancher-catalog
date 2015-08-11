@@ -1,0 +1,32 @@
+jenkins-slave:
+  environment:
+    JENKINS_USERNAME: jenkins
+    JENKINS_PASSWORD: techtraits123
+    JENKINS_MASTER: http://jenkins-master:8080
+  labels:
+    io.rancher.scheduler.affinity:host_label: provider=aws
+  tty: true
+  image: techtraits/jenkins-slave
+  links:
+  - jenkins-master:jenkins-master
+  privileged: true
+  volumes:
+  - /var/jenkins
+  stdin_open: true
+jenkins-master:
+  restart: 'no'
+  labels:
+    io.rancher.scheduler.affinity:host_label: provider=aws
+  tty: true
+  image: techtraits/jenkins-master
+  privileged: true
+  stdin_open: true
+  volume_driver: /var/jenkins_home
+jenkins-lb:
+  ports:
+  - '8080'
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - jenkins-master:jenkins-master
+  stdin_open: true

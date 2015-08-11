@@ -1,0 +1,8 @@
+jenkins-slave:
+  scale: 1
+jenkins-master:
+  scale: 1
+jenkins-lb:
+  scale: 1
+  load_balancer_config:
+    name: jenkins-lb config
