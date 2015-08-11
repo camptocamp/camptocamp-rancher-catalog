@@ -6,7 +6,7 @@ jenkins-slave:
   labels:
     io.rancher.scheduler.affinity:host_label: provider=aws
   tty: true
-  image: techtraits/jenkins-slave
+  image: rancher/jenkins-slave
   links:
   - jenkins-master:jenkins-master
   privileged: true
@@ -18,7 +18,7 @@ jenkins-master:
   labels:
     io.rancher.scheduler.affinity:host_label: provider=aws
   tty: true
-  image: techtraits/jenkins-master
+  image: rancher/jenkins-master
   privileged: true
   stdin_open: true
   volume_driver: /var/jenkins_home
