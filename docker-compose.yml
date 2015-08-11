@@ -1,7 +1,7 @@
 jenkins-slave:
   environment:
     JENKINS_USERNAME: jenkins
-    JENKINS_PASSWORD: techtraits123
+    JENKINS_PASSWORD: jenkins
     JENKINS_MASTER: http://jenkins-master:8080
   labels:
     io.rancher.scheduler.affinity:host_label: provider=aws
