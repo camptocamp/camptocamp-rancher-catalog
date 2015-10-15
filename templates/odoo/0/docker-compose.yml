@@ -1,0 +1,5 @@
+odoo:
+  image: camptocamp/odoo:latest
+  environment:
+    ODOO_DB_HOST: ${ODOO_DB_HOST}
+    ODOO_DB_PORT: ${ODOO_DB_PORT}

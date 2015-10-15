@@ -1,0 +1,15 @@
+.catalog:
+  name: "Georchestra"
+  version: "v15.06-c2c1"
+  description: "geOrchestra Spatial Data Infrastructure"
+  uuid: georchestra-0
+  minimum_rancher_version: v0.44.0
+
+georchestra:
+  health_check:
+    port: 8080
+    interval: 2000
+    unhealthy_threshold: 3
+    request_line: GET / HTTP/1.0
+    healthy_threshold: 2
+    response_timeout: 2000

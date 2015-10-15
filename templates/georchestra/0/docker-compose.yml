@@ -1,0 +1,2 @@
+georchestra:
+  image: camptocamp/georchestra:latest
