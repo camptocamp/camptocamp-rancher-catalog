@@ -1,12 +1,3 @@
-r10k:
-  ports:
-  - 2222:22/tcp
-  build: r10k
-  volumes:
-  - puppetcode:/etc/puppetlabs/code/environments
-  - puppetgit:/srv/puppetmaster.git
-  - puppetr10kcache:/opt/puppetlabs/r10k/cache
-  volume_driver: convoy-gluster
 puppetserver:
   ports:
   - 8140:8140/tcp
