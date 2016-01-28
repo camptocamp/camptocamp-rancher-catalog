@@ -1,25 +1,35 @@
+r10k:
+  ports:
+  - 2222:22/tcp
+  build: r10k
+  volumes:
+  - puppetcode:/etc/puppetlabs/code/environments
+  - puppetgit:/srv/puppetmaster.git
+  - puppetr10kcache:/opt/puppetlabs/r10k/cache
+  volume_driver: convoy-gluster
 puppetserver:
-  hostname: ${PUPPET_DOMAIN}
+  ports:
+  - 8140:8140/tcp
+  environment:
+    CERTNAME: ${CERTNAME}
   image: camptocamp/puppetserver:latest
-  links:
-  - puppetdb:puppetdb
   volumes:
   - puppetca:/etc/puppetlabs/puppet/ssl
+  - puppetcode:/etc/puppetlabs/code/environments
+  - puppetr10kcache:/opt/puppetlabs/r10k/cache
   volume_driver: convoy-gluster
 postgresql:
   image: camptocamp/puppetdb_postgres:latest
-lb-puppet:
-  ports:
-  - 8140:8140/tcp
-  image: rancher/load-balancer-service
-  hostname: puppetdb
-  links:
-  - puppetserver:puppetserver
+  volumes:
+  - puppetdb_database:/var/lib/postgresql/data
+  volume_driver: convoy-gluster
+puppetboard:
+  image: camptocamp/puppetboard:global_default
 puppetdb:
+  environment:
+    ENABLE_HTTP: 'true'
   hostname: puppetdb
   image: camptocamp/puppetdb:latest
-  links:
-  - postgresql:postgresql
   volumes:
   - puppetca:/etc/puppetlabs/puppet/ssl
   volume_driver: convoy-gluster
