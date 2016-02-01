@@ -3,6 +3,7 @@ puppetserver:
   - 8140:8140/tcp
   environment:
     CERTNAME: ${CERTNAME}
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
   image: camptocamp/puppetserver:latest
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
