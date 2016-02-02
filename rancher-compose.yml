@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c2"
+  version: "v2.2.1-c2c3"
   description: "Puppet Master stack"
-  uuid: puppet-2
+  uuid: puppet-3
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "CERTNAME"
@@ -26,5 +26,23 @@
       label: "PuppetDB database volume name"
       description: "PuppetDB database volume name"
       default: "puppetdb"
+      type: "string"
+      required: true
+    - variable: "VOL_CODE"
+      label: "Puppet code volume name"
+      description: "Puppet code volume name"
+      default: "puppetcode"
+      type: "string"
+      required: true
+    - variable: "VOL_GIT"
+      label: "git repository volume name"
+      description: "git repository volume name"
+      default: "puppetgit"
+      type: "string"
+      required: true
+    - variable: "VOL_R10KCACHE"
+      label: "r10k cache volume name"
+      description: "r10k cache volume name"
+      default: "puppetr10kcache"
       type: "string"
       required: true

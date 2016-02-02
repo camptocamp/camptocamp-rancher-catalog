@@ -8,6 +8,8 @@ puppetserver:
   volume_driver: convoy-gluster
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+  - ${VOL_CODE}:/etc/puppetlabs/code/environments
+  - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
 postgresql:
   image: camptocamp/puppetdb_postgres:9.4-3
   volume_driver: convoy-gluster
@@ -22,3 +24,14 @@ puppetdb:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
 puppetboard:
   image: camptocamp/puppetboard:global_default
+r10k:
+  image: camptocamp/r10k-githook:entrypoint
+  environment:
+    PASSWORD: ${PASSWORD}
+  ports:
+  - 2222:22/tcp
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_CODE}:/etc/puppetlabs/code/environments
+  - ${VOL_GIT}:/srv/puppetmaster.git
+  - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
