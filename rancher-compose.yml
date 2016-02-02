@@ -5,6 +5,17 @@
   uuid: puppet-0
   minimum_rancher_version: v0.44.0
   questions:
+    - variable: "CERTNAME"
+      label: "Puppetmaster certname"
+      description: "Puppet domain to use (certname)"
+      default: "puppet"
+      type: "string"
+      required: true
+    - variable: "DNS_ALT_NAMES"
+      label: "Puppetmaster dns_alt_names"
+      description: "Puppet dns_alt_names to use"
+      type: "string"
+      required: false
     - variable: "VOL_CA"
       label: "Puppet CA volume name"
       description: "Puppet CA volume name"
