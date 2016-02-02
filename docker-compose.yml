@@ -1,25 +1,10 @@
 puppetserver:
-  ports:
-  - 8140:8140/tcp
+  image: camptocamp/puppetserver:2.2.1-5
   environment:
     CERTNAME: ${CERTNAME}
-  image: camptocamp/puppetserver:latest
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+  ports:
+  - 8140:8140/tcp
+  volume_driver: convoy-gluster
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
-  - ${VOL_CODE}:/etc/puppetlabs/code/environments
-  volume_driver: convoy-gluster
-postgresql:
-  image: camptocamp/puppetdb_postgres:latest
-  volumes:
-  - ${VOL_DB}:/var/lib/postgresql/data
-  volume_driver: convoy-gluster
-puppetboard:
-  image: camptocamp/puppetboard:global_default
-puppetdb:
-  environment:
-    ENABLE_HTTP: 'true'
-  hostname: puppetdb
-  image: camptocamp/puppetdb:latest
-  volumes:
-  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
-  volume_driver: convoy-gluster
