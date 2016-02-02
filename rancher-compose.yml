@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c0"
+  version: "v2.2.1-c2c1"
   description: "Puppet Master stack"
-  uuid: puppet-0
+  uuid: puppet-1
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "CERTNAME"
@@ -20,5 +20,11 @@
       label: "Puppet CA volume name"
       description: "Puppet CA volume name"
       default: "puppetca"
+      type: "string"
+      required: true
+    - variable: "VOL_DB"
+      label: "PuppetDB database volume name"
+      description: "PuppetDB database volume name"
+      default: "puppetdb"
       type: "string"
       required: true
