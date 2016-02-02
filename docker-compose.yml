@@ -20,3 +20,5 @@ puppetdb:
   volume_driver: convoy-gluster
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+puppetboard:
+  image: camptocamp/puppetboard:global_default
