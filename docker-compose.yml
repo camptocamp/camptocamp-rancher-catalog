@@ -27,7 +27,8 @@ puppetboard:
 r10k:
   image: camptocamp/r10k-githook:entrypoint
   environment:
-    PASSWORD: ${PASSWORD}
+    GITHUB_USER: ${GITHUB_USER}
+    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
   ports:
   - 2222:22/tcp
   volume_driver: convoy-gluster
