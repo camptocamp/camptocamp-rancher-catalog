@@ -29,6 +29,9 @@ r10k:
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAMS: ${GITHUB_TEAMS}
+    GITHUB_USERS: ${GITHUB_USERS}
   ports:
   - 2222:22/tcp
   volume_driver: convoy-gluster
