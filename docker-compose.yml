@@ -25,7 +25,7 @@ puppetdb:
 puppetboard:
   image: camptocamp/puppetboard:global_default
 r10k:
-  image: camptocamp/r10k-githook:2.0.3-12
+  image: camptocamp/r10k-githook:2.0.3-13
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
