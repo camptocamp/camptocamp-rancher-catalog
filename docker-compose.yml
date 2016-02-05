@@ -25,7 +25,7 @@ puppetdb:
 puppetboard:
   image: camptocamp/puppetboard:global_default
 r10k:
-  image: camptocamp/r10k-githook:2.0.3-13
+  image: camptocamp/r10k-githook:2.0.3-14
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
@@ -39,3 +39,4 @@ r10k:
   - ${VOL_CODE}:/etc/puppetlabs/code/environments
   - ${VOL_GIT}:/srv/puppetmaster.git
   - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
+  - ${VOL_SSH_HOST_KEYS}:/etc/ssh/ssh_host_keys
