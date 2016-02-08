@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c11"
+  version: "v2.2.1-c2c12"
   description: "Puppet Master stack"
-  uuid: puppet-11
+  uuid: puppet-12
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "CERTNAME"
@@ -78,3 +78,8 @@
       description: "GitHub Users to allow to connect to r10k container"
       type: "string"
       required: false
+    - variable: "SITE"
+      label: "Puppetserver site"
+      description: "Puppetserver site for tainted images"
+      type: "string"
+      required: true

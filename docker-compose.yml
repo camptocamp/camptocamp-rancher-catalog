@@ -1,5 +1,5 @@
 puppetserver:
-  image: camptocamp/puppetserver:2.2.1-5
+  image: camptocamp/puppetserver-tainted:2.2.1-5${SITE}1
   environment:
     CERTNAME: ${CERTNAME}
     DNS_ALT_NAMES: ${DNS_ALT_NAMES}
