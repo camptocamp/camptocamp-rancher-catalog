@@ -37,7 +37,7 @@ r10k:
   - ${VOL_CODE}:/etc/puppetlabs/code/environments
   - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
 activemq:
-  image: camptocamp/activemq-mcollective
+  image: camptocamp/activemq-mcollective:5.6.0-1
 r10kproxy:
   image: camptocamp/r10k-gitproxy:0.8
   environment:
