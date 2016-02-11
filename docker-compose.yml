@@ -38,19 +38,7 @@ r10k:
   - ${VOL_CODE}:/etc/puppetlabs/code/environments
   - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
 activemq:
-  image: webcenter/activemq
-  environment:
-    ACTIVEMQ_NAME: mcollective
-    ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: 'true'
-    ACTIVEMQ_ADMIN_LOGIN: admin
-    ACTIVEMQ_ADMIN_PASSWORD: secret
-    ACTIVEMQ_WRITE_LOGIN: mcollective
-    ACTIVEMQ_WRITE_PASSWORD: marionette
-    ACTIVEMQ_STATIC_TOPICS: mcollective.>
-    ACTIVEMQ_STATIC_QUEUES: mcollective.>
-    ACTIVEMQ_MIN_MEMORY: 1024
-    ACTIVEMQ_MAX_MEMORY: 4096
-    ACTIVEMQ_ENABLED_SCHEDULER: true
+  image: camptocamp/activemq-mcollective
 r10kproxy:
   image: camptocamp/r10k-gitproxy:0.7
   environment:
