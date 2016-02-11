@@ -34,13 +34,9 @@ r10k:
     GITHUB_TEAMS: ${GITHUB_TEAMS}
     GITHUB_USERS: ${GITHUB_USERS}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
-  ports:
-  - 2222:22/tcp
   volumes:
   - ${VOL_CODE}:/etc/puppetlabs/code/environments
-  - ${VOL_GIT}:/srv/puppetmaster.git
   - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
-  - ${VOL_SSH_HOST_KEYS}:/etc/ssh/ssh_host_keys
 r10kproxy:
   image: camptocamp/r10k-gitproxy:0.6
   environment:
@@ -50,3 +46,8 @@ r10kproxy:
     GITHUB_TEAMS: ${GITHUB_TEAMS}
     GITHUB_USERS: ${GITHUB_USERS}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+  ports:
+  - 2222:22/tcp
+  volumes:
+  - ${VOL_GIT}:/srv/puppetmaster.git
+  - ${VOL_SSH_HOST_KEYS}:/etc/ssh/ssh_host_keys
