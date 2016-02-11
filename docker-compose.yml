@@ -39,7 +39,7 @@ r10k:
 activemq:
   image: camptocamp/activemq-mcollective:5.6.0-1
 r10kproxy:
-  image: camptocamp/r10k-gitproxy:0.8
+  image: camptocamp/r10k-gitproxy:0.9
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
