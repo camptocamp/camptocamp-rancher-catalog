@@ -5,6 +5,9 @@ puppetserver:
   environment:
     CERTNAME: ${CERTNAME}
     DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+  links:
+  - activemq
+  - puppetdb
   ports:
   - 8140:8140/tcp
   volume_driver: convoy-gluster
@@ -27,6 +30,8 @@ puppetdb:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
 puppetboard:
   image: camptocamp/puppetboard:global_default
+  links:
+  - puppetdb
 r10k:
   image: camptocamp/mcollectived-r10k:0.6
   environment:
@@ -35,7 +40,6 @@ r10k:
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   links:
   - activemq
-  - puppetdb
   volumes:
   - ${VOL_CODE}:/etc/puppetlabs/code/environments
   - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
