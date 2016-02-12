@@ -20,6 +20,8 @@ puppetdb:
   image: camptocamp/puppetdb:3.2.3-2
   environment:
     ENABLE_HTTP: 'true'
+  links:
+  - postgresql
   volume_driver: convoy-gluster
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
@@ -31,6 +33,9 @@ r10k:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+  links:
+  - activemq
+  - puppetdb
   volumes:
   - ${VOL_CODE}:/etc/puppetlabs/code/environments
   - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
@@ -45,6 +50,8 @@ r10kproxy:
     GITHUB_TEAMS: ${GITHUB_TEAMS}
     GITHUB_USERS: ${GITHUB_USERS}
     RSA_PUBLIC_KEY: ${RSA_PUBLIC_KEY}
+  links:
+  - activemq
   ports:
   - 2222:22/tcp
   volumes:
