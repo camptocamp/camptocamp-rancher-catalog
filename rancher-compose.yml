@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c27"
+  version: "v2.2.1-c2c28"
   description: "Puppet Master stack"
-  uuid: puppet-27
+  uuid: puppet-28
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "CERTNAME"
