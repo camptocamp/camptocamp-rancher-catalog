@@ -1,11 +1,22 @@
 puppetca:
-  image: camptocamp/puppetserver
+  image: camptocamp/puppetserver:2.2.1-8
   environment:
     DNS_ALT_NAMES: puppetca
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+postgresql:
+  image: camptocamp/puppetdb_postgres:9.4-3
+  volumes:
+  - ${VOL_DB}:/var/lib/postgresql/data
+puppetdb:
+  image: camptocamp/puppetdb:3.2.3-4
+  environment:
+    ENABLE_HTTP: 'true'
+  links:
+  - postgresql
+  - puppetca
 puppet:
-  image: camptocamp/puppetserver-tainted:2.2.1-5${SITE}1
+  image: camptocamp/puppetserver-tainted:2.2.1-8${SITE}1
   labels:
     io.rancher.sidekicks: r10k
   environment:
@@ -19,17 +30,6 @@ puppet:
   - 8140:8140/tcp
   volumes_from:
   - r10k
-postgresql:
-  image: camptocamp/puppetdb_postgres:9.4-3
-  volumes:
-  - ${VOL_DB}:/var/lib/postgresql/data
-puppetdb:
-  image: camptocamp/puppetdb:3.2.3-2
-  environment:
-    ENABLE_HTTP: 'true'
-  links:
-  - postgresql
-  - puppetca
 puppetboard:
   image: camptocamp/puppetboard:global_default
   links:
