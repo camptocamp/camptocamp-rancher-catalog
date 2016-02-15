@@ -14,7 +14,6 @@ puppet:
   - puppetdb
   ports:
   - 8140:8140/tcp
-  volume_driver: convoy-gluster
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
   volumes_from:
@@ -30,7 +29,6 @@ puppetdb:
   links:
   - postgresql
   - puppetca
-  volume_driver: convoy-gluster
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
 puppetboard:
