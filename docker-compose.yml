@@ -1,12 +1,16 @@
-puppetserver:
+puppetca:
+  image: camptocamp/puppetserver
+puppet:
   image: camptocamp/puppetserver-tainted:2.2.1-5${SITE}1
   labels:
     io.rancher.sidekicks: r10k
   environment:
+    CA: 'false'
     CERTNAME: ${CERTNAME}
     DNS_ALT_NAMES: ${DNS_ALT_NAMES}
   links:
   - activemq
+  - puppetca
   - puppetdb
   ports:
   - 8140:8140/tcp
@@ -25,6 +29,7 @@ puppetdb:
     ENABLE_HTTP: 'true'
   links:
   - postgresql
+  - puppetca
   volume_driver: convoy-gluster
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
