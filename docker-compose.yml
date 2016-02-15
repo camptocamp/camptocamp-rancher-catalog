@@ -1,5 +1,7 @@
 puppetca:
   image: camptocamp/puppetserver
+  environment:
+    DNS_ALT_NAMES: puppetca
   volumes:
   - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
 puppet:
