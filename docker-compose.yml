@@ -1,5 +1,7 @@
 puppetca:
   image: camptocamp/puppetserver
+  volumes:
+  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
 puppet:
   image: camptocamp/puppetserver-tainted:2.2.1-5${SITE}1
   labels:
@@ -13,8 +15,6 @@ puppet:
   - puppetdb
   ports:
   - 8140:8140/tcp
-  volumes:
-  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
   volumes_from:
   - r10k
 postgresql:
@@ -28,8 +28,6 @@ puppetdb:
   links:
   - postgresql
   - puppetca
-  volumes:
-  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
 puppetboard:
   image: camptocamp/puppetboard:global_default
   links:
