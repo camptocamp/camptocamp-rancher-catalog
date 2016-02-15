@@ -51,7 +51,7 @@ activemq:
   links:
   - puppetca
 r10kproxy:
-  image: camptocamp/r10k-gitproxy:0.14
+  image: camptocamp/r10k-gitproxy:0.15
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
