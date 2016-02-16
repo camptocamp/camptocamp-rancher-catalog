@@ -2,6 +2,8 @@ puppetca:
   image: camptocamp/puppetserver:2.2.1-8
   environment:
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
+  ports:
+  - ${CA_PORT}:8140/tcp
   volumes:
   - puppetca:/etc/puppetlabs/puppet/ssl
 postgresql:
