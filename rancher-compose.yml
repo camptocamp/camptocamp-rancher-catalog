@@ -11,42 +11,6 @@
       default: "puppet"
       type: "string"
       required: true
-    - variable: "VOL_CA"
-      label: "Puppet CA volume name"
-      description: "Puppet CA volume name"
-      default: "puppetca"
-      type: "string"
-      required: true
-    - variable: "VOL_DB"
-      label: "PuppetDB database volume name"
-      description: "PuppetDB database volume name"
-      default: "puppetdb"
-      type: "string"
-      required: true
-    - variable: "VOL_CODE"
-      label: "Puppet code volume name"
-      description: "Puppet code volume name"
-      default: "puppetcode"
-      type: "string"
-      required: true
-    - variable: "VOL_GIT"
-      label: "git repository volume name"
-      description: "git repository volume name"
-      default: "puppetgit"
-      type: "string"
-      required: true
-    - variable: "VOL_R10KCACHE"
-      label: "r10k cache volume name"
-      description: "r10k cache volume name"
-      default: "puppetr10kcache"
-      type: "string"
-      required: true
-    - variable: "VOL_SSH_HOST_KEYS"
-      label: "SSH host keys volume name"
-      description: "SSH host keys volume name"
-      default: "puppetr10ksshhostkeys"
-      type: "string"
-      required: true
     - variable: "GITHUB_USER"
       label: "GitHub user"
       description: "Use to use to connect to GitHub"

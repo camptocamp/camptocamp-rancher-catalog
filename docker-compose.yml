@@ -3,11 +3,11 @@ puppetca:
   environment:
     DNS_ALT_NAMES: puppetca
   volumes:
-  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+  - puppetca_$${stack_name}:/etc/puppetlabs/puppet/ssl
 postgresql:
   image: camptocamp/puppetdb_postgres:9.4-3
   volumes:
-  - ${VOL_DB}:/var/lib/postgresql/data
+  - puppetdb_$${stack_name}:/var/lib/postgresql/data
 puppetdb:
   image: camptocamp/puppetdb:3.2.3-4
   environment:
@@ -44,8 +44,8 @@ r10k:
   - activemq
   - puppetca
   volumes:
-  - ${VOL_CODE}:/etc/puppetlabs/code/environments
-  - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
+  - puppetcode_$${stack_name}:/etc/puppetlabs/code/environments
+  - puppetr10kcache_$${stack_name}:/opt/puppetlabs/r10k/cache
 activemq:
   image: camptocamp/activemq-mcollective:5.6.0-1
   links:
@@ -65,5 +65,5 @@ r10kproxy:
   ports:
   - 2222:22/tcp
   volumes:
-  - ${VOL_GIT}:/srv/puppetmaster.git
-  - ${VOL_SSH_HOST_KEYS}:/etc/ssh/ssh_host_keys
+  - puppetgit_$${stack_name}:/srv/puppetmaster.git
+  - puppetr10ksshhostkeys_$${stack_name}:/etc/ssh/ssh_host_keys
