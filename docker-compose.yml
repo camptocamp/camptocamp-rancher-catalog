@@ -18,7 +18,7 @@ puppetdb:
   - postgresql
   - puppetca
 puppet:
-  image: camptocamp/puppetserver-tainted:2.2.1-8${SITE}1
+  image: camptocamp/puppetserver-tainted:2.2.1-10${SITE}1
   labels:
     io.rancher.sidekicks: r10k
   environment:
