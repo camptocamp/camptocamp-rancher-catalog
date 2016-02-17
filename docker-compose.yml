@@ -18,12 +18,14 @@ puppetdb:
   - postgresql
   - puppetca
 puppet:
-  image: camptocamp/puppetserver-tainted:2.2.1-10${SITE}1
+  image: camptocamp/puppetserver:2.2.1-11
   labels:
     io.rancher.sidekicks: r10k
   environment:
     CA: 'false'
     DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+    GPG_KEY: ${GPG_KEY}
+    HIERA_YAML: ${HIERA_YAML}
   links:
   - activemq
   - puppetca
