@@ -49,11 +49,6 @@
       description: "GitHub Users to allow to connect to r10k container"
       type: "string"
       required: false
-    - variable: "RSA_PRIVATE_KEY"
-      label: "RSA private key"
-      description: "RSA private key for r10k communications"
-      type: "multiline"
-      required: true
     - variable: "GPG_KEY"
       label: "Puppetmaster GPG key to decrypt"
       description: "GPG key used by puppetmaster to decrypt hiera eyaml data"
