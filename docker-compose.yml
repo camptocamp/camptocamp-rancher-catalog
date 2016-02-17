@@ -39,10 +39,11 @@ puppetboard:
   links:
   - puppetdb
 r10k:
-  image: camptocamp/mcollectived-r10k:0.7
+  image: camptocamp/mcollectived-r10k:0.9
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   links:
   - activemq
   - puppetca
@@ -51,13 +52,14 @@ activemq:
   links:
   - puppetca
 r10kproxy:
-  image: camptocamp/r10k-gitproxy:0.16
+  image: camptocamp/r10k-gitproxy:0.17
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
     GITHUB_ORG: ${GITHUB_ORG}
     GITHUB_TEAMS: ${GITHUB_TEAMS}
     GITHUB_USERS: ${GITHUB_USERS}
+    RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   links:
   - activemq
   - puppetca
