@@ -48,6 +48,7 @@ r10k:
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   volumes:
   - puppetcodecache:/etc/puppetlabs/code
+  - puppetr10kcache:/opt/puppetlabs/r10k/cache
   links:
   - activemq
   - puppetca
