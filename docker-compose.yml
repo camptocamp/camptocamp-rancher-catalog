@@ -1,5 +1,5 @@
 puppetca:
-  image: camptocamp/puppetserver:2.2.1-18
+  image: camptocamp/puppetserver:2.2.1-19
   environment:
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
   ports:
@@ -22,7 +22,7 @@ activemq:
   links:
   - puppetca
 puppet:
-  image: camptocamp/puppetserver:2.2.1-18
+  image: camptocamp/puppetserver:2.2.1-19
   labels:
     io.rancher.sidekicks: r10k
   environment:
