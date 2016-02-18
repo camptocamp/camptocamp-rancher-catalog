@@ -1,6 +1,8 @@
 puppetca:
   image: camptocamp/puppetserver:2.2.1-19
   environment:
+    CA_KEY: ${CA_KEY}
+    CA_CRT: ${CA_CRT}
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
   ports:
   - ${CA_PORT}:8140/tcp
