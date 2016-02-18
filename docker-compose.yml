@@ -1,5 +1,5 @@
 puppetca:
-  image: camptocamp/puppetserver:2.2.1-21
+  image: camptocamp/puppetserver:2.2.1-22
   environment:
     CA_KEY: ${CA_KEY}
     CA_CRT: ${CA_CRT}
@@ -24,7 +24,7 @@ activemq:
   links:
   - puppetca
 puppet:
-  image: camptocamp/puppetserver:2.2.1-21
+  image: camptocamp/puppetserver:2.2.1-22
   labels:
     io.rancher.sidekicks: r10k
   environment:
