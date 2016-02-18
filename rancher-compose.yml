@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c54"
+  version: "v2.2.1-c2c55"
   description: "Puppet Master stack"
-  uuid: puppet-54
+  uuid: puppet-55
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -62,6 +62,16 @@
     - variable: "HIERA_YAML"
       label: "hiera.yaml content"
       description: "content of the hiera.yaml file"
+      type: "multiline"
+      required: false
+    - variable: "CA_KEY"
+      label: "Puppet CA private key"
+      description: "Puppet CA private key"
+      type: "multiline"
+      required: false
+    - variable: "CA_CRT"
+      label: "Puppet CA certificate"
+      description: "Puppet CA certificate"
       type: "multiline"
       required: false
 
