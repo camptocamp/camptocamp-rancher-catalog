@@ -64,3 +64,59 @@
       description: "content of the hiera.yaml file"
       type: "multiline"
       required: false
+
+puppetca:
+  health_check:
+    port: 8140
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+postgresql:
+  health_check:
+    port: 5432
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppetdb:
+  health_check:
+    port: 8080
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+activemq:
+  health_check:
+    port: 61613
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppet:
+  health_check:
+    port: 8140
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+r10kproxy:
+  health_check:
+    port: 22
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppetboard:
+  health_check:
+    port: 80
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
