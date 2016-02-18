@@ -41,7 +41,7 @@ puppet:
   volumes_from:
   - r10k
 r10k:
-  image: camptocamp/mcollectived-r10k:0.9
+  image: camptocamp/mcollectived-r10k:0.11
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
