@@ -6,17 +6,17 @@ puppetca:
   - ${CA_PORT}:8140/tcp
   volumes:
   - puppetca:/etc/puppetlabs/puppet/ssl
-#postgresql:
-#  image: camptocamp/puppetdb_postgres:9.4-3
-#  volumes:
-#  - puppetdb:/var/lib/postgresql/data
-#puppetdb:
-#  image: camptocamp/puppetdb:3.2.3-4
-#  environment:
-#    ENABLE_HTTP: 'true'
-#  links:
-#  - postgresql
-#  - puppetca
+postgresql:
+  image: camptocamp/puppetdb_postgres:9.4-3
+  volumes:
+  - puppetdb:/var/lib/postgresql/data
+puppetdb:
+  image: camptocamp/puppetdb:3.2.3-4
+  environment:
+    ENABLE_HTTP: 'true'
+  links:
+  - postgresql
+  - puppetca
 activemq:
   image: camptocamp/activemq-mcollective:5.6.0-1
   links:
@@ -64,7 +64,7 @@ r10kproxy:
   volumes:
   - puppetgit:/srv/puppetmaster.git
   - puppetr10ksshhostkeys:/etc/ssh/ssh_host_keys
-#puppetboard:
-#  image: camptocamp/puppetboard:global_default
-#  links:
-#  - puppetdb
+puppetboard:
+  image: camptocamp/puppetboard:global_default
+  links:
+  - puppetdb
