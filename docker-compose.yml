@@ -1,5 +1,5 @@
 puppetca:
-  image: camptocamp/puppetserver:2.2.1-8
+  image: camptocamp/puppetserver:2.2.1-13
   environment:
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
   ports:
@@ -17,8 +17,12 @@ puppetdb:
   links:
   - postgresql
   - puppetca
+activemq:
+  image: camptocamp/activemq-mcollective:5.6.0-1
+  links:
+  - puppetca
 puppet:
-  image: camptocamp/puppetserver:latest
+  image: camptocamp/puppetserver:2.2.1-13
   labels:
     io.rancher.sidekicks: r10k
   environment:
@@ -34,10 +38,6 @@ puppet:
   - 8140:8140/tcp
   volumes_from:
   - r10k
-puppetboard:
-  image: camptocamp/puppetboard:global_default
-  links:
-  - puppetdb
 r10k:
   image: camptocamp/mcollectived-r10k:0.9
   environment:
@@ -46,10 +46,6 @@ r10k:
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   links:
   - activemq
-  - puppetca
-activemq:
-  image: camptocamp/activemq-mcollective:5.6.0-1
-  links:
   - puppetca
 r10kproxy:
   image: camptocamp/r10k-gitproxy:0.17
@@ -68,3 +64,7 @@ r10kproxy:
   volumes:
   - puppetgit:/srv/puppetmaster.git
   - puppetr10ksshhostkeys:/etc/ssh/ssh_host_keys
+puppetboard:
+  image: camptocamp/puppetboard:global_default
+  links:
+  - puppetdb
