@@ -46,6 +46,8 @@ r10k:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+  volumes:
+  - puppetcodecache:/etc/puppetlabs/code
   links:
   - activemq
   - puppetca
