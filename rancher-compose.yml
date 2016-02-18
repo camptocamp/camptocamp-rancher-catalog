@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c59"
+  version: "v2.2.1-c2c60"
   description: "Puppet Master stack"
-  uuid: puppet-59
+  uuid: puppet-60
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
