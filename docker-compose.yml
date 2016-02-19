@@ -4,6 +4,7 @@ puppetca:
     CA_KEY: ${CA_KEY}
     CA_CRT: ${CA_CRT}
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
+    JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
   ports:
   - ${CA_PORT}:8140/tcp
 postgresql:
@@ -14,6 +15,7 @@ puppetdb:
   image: camptocamp/puppetdb:3.2.3-4
   environment:
     ENABLE_HTTP: 'true'
+    JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
   links:
   - postgresql
   - puppetca
@@ -30,6 +32,7 @@ puppet:
     DNS_ALT_NAMES: ${DNS_ALT_NAMES}
     GPG_KEY: ${GPG_KEY}
     HIERA_YAML: ${HIERA_YAML}
+    JAVA_ARGS: ${PUPPET_JAVA_ARGS}
   links:
   - activemq
   - puppetca

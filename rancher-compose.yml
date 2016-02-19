@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c64"
+  version: "v2.2.1-c2c65"
   description: "Puppet Master stack"
-  uuid: puppet-64
+  uuid: puppet-65
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -79,6 +79,21 @@
       description: "The secret passed to the webhook"
       type: "password"
       required: true
+    - variable: "PUPPET_JAVA_ARGS"
+      label: "Puppetserver JAVA_ARGS"
+      desription: "Puppetserver JAVA_ARGS"
+      type: "string"
+      required: false
+    - variable: "PUPPETDB_JAVA_ARGS"
+      label: "PuppetDB JAVA_ARGS"
+      desription: "PuppetDB JAVA_ARGS"
+      type: "string"
+      required: false
+    - variable: "PUPPETCA_JAVA_ARGS"
+      label: "Puppet CA JAVA_ARGS"
+      desription: "Puppet CA JAVA_ARGS"
+      type: "string"
+      required: false
 
 puppetca:
   health_check:
