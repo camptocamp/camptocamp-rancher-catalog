@@ -6,8 +6,6 @@ puppetca:
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
   ports:
   - ${CA_PORT}:8140/tcp
-  volumes:
-  - puppetca:/etc/puppetlabs/puppet/ssl
 postgresql:
   image: camptocamp/puppetdb_postgres:9.4-3
   volumes:
@@ -52,7 +50,7 @@ r10k:
   links:
   - activemq
   - puppetca
-r10kproxy:
+git:
   image: camptocamp/r10k-gitproxy:0.17
   environment:
     GITHUB_USER: ${GITHUB_USER}
