@@ -74,6 +74,11 @@
       description: "Puppet CA certificate"
       type: "multiline"
       required: false
+    - variable: "WEBHOOK_SECRET"
+      label: "Webhook secret"
+      description: "The secret passed to the webhook"
+      type: "password"
+      required: true
 
 puppetca:
   health_check:
