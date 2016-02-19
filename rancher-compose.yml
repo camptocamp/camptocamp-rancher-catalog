@@ -108,6 +108,11 @@
       type: "string"
       default: "r10k"
       required: true
+    - variable: "PUPPETBOARD_OVERVIEW_FILTER"
+      label: "Puppetboard Overview filter"
+      description: "Puppetboard Overview filter"
+      type: "string"
+      required: false
 
 puppetca:
   health_check:
