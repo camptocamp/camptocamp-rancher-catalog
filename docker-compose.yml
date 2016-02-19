@@ -64,6 +64,7 @@ git:
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
     WEBHOOK_SECRET: ${WEBHOOK_SECRET}
   links:
+  - ii
   - webhook
   ports:
   - 2222:22/tcp
@@ -82,3 +83,6 @@ puppetboard:
   image: camptocamp/puppetboard:global_default
   links:
   - puppetdb
+ii:
+  image: camptocamp/ii:latest
+  command: '-s ${IRC_SERVER} -n ${IRC_NICKNAME}'
