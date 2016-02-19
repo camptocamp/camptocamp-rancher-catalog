@@ -85,4 +85,4 @@ puppetboard:
   - puppetdb
 ii:
   image: camptocamp/ii:latest
-  command: '-s ${IRC_SERVER} -n ${IRC_NICKNAME}'
+  command: -s ${IRC_SERVER} -n ${IRC_NICKNAME}
