@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c65"
+  version: "v2.2.1-c2c66"
   description: "Puppet Master stack"
-  uuid: puppet-65
+  uuid: puppet-66
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -96,6 +96,17 @@
       desription: "Puppet CA JAVA_ARGS"
       type: "string"
       default: "-XX:OnOutOfMemoryError=\"kill -9 %p\" -Djava.security.egd=/dev/urandom -Xmx2g -Xms2g -XX:MaxPermSize=256m"
+      required: true
+    - variable: "IRC_SERVER"
+      label: "IRC server"
+      description: "IRC server to notify on git push"
+      type: "string"
+      required: true
+    - variable: "IRC_NICKNAME"
+      label: "IRC server"
+      description: "IRC nickname to user to notify on git push"
+      type: "string"
+      default: "r10k"
       required: true
 
 puppetca:
