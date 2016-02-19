@@ -81,8 +81,16 @@ webhook:
   - 9000:9000/tcp
 puppetboard:
   image: camptocamp/puppetboard:global_default
+  environment:
+  - PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
   links:
   - puppetdb
 ii:
   image: camptocamp/ii:latest
   command: -s ${IRC_SERVER} -n ${IRC_NICKNAME}
+dashapi:
+  image: camptocamp/puppetdb-dashapi
+  environment:
+    DASHAPI_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
+  links:
+  - puppetdb
