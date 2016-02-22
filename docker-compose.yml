@@ -81,8 +81,6 @@ webhook:
   - 9000:9000/tcp
 puppetboard:
   image: camptocamp/puppetboard:global_default
-  environment:
-  - PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
   links:
   - puppetdb
 ii:
