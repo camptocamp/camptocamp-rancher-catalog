@@ -64,6 +64,6 @@ webhook:
 puppetboard:
   image: camptocamp/puppetboard:global_default
   environment:
-  - PUPPETBOARD_OVERVIEW_FILTER: "${PUPPETBOARD_OVERVIEW_FILTER}"
+    PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
   links:
   - puppetdb
