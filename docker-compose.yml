@@ -53,24 +53,6 @@ r10k:
   links:
   - activemq
   - puppetca
-git:
-  image: camptocamp/r10k-gitproxy:0.20
-  environment:
-    GITHUB_USER: ${GITHUB_USER}
-    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
-    GITHUB_ORG: ${GITHUB_ORG}
-    GITHUB_TEAMS: ${GITHUB_TEAMS}
-    GITHUB_USERS: ${GITHUB_USERS}
-    RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
-    WEBHOOK_SECRET: ${WEBHOOK_SECRET}
-  links:
-  - ii
-  - webhook
-  ports:
-  - 2222:22/tcp
-  volumes:
-  - puppetgit:/srv/puppetmaster.git
-  - puppetr10ksshhostkeys:/etc/ssh/ssh_host_keys
 webhook:
   image: camptocamp/r10k-webhook:1.0.0-4
   environment:
@@ -81,14 +63,7 @@ webhook:
   - 9000:9000/tcp
 puppetboard:
   image: camptocamp/puppetboard:global_default
-  links:
-  - puppetdb
-ii:
-  image: camptocamp/ii:latest
-  command: -s ${IRC_SERVER} -n ${IRC_NICKNAME}
-dashapi:
-  image: camptocamp/puppetdb-dashapi
   environment:
-    DASHAPI_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
+  - PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
   links:
   - puppetdb

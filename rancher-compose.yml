@@ -33,22 +33,6 @@
       description: "Password to use to connect to GitHub"
       type: "password"
       required: false
-    - variable: "GITHUB_ORG"
-      label: "GitHub organization"
-      description: "GitHub Organization to connecte to"
-      default: "camptocamp"
-      type: "string"
-      required: false
-    - variable: "GITHUB_TEAMS"
-      label: "GitHub teams"
-      description: "GitHub Teams to allow to connect to r10k container"
-      type: "string"
-      required: false
-    - variable: "GITHUB_USERS"
-      label: "GitHub users"
-      description: "GitHub Users to allow to connect to r10k container"
-      type: "string"
-      required: false
     - variable: "RSA_PRIVATE_KEY"
       label: "RSA private key"
       description: "RSA private key for r10k communications"
@@ -97,22 +81,6 @@
       type: "string"
       default: "-XX:OnOutOfMemoryError=\"kill -9 %p\" -Djava.security.egd=/dev/urandom -Xmx2g -Xms2g -XX:MaxPermSize=256m"
       required: true
-    - variable: "IRC_SERVER"
-      label: "IRC server"
-      description: "IRC server to notify on git push"
-      type: "string"
-      required: true
-    - variable: "IRC_NICKNAME"
-      label: "IRC server"
-      description: "IRC nickname to user to notify on git push"
-      type: "string"
-      default: "r10k"
-      required: true
-    - variable: "PUPPETBOARD_OVERVIEW_FILTER"
-      label: "Puppetboard Overview filter"
-      description: "Puppetboard Overview filter"
-      type: "string"
-      required: false
 
 puppetca:
   health_check:
@@ -149,14 +117,6 @@ activemq:
 puppet:
   health_check:
     port: 8140
-    interval: 10000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-
-r10kproxy:
-  health_check:
-    port: 22
     interval: 10000
     unhealthy_threshold: 3
     healthy_threshold: 2
