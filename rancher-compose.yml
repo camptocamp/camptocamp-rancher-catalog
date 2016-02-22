@@ -81,6 +81,11 @@
       type: "string"
       default: "-XX:OnOutOfMemoryError=\"kill -9 %p\" -Djava.security.egd=/dev/urandom -Xmx2g -Xms2g -XX:MaxPermSize=256m"
       required: true
+    - variable: "PUPPETBOARD_OVERVIEW_FILTER"
+      label: "Puppetboard Overview filter"
+      description: "Puppetboard Overview filter"
+      type: "string"
+      required: false
 
 puppetca:
   health_check:
