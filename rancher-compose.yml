@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c70"
+  version: "v2.2.1-c2c71"
   description: "Puppet Master stack"
-  uuid: puppet-70
+  uuid: puppet-71
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -86,6 +86,11 @@
       description: "Puppetboard Overview filter"
       type: "string"
       required: false
+    - variable: "R10K_REMOTE"
+      label: "r10k remote"
+      description: "r10k remote"
+      type: "string"
+      required: true
 
 puppetca:
   health_check:
