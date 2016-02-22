@@ -42,10 +42,11 @@ puppet:
   volumes_from:
   - r10k
 r10k:
-  image: camptocamp/r10k:0.11
+  image: camptocamp/r10k:0.12
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    REMOTE: ${R10K_REMOTE}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   volumes:
   - puppetcodecache:/etc/puppetlabs/code/environments
