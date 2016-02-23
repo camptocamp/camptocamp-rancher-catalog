@@ -33,6 +33,7 @@ puppet:
     GPG_KEY: ${GPG_KEY}
     HIERA_YAML: ${HIERA_YAML}
     JAVA_ARGS: ${PUPPET_JAVA_ARGS}
+    AUTH_CONF_ALLOW_CATALOG: ${AUTH_CONF_ALLOW_CATALOG}
   links:
   - activemq
   - puppetca
