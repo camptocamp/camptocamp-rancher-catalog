@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c71"
+  version: "v2.2.1-c2c72"
   description: "Puppet Master stack"
-  uuid: puppet-71
+  uuid: puppet-72
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -91,6 +91,11 @@
       description: "r10k remote"
       type: "string"
       required: true
+    - variable: "AUTH_CONF_ALLOW_CATALOG"
+      label: "auth.conf allow catalog"
+      description: "Allowed certnames for catalog endpoint"
+      type: "string"
+      required: false
 
 puppetca:
   health_check:
