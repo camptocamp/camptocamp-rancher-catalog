@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c73"
+  version: "v2.2.1-c2c74"
   description: "Puppet Master stack"
-  uuid: puppet-73
+  uuid: puppet-74
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -22,6 +22,12 @@
       description: "Puppet CA listen port"
       default: "8140"
       type: "int"
+      required: true
+    - variable: "PUPPETDB_POSTGRES_SERVICE"
+      label: "PuppetDB PostgreSQL"
+      description: "PuppetDB PostgreSQL Service"
+      type: "service"
+      default: "postgresql"
       required: true
     - variable: "GITHUB_USER"
       label: "GitHub user"

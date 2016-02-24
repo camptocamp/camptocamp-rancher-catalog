@@ -17,7 +17,7 @@ puppetdb:
     ENABLE_HTTP: 'true'
     JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
   links:
-  - postgresql
+  - ${PUPPETDB_POSTGRES_SERVICE}:postgresql
   - puppetca
 activemq:
   image: camptocamp/activemq-mcollective:5.6.0-1
