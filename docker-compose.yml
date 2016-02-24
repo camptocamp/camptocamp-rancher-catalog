@@ -7,10 +7,6 @@ puppetca:
     JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
   ports:
   - ${CA_PORT}:8140/tcp
-postgresql:
-  image: camptocamp/puppetdb_postgres:9.4-3
-  volumes:
-  - puppetdb:/var/lib/postgresql/data
 puppetdb:
   image: camptocamp/puppetdb:3.2.3-4
   environment:
