@@ -1,3 +1,20 @@
+# Load balancer
+lb:
+  ports:
+  - 8140:8140/tcp
+  - ${CA_PORT}:8140/tcp
+  - 9000:9000/tcp
+  labels:
+    io.rancher.loadbalancer.target.puppet: 8140=8140
+    io.rancher.loadbalancer.target.puppetca: ${CA_PORT}=8140
+    io.rancher.loadbalancer.target.webhook: 9000=9000
+  image: rancher/load-balancer-service
+  links:
+  - puppet
+  - puppetca
+  - webhook
+
+# Puppet CA
 puppetca:
   image: camptocamp/puppetserver:2.2.1-26
   environment:
@@ -5,8 +22,8 @@ puppetca:
     CA_CRT: ${CA_CRT}
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
     JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
-  ports:
-  - ${CA_PORT}:8140/tcp
+
+# PuppetDB
 puppetdb:
   image: camptocamp/puppetdb:3.2.3-4
   environment:
@@ -15,10 +32,14 @@ puppetdb:
   links:
   - ${PUPPETDB_POSTGRES_SERVICE}:postgresql
   - puppetca
+
+# ActiveMQ
 activemq:
   image: camptocamp/activemq-mcollective:5.6.0-1
   links:
   - puppetca
+
+# Puppet Server
 puppet:
   image: camptocamp/puppetserver:2.2.1-26
   labels:
@@ -34,10 +55,10 @@ puppet:
   - activemq
   - puppetca
   - puppetdb
-  ports:
-  - 8140:8140/tcp
   volumes_from:
   - r10k
+
+# R10K (sidekick to Puppet Server)
 r10k:
   image: camptocamp/r10k:0.13
   environment:
@@ -51,14 +72,16 @@ r10k:
   links:
   - activemq
   - puppetca
+
+# R10K Webhook
 webhook:
   image: camptocamp/r10k-webhook:1.0.0-5
   environment:
     HOOKS_SECRET: ${WEBHOOK_SECRET}
   links:
   - activemq
-  ports:
-  - 9000:9000/tcp
+
+# Puppetboard
 puppetboard:
   image: camptocamp/puppetboard:global_default
   environment:
