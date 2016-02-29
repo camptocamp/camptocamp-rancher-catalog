@@ -1,18 +1,14 @@
 # Load balancer
+#
+# We can't expose all services behind the LB
+# (cf. https://github.com/rancher/rancher/issues/3722)
+# so we're only exposing puppet itself
 lb:
   ports:
   - 8140:8140/tcp
-  - ${CA_PORT}:8140/tcp
-  - 9000:9000/tcp
-  labels:
-    io.rancher.loadbalancer.target.puppet: 8140=8140
-    io.rancher.loadbalancer.target.puppetca: ${CA_PORT}=8140
-    io.rancher.loadbalancer.target.webhook: 9000=9000
   image: rancher/load-balancer-service
   links:
   - puppet
-  - puppetca
-  - webhook
 
 # Puppet CA
 puppetca:
@@ -22,6 +18,8 @@ puppetca:
     CA_CRT: ${CA_CRT}
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
     JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
+  ports:
+  - ${CA_PORT}:8140
 
 # PuppetDB
 puppetdb:
@@ -80,6 +78,8 @@ webhook:
     HOOKS_SECRET: ${WEBHOOK_SECRET}
   links:
   - activemq
+  ports:
+  - 9000:9000
 
 # Puppetboard
 puppetboard:
