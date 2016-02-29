@@ -83,7 +83,7 @@ webhook:
 
 # Puppetboard
 puppetboard:
-  image: camptocamp/puppetboard:global_default
+  image: camptocamp/puppetboard:0.1.2-1overview1
   environment:
     PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
   links:
