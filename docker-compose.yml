@@ -33,7 +33,9 @@ puppetdb:
 
 # ActiveMQ
 activemq:
-  image: camptocamp/activemq-mcollective:5.6.0-1
+  image: camptocamp/activemq-mcollective:5.6.0-2
+  environment:
+    MCOLLECTIVE_PASSWORD: ${MCOLLECTIVE_PASSWORD}
   links:
   - puppetca
 
@@ -58,10 +60,11 @@ puppet:
 
 # R10K (sidekick to Puppet Server)
 r10k:
-  image: camptocamp/r10k:0.13
+  image: camptocamp/r10k:2.2.0-1
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    MCOLLECTIVE_PASSWORD: ${MCOLLECTIVE_PASSWORD}
     REMOTE: ${R10K_REMOTE}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   volumes:
