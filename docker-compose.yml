@@ -78,9 +78,10 @@ r10k:
 
 # R10K Webhook
 webhook:
-  image: camptocamp/r10k-webhook:1.0.0-5
+  image: camptocamp/r10k-webhook:1.0.0-6
   environment:
     HOOKS_SECRET: ${WEBHOOK_SECRET}
+    MCOLLECTIVE_PASSWORD: ${MCOLLECTIVE_PASSWORD}
   links:
   - activemq
   ports:
