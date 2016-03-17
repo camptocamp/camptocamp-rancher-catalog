@@ -104,7 +104,7 @@
     - variable: "MCOLLECTIVE_PASSWORD"
       label: "MCollective password"
       description: "Password used to connect to the broker for MCollective"
-      type: "string"
+      type: "password"
       required: true
 
 puppetca:
