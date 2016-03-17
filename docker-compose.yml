@@ -38,6 +38,8 @@ activemq:
     MCOLLECTIVE_PASSWORD: ${MCOLLECTIVE_PASSWORD}
   links:
   - puppetca
+  ports:
+  - 61614:61614
 
 # Puppet Server
 puppet:
