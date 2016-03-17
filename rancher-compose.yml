@@ -101,8 +101,8 @@
       description: "Allowed certnames for catalog endpoint"
       type: "string"
       required: false
-    - variable: "MCOLLECTIVE_PASSWORD"
-      label: "MCollective password"
+    - variable: "STOMP_PASSWORD"
+      label: "MCollective's stomp password"
       description: "Password used to connect to the broker for MCollective"
       type: "password"
       required: true
