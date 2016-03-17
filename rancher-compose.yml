@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.2.1-c2c78"
+  version: "v2.2.1-c2c79"
   description: "Puppet Master stack"
-  uuid: puppet-78
+  uuid: puppet-79
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -101,6 +101,11 @@
       description: "Allowed certnames for catalog endpoint"
       type: "string"
       required: false
+    - variable: "MCOLLECTIVE_PASSWORD"
+      label: "MCollective password"
+      description: "Password used to connect to the broker for MCollective"
+      type: "string"
+      required: true
 
 puppetca:
   health_check:
