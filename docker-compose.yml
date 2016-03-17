@@ -35,7 +35,7 @@ puppetdb:
 activemq:
   image: camptocamp/activemq-mcollective:5.6.0-2
   environment:
-    MCOLLECTIVE_PASSWORD: ${MCOLLECTIVE_PASSWORD}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
   links:
   - puppetca
   ports:
@@ -66,7 +66,7 @@ r10k:
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_PASSWORD: ${GITHUB_PASSWORD}
-    MCOLLECTIVE_PASSWORD: ${MCOLLECTIVE_PASSWORD}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
     REMOTE: ${R10K_REMOTE}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   volumes:
@@ -81,7 +81,7 @@ webhook:
   image: camptocamp/r10k-webhook:1.0.0-6
   environment:
     HOOKS_SECRET: ${WEBHOOK_SECRET}
-    MCOLLECTIVE_PASSWORD: ${MCOLLECTIVE_PASSWORD}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
   links:
   - activemq
   ports:
