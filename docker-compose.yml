@@ -12,7 +12,7 @@ lb:
 
 # Puppet CA
 puppetca:
-  image: camptocamp/puppetserver:2.2.1-26
+  image: camptocamp/puppetserver:2.3.1-1
   environment:
     CA_KEY: ${CA_KEY}
     CA_CRT: ${CA_CRT}
@@ -23,7 +23,7 @@ puppetca:
 
 # PuppetDB
 puppetdb:
-  image: camptocamp/puppetdb:3.2.3-4
+  image: camptocamp/puppetdb:3.2.4-1
   environment:
     ENABLE_HTTP: 'true'
     JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
@@ -43,7 +43,7 @@ activemq:
 
 # Puppet Server
 puppet:
-  image: camptocamp/puppetserver:2.2.1-26
+  image: camptocamp/puppetserver:2.3.1-1
   labels:
     io.rancher.sidekicks: r10k
   environment:
