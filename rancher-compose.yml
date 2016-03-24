@@ -1,8 +1,8 @@
 .catalog:
   name: "Puppet"
-  version: "v2.3.3-1"
+  version: "v2.3.1-4"
   description: "Puppet Master stack"
-  uuid: puppet-82
+  uuid: puppet-83
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -37,6 +37,16 @@
       label: "GitHub token"
       description: "Token for r10k checkouts of private repositories on GitHub and MCollective keys deployment"
       type: "password"
+      required: false
+    - variable: "GITHUB_ORG"
+      label: "GitHub Organization"
+      description: "A GitHub Organization for MCollective authorization"
+      type: "string"
+      required: false
+    - variable: "GITHUB_TEAM"
+      label: "GitHub Team"
+      description: "A GitHub Team for MCollective authorization"
+      type: "string"
       required: false
     - variable: "RSA_PRIVATE_KEY"
       label: "RSA private key"
