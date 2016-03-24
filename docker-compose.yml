@@ -13,6 +13,8 @@ lb:
 # Puppet CA
 puppetca:
   image: camptocamp/puppetserver:2.3.1-1
+  labels:
+    io.rancher.sidekicks: mco-puppetca
   environment:
     CA_KEY: ${CA_KEY}
     CA_CRT: ${CA_CRT}
@@ -20,6 +22,19 @@ puppetca:
     JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
   ports:
   - ${CA_PORT}:8140
+
+# MCollectived-puppetca (sidekick to Puppet CA)
+mco-puppetca:
+  image: camptocamp/mcollectived-puppetca:1.0.0-1
+  environment:
+    GITHUB_TOKEN: ${GITHUB_TOKEN}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAM: ${GITHUB_TEAM}
+    GITHUB_USERS: ${GITHUB_USER}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+  links:
+  - activemq
 
 # PuppetDB
 puppetdb:
