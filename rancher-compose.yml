@@ -30,17 +30,22 @@
       required: true
     - variable: "GITHUB_USER"
       label: "GitHub user"
-      description: "User for r10k checkouts of private repositories on GitHub"
+      description: "User for r10k checkouts of private repositories on GitHub and MCollective client key"
       type: "string"
       required: false
-    - variable: "GITHUB_PASSWORD"
-      label: "GitHub password/token"
-      description: "Password (or token) for r10k checkouts of private repositories on GitHub"
+    - variable: "GITHUB_TOKEN"
+      label: "GitHub token"
+      description: "Token for r10k checkouts of private repositories on GitHub and MCollective keys deployment"
       type: "password"
       required: false
     - variable: "RSA_PRIVATE_KEY"
       label: "RSA private key"
       description: "RSA private key for r10k communications"
+      type: "multiline"
+      required: true
+    - variable: "MCOLLECTIVE_SERVER_KEY"
+      label: "MCollective server key"
+      description: "MCollective shared SSL server key"
       type: "multiline"
       required: true
     - variable: "GPG_KEY"
