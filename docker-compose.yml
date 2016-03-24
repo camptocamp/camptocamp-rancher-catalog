@@ -62,7 +62,7 @@ puppet:
 
 # R10K (sidekick to Puppet Server)
 r10k:
-  image: camptocamp/r10k:2.2.0-5
+  image: camptocamp/r10k:2.2.0-6
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_TOKEN: ${GITHUB_TOKEN}
@@ -82,7 +82,7 @@ r10k:
 
 # R10K Webhook
 webhook:
-  image: camptocamp/r10k-webhook:2.0.5-1
+  image: camptocamp/r10k-webhook:2.0.6-1
   environment:
     HOOKS_SECRET: ${WEBHOOK_SECRET}
     STOMP_PASSWORD: ${STOMP_PASSWORD}
