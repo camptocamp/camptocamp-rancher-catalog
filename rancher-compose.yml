@@ -30,12 +30,12 @@
       required: true
     - variable: "GITHUB_USER"
       label: "GitHub user"
-      description: "Use to use to connect to GitHub"
+      description: "User for r10k checkouts of private repositories on GitHub"
       type: "string"
       required: false
     - variable: "GITHUB_PASSWORD"
       label: "GitHub password"
-      description: "Password to use to connect to GitHub"
+      description: "Password (or token) for r10k checkouts of private repositories on GitHub"
       type: "password"
       required: false
     - variable: "RSA_PRIVATE_KEY"
