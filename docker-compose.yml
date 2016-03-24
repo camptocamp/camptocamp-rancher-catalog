@@ -62,7 +62,7 @@ puppet:
 
 # R10K (sidekick to Puppet Server)
 r10k:
-  image: camptocamp/r10k:2.2.0-3
+  image: camptocamp/r10k:2.2.0-5
   environment:
     GITHUB_USER: ${GITHUB_USER}
     GITHUB_TOKEN: ${GITHUB_TOKEN}
