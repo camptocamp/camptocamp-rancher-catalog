@@ -62,13 +62,14 @@ puppet:
 
 # R10K (sidekick to Puppet Server)
 r10k:
-  image: camptocamp/r10k:2.2.0-2
+  image: camptocamp/r10k:2.2.0-3
   environment:
     GITHUB_USER: ${GITHUB_USER}
-    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    GITHUB_TOKEN: ${GITHUB_TOKEN}
     STOMP_PASSWORD: ${STOMP_PASSWORD}
     REMOTE: ${R10K_REMOTE}
     RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
   volumes:
   - puppetcodecache:/etc/puppetlabs/code/environments
   - puppetr10kcache:/opt/puppetlabs/r10k/cache
@@ -78,10 +79,13 @@ r10k:
 
 # R10K Webhook
 webhook:
-  image: camptocamp/r10k-webhook:1.0.0-7
+  image: camptocamp/r10k-webhook:2.0.0-1
   environment:
     HOOKS_SECRET: ${WEBHOOK_SECRET}
     STOMP_PASSWORD: ${STOMP_PASSWORD}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+    MCOLLECTIVE_CLIENT_USER: ${GITHUB_USER}
+    MCOLLECTIVE_CLIENT_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   links:
   - activemq
   ports:
