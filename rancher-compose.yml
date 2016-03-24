@@ -34,7 +34,7 @@
       type: "string"
       required: false
     - variable: "GITHUB_PASSWORD"
-      label: "GitHub password"
+      label: "GitHub password/token"
       description: "Password (or token) for r10k checkouts of private repositories on GitHub"
       type: "password"
       required: false
