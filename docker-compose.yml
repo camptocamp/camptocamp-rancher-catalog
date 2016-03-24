@@ -33,6 +33,8 @@ mco-puppetca:
     GITHUB_USERS: ${GITHUB_USER}
     STOMP_PASSWORD: ${STOMP_PASSWORD}
     MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+  volumes_from:
+  - puppetca
   links:
   - activemq
 
