@@ -43,10 +43,11 @@
       description: "A GitHub Team for MCollective authorization"
       type: "string"
       required: false
-    - variable: "GITHUB_USER_MAPPING"
-      label: "GitHub User Mapping"
-      description: "Map of correspondance between user names and GitHub logins"
+    - variable: "GITHUB_USERS"
+      label: "GitHub Users"
+      description: "Additional GitHub users for MCollective services"
       type: "string"
+      default: "<github_token_user>=webhook"
       required: false
     - variable: "RSA_PRIVATE_KEY"
       label: "RSA private key"
