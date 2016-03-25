@@ -28,11 +28,6 @@
       description: "PuppetDB PostgreSQL Service"
       type: "service"
       required: true
-    - variable: "GITHUB_USER"
-      label: "GitHub user"
-      description: "User for r10k checkouts of private repositories on GitHub and MCollective client key"
-      type: "string"
-      required: false
     - variable: "GITHUB_TOKEN"
       label: "GitHub token"
       description: "Token for r10k checkouts of private repositories on GitHub and MCollective keys deployment"
@@ -52,7 +47,6 @@
       label: "GitHub User Mapping"
       description: "Map of correspondance between user names and GitHub logins"
       type: "string"
-      default: "${GITHUB_USER}=webhook"
       required: false
     - variable: "RSA_PRIVATE_KEY"
       label: "RSA private key"
