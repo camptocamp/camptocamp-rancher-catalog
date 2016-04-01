@@ -20,8 +20,6 @@ gogs-conf:
     GOGS_DOMAIN: ${GOGS_DOMAIN}
     GOGS_ROOT_URL: ${GOGS_ROOT_URL}
     GOGS_SSH_PORT: ${GOGS_SSH_PORT}
-  volumes:
-    - /data/gogs/custom
 
 auth:
   image: camptocamp/oauth2_proxy:github_user
