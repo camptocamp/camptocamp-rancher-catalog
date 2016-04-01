@@ -40,7 +40,6 @@
     - variable: "OAUTH_GITHUB_TEAM"
       label: "OAuth GitHub Team"
       description: "OAuth GitHub Team"
-      required: true
       type: "string"
     - variable: "OAUTH_COOKIE_SECRET"
       label: "OAuth cookie secret"
