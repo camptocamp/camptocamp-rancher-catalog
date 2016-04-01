@@ -9,7 +9,7 @@ gogs:
     - ${GOGS_DATABASE_SERVICE}:db
   volumes:
     - gogs-data:/data
-  volumes-from:
+  volumes_from:
     - gogs-conf
 
 gogs-conf:
