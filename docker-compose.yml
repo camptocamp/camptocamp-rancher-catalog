@@ -14,6 +14,8 @@ gogs:
 
 gogs-conf:
   image: camptocamp/gogs-conf:latest
+  labels:
+    io.rancher.container.start_once: 'true'
   environment:
     GOGS_DOMAIN: ${GOGS_DOMAIN}
     GOGS_ROOT_URL: ${GOGS_ROOT_URL}
