@@ -1,12 +1,25 @@
 ---
 gogs:
   image: gogs/gogs:0.9.13
+  labels:
+    io.rancher.sidekicks: gogs-conf
   ports:
     - ${GOGS_SSH_PORT}:22
   external_links:
     - ${GOGS_DATABASE_SERVICE}:db
   volumes:
     - gogs-data:/data
+  volumes-from:
+    - gogs-conf
+
+gogs-conf:
+  image: camptocamp/gogs-conf:latest
+  environment:
+    GOGS_DOMAIN: ${GOGS_DOMAIN}
+    GOGS_ROOT_URL: ${GOGS_ROOT_URL}
+    GOGS_SSH_PORT: ${GOGS_SSH_PORT}
+  volumes:
+    - /data/gogs/custom
 
 auth:
   image: camptocamp/oauth2_proxy:github_user
@@ -23,7 +36,7 @@ auth:
     - -cookie-domain=${OAUTH_COOKIE_DOMAIN}
     - -cookie-name=_gogs_oauth2_proxy
     - -email-domain=*
-    - -redirect-url=https://${GOGS_ROOT_URL}/oauth2/callback
+    - -redirect-url=${GOGS_ROOT_URL}/oauth2/callback
   links:
     - gogs
 

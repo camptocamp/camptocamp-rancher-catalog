@@ -11,10 +11,16 @@
       description: "The database service to use"
       required: true
       type: "service"
+    - variable: "GOGS_DOMAIN"
+      label: "Domain name of your server."
+      description: "Domain name of your server."
+      required: true
+      type: "string"
     - variable: "GOGS_ROOT_URL"
       label: "Full public URL of Gogs server"
       description: "Full public URL of Gogs server."
       required: true
+      default: "https://%(DOMAIN)s/"
       type: "string"
     - variable: "GOGS_SSH_PORT"
       label: "Gogs Ssh Port"
