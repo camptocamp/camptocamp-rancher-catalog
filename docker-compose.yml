@@ -18,7 +18,7 @@ gogs-conf:
     io.rancher.container.start_once: 'true'
   environment:
     GOGS_DOMAIN: ${GOGS_DOMAIN}
-    GOGS_ROOT_URL: ${GOGS_ROOT_URL}
+    GOGS_ROOT_URL: https://${GOGS_DOMAIN}/
     GOGS_SSH_PORT: ${GOGS_SSH_PORT}
 
 auth:
@@ -36,7 +36,7 @@ auth:
     - -cookie-domain=${OAUTH_COOKIE_DOMAIN}
     - -cookie-name=_gogs_oauth2_proxy
     - -email-domain=*
-    - -redirect-url=${GOGS_ROOT_URL}/oauth2/callback
+    - -redirect-url=https://${GOGS_DOMAIN}/oauth2/callback
   links:
     - gogs
 
