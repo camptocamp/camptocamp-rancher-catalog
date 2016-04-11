@@ -48,3 +48,4 @@ lb:
     - 443:4180
   labels:
     io.rancher.loadbalancer.ssl.ports: '443'
+    io.rancher.loadbalancer.target.auth: 443=4180

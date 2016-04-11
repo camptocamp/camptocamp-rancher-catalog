@@ -65,7 +65,7 @@
 
 lb:
   load_balancer_config:
-    haproxy_config: {}
+    haproxy_config:
   default_cert: ${SSL_CERTIFICATE}
   health_check:
     port: 42
