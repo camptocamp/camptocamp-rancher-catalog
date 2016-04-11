@@ -9,17 +9,6 @@ gogs:
     - ${GOGS_DATABASE_SERVICE}:db
   volumes:
     - gogs-data:/data
-  volumes_from:
-    - gogs-conf
-
-gogs-conf:
-  image: camptocamp/gogs-conf:latest
-  labels:
-    io.rancher.container.start_once: 'true'
-  environment:
-    GOGS_DOMAIN: ${GOGS_DOMAIN}
-    GOGS_ROOT_URL: https://${GOGS_DOMAIN}/
-    GOGS_SSH_PORT: ${GOGS_SSH_PORT}
 
 auth:
   image: camptocamp/oauth2_proxy:github_user
