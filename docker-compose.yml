@@ -13,7 +13,7 @@ gogs:
     - gogs-conf
 
 gogs-conf:
-  image: camptocamp/gogs-conf:latest
+  image: camptocamp/gogs-conf:20160411-1
   labels:
     io.rancher.container.start_once: 'true'
   environment:
