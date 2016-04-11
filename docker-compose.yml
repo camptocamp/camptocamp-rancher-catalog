@@ -1,6 +1,8 @@
 ---
 gogs:
   image: gogs/gogs:0.9.13
+  environment:
+    GOGS_CUSTOM: /data/gogs/custom
   labels:
     io.rancher.sidekicks: gogs-conf
   ports:
