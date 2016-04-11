@@ -5,8 +5,6 @@ gogs:
     GOGS_CUSTOM: /app/gogs/custom
   labels:
     io.rancher.sidekicks: gogs-conf
-  ports:
-    - ${GOGS_SSH_PORT}:22
   external_links:
     - ${GOGS_DATABASE_SERVICE}:db
   volumes:
@@ -51,4 +49,12 @@ lb:
   labels:
     io.rancher.loadbalancer.ssl.ports: '443'
     io.rancher.loadbalancer.target.auth: 443=4180
-    io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/gogs
+
+lbtcp:
+  image: rancher/load-balancer-service
+  labels:
+    io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/lb
+  links:
+    - gogs
+  ports:
+    - ${GOGS_SSH_PORT}:22
