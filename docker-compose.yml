@@ -57,4 +57,4 @@ lbtcp:
   links:
     - gogs
   ports:
-    - ${GOGS_SSH_PORT}:22
+    - ${GOGS_SSH_PORT}:22/tcp
