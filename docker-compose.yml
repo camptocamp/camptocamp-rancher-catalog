@@ -107,8 +107,6 @@ webhook:
     MCOLLECTIVE_CLIENT_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
   links:
   - activemq
-  ports:
-  - 9000:9000
 
 # Puppetboard
 puppetboard:
