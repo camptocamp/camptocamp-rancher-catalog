@@ -3,7 +3,7 @@ jobber:
   image: blacklabelops/cron-cloud
   environment:
     JOB_NAME1: conplicity
-    JOB_COMMAND1: curl -s http://rancher-metadata/2015-12-19/self/stack/services/conplicity/containers|while read container; do docker start $(echo $container|cut -d'=' -f2); done
+    JOB_COMMAND1: "curl -s http://rancher-metadata/2015-12-19/self/stack/services/conplicity/containers|while read container; do docker start $(echo $container|cut -d'=' -f2); done"
     JOB_TIME1: 0 ${CONPLICITY_RUN_TIME}
   tty: true
   volumes:
