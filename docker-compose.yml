@@ -3,8 +3,10 @@ jobber:
   image: blacklabelops/cron-cloud
   environment:
     JOB_NAME1: conplicity
-    JOB_COMMAND1: curl -s http://rancher-metadata/2015-12-19/self/stack/services/conplicity/containers|while IFS='=' read id container; do docker start $$container; done
+    JOB_COMMAND1: docker start $$(docker ps -a -f name=r-$$(curl -s http://rancher-metadata/2015-12-19/self/stack/name)_conplicity_* --format="{{.ID}}")
     JOB_TIME1: 0 ${CONPLICITY_RUN_TIME}
+  labels:
+    io.rancher.scheduler.global: 'true'
   tty: true
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock:ro
