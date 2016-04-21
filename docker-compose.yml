@@ -11,7 +11,7 @@ jobber:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock:ro
 conplicity:
-  image: camptocamp/conplicity:latest
+  image: camptocamp/conplicity:0.6.0
   environment:
     DUPLICITY_TARGET_URL: ${DUPLICITY_TARGET_URL}
     AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
