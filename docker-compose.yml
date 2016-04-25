@@ -53,3 +53,4 @@ lb:
   labels:
     io.rancher.loadbalancer.ssl.ports: '443'
     io.rancher.loadbalancer.target.auth: 443=4180
+    io.rancher.scheduler.affinity:host_label: data.gogs=true

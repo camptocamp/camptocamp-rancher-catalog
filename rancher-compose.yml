@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Gogs"
-  version: "v0.9.13c2c1"
+  version: "v0.9.13c2c2"
   description: "A painless self-hosted Git service"
-  uuid: "gogs-1"
+  uuid: "gogs-2"
   minimum_rancher_version: "v1.0.0"
   questions:
     - variable: "GOGS_DATABASE_SERVICE"
