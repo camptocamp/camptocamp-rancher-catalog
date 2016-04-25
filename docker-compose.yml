@@ -5,6 +5,7 @@ gogs:
     GOGS_CUSTOM: /app/gogs/custom
   labels:
     io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/lb
+    io.rancher.scheduler.affinity:host_label: data.gogs=true
     io.rancher.sidekicks: gogs-conf
   ports:
     - ${GOGS_SSH_PORT}:22/tcp
