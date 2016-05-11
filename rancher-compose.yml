@@ -51,7 +51,7 @@
       required: false
       type: "password"
     - variable: "GOGS_MAILER_SKIP_VERIFY"
-      label: "Gogs skip verify self signed certificates"
+      label: "Gogs mailer skip verify self signed certificates"
       description: "Do not verify the self-signed certificates."
       default: false
       type: "boolean"
