@@ -16,7 +16,7 @@ gogs:
     - gogs-conf
 
 gogs-conf:
-  image: camptocamp/gogs-conf:20160426-1
+  image: camptocamp/gogs-conf:20160511-1
   labels:
     io.rancher.container.start_once: 'true'
   environment:
@@ -28,6 +28,7 @@ gogs-conf:
     GOGS_MAILER_HOST: ${GOGS_MAILER_HOST}
     GOGS_MAILER_USER: ${GOGS_MAILER_USER}
     GOGS_MAILER_PASSWD: ${GOGS_MAILER_PASSWD}
+    GOGS_MAILER_SKIP_VERIFY: ${GOGS_MAILER_SKIP_VERIFY}
 
 auth:
   image: camptocamp/oauth2_proxy:github_user

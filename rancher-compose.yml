@@ -50,6 +50,11 @@
       description: "Password of mailer."
       required: false
       type: "password"
+    - variable: "GOGS_MAILER_SKIP_VERIFY"
+      label: "Gogs skip verify self signed certificates"
+      description: "Do not verify the self-signed certificates."
+      default: false
+      type: "boolean"
     - variable: "OAUTH_CLIENT_ID"
       label: "OAuth Client ID"
       description: "OAuth Client ID"
