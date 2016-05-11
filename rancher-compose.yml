@@ -38,7 +38,7 @@
       label: "Gogs mailer host"
       description: "SMTP mail host address and port (example: smtp.gogs.io:587)."
       required: false
-      default: "smtp.example.com"
+      default: "smtp.example.com:25"
       type: "string"
     - variable: "GOGS_MAILER_USER"
       label: "Gogs mailer user"
