@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Gogs"
-  version: "v0.9.13c2c2"
+  version: "v0.9.13c2c3"
   description: "A painless self-hosted Git service"
-  uuid: "gogs-2"
+  uuid: "gogs-3"
   minimum_rancher_version: "v1.0.0"
   questions:
     - variable: "GOGS_DATABASE_SERVICE"
@@ -22,6 +22,34 @@
       required: true
       default: "10022"
       type: "int"
+    - variable: "GOGS_MAILER_ENABLED"
+      label: "Gogs mail enabled"
+      description: "Boolean value to enable gogs mailer."
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_MAILER_FROM"
+      label: "Gogs mailer from"
+      description: "mail from address used in gogs outgoing mails"
+      required: false
+      default: "mail@gogs.example.com"
+      type: "string"
+    - variable: "GOGS_MAILER_HOST"
+      label: "Gogs mailer host"
+      description: "Relay server for outgoing mails."
+      required: false
+      default: "smtp.example.com"
+      type: "string"
+    - variable: "GOGS_MAILER_USER"
+      label: "Gogs mailer user"
+      description: "user to authenticate to mail server."
+      required: false
+      type: "string"
+    - variable: "GOGS_MAILER_PASSWD"
+      label: "Gogs mailer password"
+      description: "password to authenticate to mail server."
+      required: false
+      type: "password"
     - variable: "OAUTH_CLIENT_ID"
       label: "OAuth Client ID"
       description: "OAuth Client ID"
