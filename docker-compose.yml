@@ -16,13 +16,14 @@ gogs:
     - gogs-conf
 
 gogs-conf:
-  image: camptocamp/gogs-conf:20160511-1
+  image: camptocamp/gogs-conf:20160512-1
   labels:
     io.rancher.container.start_once: 'true'
   environment:
     GOGS_DOMAIN: ${GOGS_DOMAIN}
     GOGS_ROOT_URL: https://${GOGS_DOMAIN}/
     GOGS_SSH_PORT: ${GOGS_SSH_PORT}
+    GOGS_SERVICE_ENABLE_NOTIFY_MAIL: ${GOGS_SERVICE_ENABLE_NOTIFY_MAIL}
     GOGS_MAILER_ENABLED: ${GOGS_MAILER_ENABLED}
     GOGS_MAILER_FROM: ${GOGS_MAILER_FROM}
     GOGS_MAILER_HOST: ${GOGS_MAILER_HOST}

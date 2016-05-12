@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: "Gogs"
-  version: "v0.9.13c2c3"
+  version: "v0.9.13c2c4"
   description: "A painless self-hosted Git service"
   uuid: "gogs-3"
   minimum_rancher_version: "v1.0.0"
@@ -22,6 +22,12 @@
       required: true
       default: "10022"
       type: "int"
+    - variable: "GOGS_SERVICE_ENABLE_NOTIFY_MAIL"
+      label: "Gogs mail notify watchers"
+      description: "Enable this to send e-mail to watchers of repository when something happens like creating issues, requires Mailer to be enabled."
+      required: true
+      default: "false"
+      type: "boolean"
     - variable: "GOGS_MAILER_ENABLED"
       label: "Gogs mail enabled"
       description: "Enable this to use a mail service."
@@ -35,8 +41,8 @@
       default: "mail@gogs.example.com"
       type: "string"
     - variable: "GOGS_MAILER_HOST"
-      label: "Gogs mailer host"
-      description: "SMTP mail host address and port (example: smtp.gogs.io:587)."
+      label: "Gogs SMTP mail host address and port (example: smtp.gogs.io:587)"
+      description: "Note, if the port ends with '465', SMTPS will be used. Using STARTTLS on port 587 is recommended per RFC 6409. If the server supports STARTTLS it will always be used.)"
       required: false
       default: "smtp.example.com:25"
       type: "string"
