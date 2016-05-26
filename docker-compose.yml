@@ -106,7 +106,7 @@ prometheus-auth:
 
 prometheus:
   ports:
-  - 9443:8080
+  - ${PROMETHEUS_PORT}:8080
   links:
   - prometheus-auth:prometheus-auth
   labels:
