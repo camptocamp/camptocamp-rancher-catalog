@@ -1,15 +1,4 @@
-# Load balancer
-#
-# We can't expose all services behind the LB
-# (cf. https://github.com/rancher/rancher/issues/3722)
-# so we're only exposing puppet itself
-lb:
-  ports:
-  - 8140:8140/tcp
-  image: rancher/load-balancer-service
-  links:
-  - puppet
-
+---
 # Puppet CA
 puppetca:
   image: camptocamp/puppetserver:2.3.1-3
@@ -20,8 +9,6 @@ puppetca:
     CA_CRT: ${CA_CRT}
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
     JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
-  ports:
-  - ${CA_PORT}:8140
 
 # MCollectived-puppetca (sidekick to Puppet CA)
 mco-puppetca:
@@ -55,8 +42,6 @@ activemq:
     STOMP_PASSWORD: ${STOMP_PASSWORD}
   links:
   - puppetca
-  ports:
-  - 61614:61614
 
 # Puppet Server
 puppet:
