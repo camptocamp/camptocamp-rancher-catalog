@@ -27,7 +27,7 @@ mco-puppetca:
 
 # PuppetDB
 puppetdb:
-  image: camptocamp/puppetdb:3.2.4-3
+  image: camptocamp/puppetdb:4.1.0-2
   environment:
     ENABLE_HTTP: 'true'
     JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
@@ -94,7 +94,7 @@ webhook:
 
 # Puppetboard
 puppetboard:
-  image: camptocamp/puppetboard:0.1.2-1overview3
+  image: camptocamp/puppetboard:0.1.3_git20160525-1
   environment:
     PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
   links:
