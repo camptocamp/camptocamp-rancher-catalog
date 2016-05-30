@@ -25,7 +25,7 @@
       default: "0.1.3_git20160525-1"
       options:
       - "0.1.3_git20160525-1"
-      - "epfl"
+      - "git59f2794+epfl"
       required: true
     - variable: "PUPPETDB_POSTGRES_SERVICE"
       label: "PuppetDB PostgreSQL"
