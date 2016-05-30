@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Gogs"
-  version: "v0.9.13c2c6"
+  version: "v0.9.13c2c7"
   description: "A painless self-hosted Git service"
-  uuid: "gogs-6"
+  uuid: "gogs-7"
   minimum_rancher_version: "v1.0.0"
   questions:
     - variable: "GOGS_DATABASE_SERVICE"
@@ -11,7 +11,7 @@
       description: "The database service to use"
       required: true
       type: "service"
-    - variable: "GOGS_SSH_PORT"
+    - variable: "GOGS_SERVER_SSH_PORT"
       label: "Gogs Ssh Port"
       description: "ssh port to access gogs cli"
       required: true
