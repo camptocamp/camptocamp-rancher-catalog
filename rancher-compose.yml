@@ -18,6 +18,15 @@
       default: "puppetca"
       type: "string"
       required: true
+    - variable: "PUPPETBOARD_TAG"
+      label: "Puppetboard Tag"
+      description: "Tag to use for Puppetboard service"
+      type: "enum"
+      default: "0.1.3_git20160525-1"
+      options:
+      - "0.1.3_git20160525-1"
+      - "epfl"
+      required: true
     - variable: "PUPPETDB_POSTGRES_SERVICE"
       label: "PuppetDB PostgreSQL"
       description: "PuppetDB PostgreSQL Service"

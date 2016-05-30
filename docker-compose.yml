@@ -94,7 +94,7 @@ webhook:
 
 # Puppetboard
 puppetboard:
-  image: camptocamp/puppetboard:0.1.3_git20160525-1
+  image: camptocamp/puppetboard:${PUPPETBOARD_TAG}
   environment:
     PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
   links:
