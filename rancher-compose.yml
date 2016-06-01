@@ -1,8 +1,8 @@
 .catalog:
   name: "metrics"
-  version: "v2"
+  version: "v3"
   description: "Camptocamp Prometheus-based monitoring system"
-  uuid: metrics-2
+  uuid: metrics-3
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "SSL_CERTIFICATE"
