@@ -35,7 +35,7 @@ statsd:
     io.rancher.container.hostname_override: container_name
     io.rancher.container.requested_ip: 10.42.24.101
   tty: true
-  image: camptocamp/statsd-collectd:0.1.0
+  image: 'camptocamp/statsd-collectd:v0.1.0'
   stdin_open: true
 
 rancher:
@@ -44,7 +44,6 @@ rancher:
     io.rancher.container.create_agent: true
     io.rancher.container.agent.role: environment
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
-    io.rancher.container.pull_image: always
     prometheus_port: '9010'
   image: jolyonbrown/prometheus-rancher-exporter
 
@@ -53,7 +52,6 @@ collectd:
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
     prometheus_port: '9103'
     io.rancher.container.hostname_override: container_name
-    io.rancher.container.pull_image: always
   tty: true
   command:
   - -collectd.listen-address=:25826
@@ -61,7 +59,7 @@ collectd:
   stdin_open: true
 
 prometheus-server-conf:
-  image: 'camptocamp/prometheus-conf:0.1.0'
+  image: 'camptocamp/prometheus-conf:v0.1.0'
   labels:
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
     io.rancher.container.hostname_override: container_name
@@ -73,7 +71,7 @@ prometheus-server:
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
     io.rancher.sidekicks: prometheus-server-conf
     prometheus_port: '9090'
-  image: 'prom/prometheus:0.18.0'
+  image: 'prom/prometheus:0.19.2'
   entrypoint: 'prometheus -log.level=debug -config.file=/etc/prometheus-confd/prometheus.yml -storage.local.path=/prometheus -web.console.libraries=/etc/prometheus/console_libraries -web.console.templates=/etc/prometheus/consoles -storage.local.max-chunks-to-persist=131072 -storage.local.memory-chunks=262144'
   volumes_from:
     - 'prometheus-server-conf'
@@ -81,10 +79,9 @@ prometheus-server:
     - 'metrics_tsdb:/prometheus'
 
 prometheus-auth-conf:
-  image: 'camptocamp/prometheus-auth-conf:0.1.0'
+  image: 'camptocamp/prometheus-auth-conf:v0.1.0'
   labels:
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
-    io.rancher.container.pull_image: always
     io.rancher.container.start_once: 'true'
   environment:
     USERNAME: '${PROMETHEUS_USERNAME}'
@@ -102,7 +99,6 @@ prometheus-auth:
   entrypoint: /entrypoint/run.sh
   volumes_from:
     - 'prometheus-auth-conf'
-
 
 prometheus:
   ports:
