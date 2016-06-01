@@ -59,7 +59,7 @@ collectd:
   stdin_open: true
 
 prometheus-server-conf:
-  image: 'camptocamp/prometheus-conf:v0.1.0'
+  image: 'camptocamp/prometheus-conf:v0.1.1'
   labels:
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
     io.rancher.container.hostname_override: container_name
@@ -79,7 +79,7 @@ prometheus-server:
     - 'metrics_tsdb:/prometheus'
 
 prometheus-auth-conf:
-  image: 'camptocamp/prometheus-auth-conf:v0.1.0'
+  image: 'camptocamp/prometheus-auth-conf:v0.1.1'
   labels:
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
     io.rancher.container.start_once: 'true'
