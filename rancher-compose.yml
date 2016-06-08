@@ -3,7 +3,7 @@
   name: "Puppet"
   version: "v2.4.0-2"
   description: "Puppet Master stack"
-  uuid: puppet-98
+  uuid: puppet-99
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -25,7 +25,7 @@
       default: "0.1.3_git20160525-1"
       options:
       - "0.1.3_git20160525-1"
-      - "git59f2794_epfl"
+      - "git0dce4d8_epfl"
       required: true
     - variable: "PUPPETDB_POSTGRES_SERVICE"
       label: "PuppetDB PostgreSQL"
