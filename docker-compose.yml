@@ -71,8 +71,7 @@ prometheus-server:
     io.rancher.scheduler.affinity:host_label: node_role=monitoring
     io.rancher.sidekicks: prometheus-server-conf
     prometheus_port: '9090'
-  image: 'prom/prometheus:0.19.2'
-  entrypoint: 'prometheus -log.level=debug -config.file=/etc/prometheus-confd/prometheus.yml -storage.local.path=/prometheus -web.console.libraries=/etc/prometheus/console_libraries -web.console.templates=/etc/prometheus/consoles -storage.local.max-chunks-to-persist=131072 -storage.local.memory-chunks=262144'
+  image: 'camptocamp/prometheus-server:v0.19.2'
   volumes_from:
     - 'prometheus-server-conf'
   volumes:
