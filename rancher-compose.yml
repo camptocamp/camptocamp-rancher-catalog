@@ -1,8 +1,8 @@
 .catalog:
   name: "logging"
-  version: "v1"
+  version: "v2"
   description: "Camptocamp logging service. Add mandatory 'monitoring=true' label on exactly one host before installing."
-  uuid: logging-1
+  uuid: logging-2
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "TOKEN"
