@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Conplicity"
-  version: "v0.8.0c2c2"
+  version: "v0.8.0c2c3"
   description: "Conplicity backup"
-  uuid: conplicity-11
+  uuid: conplicity-12
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "CONPLICITY_RUN_TIME"
@@ -34,10 +34,11 @@
       description: "Target URL passed to duplicity. The hostname and the name of the volume to backup are added to the path as directory levels."
       type: "string"
       required: true
-    - variable: "PUSHGATEWAY_SERVICE"
-      label: "PUSHGATEWAY_SERVICE"
+    - variable: "PUSHGATEWAY_URL"
+      label: "PUSHGATEWAY_URL"
       description: "Prometheus Pushgateway service to push metrics to."
-      type: "service"
+      type: "string"
+      default: "http://pushgateway.metrics:9091"
       required: true
     - variable: "AWS_ACCESS_KEY_ID"
       label: "AWS_ACCESS_KEY_ID"
