@@ -34,6 +34,11 @@
       description: "Target URL passed to duplicity. The hostname and the name of the volume to backup are added to the path as directory levels."
       type: "string"
       required: true
+    - variable: "PUSHGATEWAY_SERVICE"
+      label: "PUSHGATEWAY_SERVICE"
+      description: "Prometheus Pushgateway service to push metrics to."
+      type: "service"
+      required: false
     - variable: "AWS_ACCESS_KEY_ID"
       label: "AWS_ACCESS_KEY_ID"
       description: "AWS_ACCESS_KEY_ID"
