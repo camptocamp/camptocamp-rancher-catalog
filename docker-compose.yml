@@ -55,7 +55,7 @@ collectd:
   tty: true
   command:
   - -collectd.listen-address=:25826
-  image: prom/collectd-exporter
+  image: 'prom/collectd-exporter:0.3.1'
   stdin_open: true
 
 prometheus-server-conf:
