@@ -31,7 +31,7 @@ node:
 
 statsd:
   labels:
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
     io.rancher.container.requested_ip: 10.42.24.101
   tty: true
@@ -43,13 +43,13 @@ rancher:
   labels:
     io.rancher.container.create_agent: true
     io.rancher.container.agent.role: environment
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
     prometheus_port: '9010'
   image: jolyonbrown/prometheus-rancher-exporter
 
 collectd:
   labels:
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
     prometheus_port: '9103'
     io.rancher.container.hostname_override: container_name
   tty: true
@@ -61,14 +61,14 @@ collectd:
 prometheus-server-conf:
   image: 'camptocamp/prometheus-conf:v0.1.1'
   labels:
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
   volumes:
     - '/etc/prometheus-confd/'
 
 prometheus-server:
   labels:
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.sidekicks: prometheus-server-conf
     prometheus_port: '9090'
   image: 'camptocamp/prometheus-server:v0.19.2'
@@ -80,7 +80,7 @@ prometheus-server:
 prometheus-auth-conf:
   image: 'camptocamp/prometheus-auth-conf:v0.1.2'
   labels:
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.start_once: 'true'
   environment:
     USERNAME: '${PROMETHEUS_USERNAME}'
@@ -92,7 +92,7 @@ prometheus-auth-conf:
 
 prometheus-auth:
   labels:
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.sidekicks: prometheus-auth-conf
   image: haproxy:1.6-alpine
   entrypoint: /entrypoint/run.sh
@@ -106,7 +106,7 @@ prometheus:
   - prometheus-auth:prometheus-auth
   labels:
     io.rancher.loadbalancer.ssl.ports: '9443'
-    io.rancher.scheduler.affinity:host_label: node_role=monitoring
+    io.rancher.scheduler.affinity:host_label: monitoring=true
   tty: true
   image: rancher/load-balancer-service
   stdin_open: true
