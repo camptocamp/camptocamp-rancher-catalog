@@ -11,7 +11,7 @@ rsyslog-conf:
     - '/etc/rsyslog-confd'
 
 syslog:
-  image: 'camptocamp/rsyslog-shipper-bin:v0.1.1'
+  image: 'camptocamp/rsyslog-shipper:v0.1.1'
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
@@ -24,7 +24,7 @@ syslog:
     - 'logging_spool:/var/spool/rsyslog'
 
 cleanup:
-  image: 'camptocamp/rsyslog-shipper-bin:v0.1.1'
+  image: 'camptocamp/rsyslog-shipper:v0.1.1'
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
