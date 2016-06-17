@@ -109,7 +109,7 @@ prometheus:
   links:
   - prometheus-auth:prometheus-auth
   labels:
-    io.rancher.loadbalancer.ssl.ports: '9443'
+    io.rancher.loadbalancer.ssl.ports: '${PROMETHEUS_PORT}'
     io.rancher.scheduler.affinity:host_label: monitoring=true
   image: rancher/load-balancer-service
 
