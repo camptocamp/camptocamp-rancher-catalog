@@ -52,6 +52,8 @@ rancher:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     prometheus_port: '9010'
   image: infinityworks/prometheus-rancher-exporter:04
+  environment:
+    DEBUG: ''
 
 collectd:
   labels:
