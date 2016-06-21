@@ -25,6 +25,7 @@
       default: "0.1.3_git20160525-1"
       options:
       - "0.1.3_git20160525-1"
+      - "0.1.3_git39f48c1-1"
       - "git0dce4d8_epfl"
       - "git39f48c1_epfl"
       required: true
