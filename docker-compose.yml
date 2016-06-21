@@ -12,7 +12,7 @@ puppetca:
 
 # MCollectived-puppetca (sidekick to Puppet CA)
 mco-puppetca:
-  image: camptocamp/mcollectived-puppetca:1.1.3-1
+  image: camptocamp/mcollectived-puppetca:1.1.3-2
   environment:
     GITHUB_TOKEN: ${GITHUB_TOKEN}
     GITHUB_ORG: ${GITHUB_ORG}
@@ -63,7 +63,7 @@ puppet:
 
 # R10K (sidekick to Puppet Server)
 r10k:
-  image: camptocamp/r10k:2.2.0-9
+  image: camptocamp/r10k:2.2.0-10
   environment:
     GITHUB_TOKEN: ${GITHUB_TOKEN}
     GITHUB_ORG: ${GITHUB_ORG}
