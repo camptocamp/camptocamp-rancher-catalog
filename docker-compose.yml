@@ -18,12 +18,25 @@ node:
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.hostname_override: container_name
-    prometheus_port: '9100'
-  image: prom/node-exporter:0.12.0
+    io.rancher.sidekicks: 'node-conf'
+  image: 'camptocamp/node-collectd:v0.1.0'
+  stop-signal: 'SIGHUP'
+  volumes_from:
+  - 'node-conf'
   volumes:
   - /:/rootfs:ro
-  command:
-  - -collector.sysfs=/rootfs/sys -collector.procfs=/rootfs/proc
+  - /dev/log:/dev/log
+
+node-conf:
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.start_once: 'true'
+    io.rancher.container.hostname_override: container_name
+  image: 'camptocamp/confd:v0.12.0-alpha3'
+  entrypoint: '/confd/confd'
+  command: '-version'
+  volumes:
+    - /confd
 
 statsd:
   labels:
