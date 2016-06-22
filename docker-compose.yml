@@ -43,7 +43,10 @@ statsd:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
     io.rancher.container.requested_ip: 10.42.24.101
-  image: 'camptocamp/statsd-collectd:v0.1.0'
+  image: 'camptocamp/statsd-collectd:v0.1.1'
+  stop-signal: 'SIGHUP'
+  volumes:
+  - /dev/log:/dev/log
 
 pushgateway:
   labels:
