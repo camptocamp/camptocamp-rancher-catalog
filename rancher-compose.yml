@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Puppet"
-  version: "v2.4.0-9"
+  version: "v2.4.0-10"
   description: "Puppet Master stack"
-  uuid: puppet-106
+  uuid: puppet-107
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -123,6 +123,11 @@
       description: "Password used to connect to the broker for MCollective"
       type: "password"
       required: true
+    - variable: "AUTOSIGN_PSK"
+      label: "Autosign PSK"
+      description: "Shared secret to autosign certificates"
+      type: "password"
+      required: false
 
 puppetca:
   health_check:

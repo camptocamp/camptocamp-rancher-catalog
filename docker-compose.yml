@@ -9,6 +9,7 @@ puppetca:
     CA_CRT: ${CA_CRT}
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
     JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
+    AUTOSIGN_PSK: ${AUTOSIGN_PSK}
 
 # MCollectived-puppetca (sidekick to Puppet CA)
 mco-puppetca:
