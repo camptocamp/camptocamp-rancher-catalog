@@ -38,7 +38,7 @@ puppetdb:
 
 # ActiveMQ
 activemq:
-  image: camptocamp/activemq-mcollective:5.6.0-3
+  image: camptocamp/activemq-mcollective:5.13.2-1
   environment:
     STOMP_PASSWORD: ${STOMP_PASSWORD}
   links:
