@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Conplicity"
-  version: "v0.10.2c2c1"
+  version: "v0.11.0c2c1"
   description: "Conplicity backup"
-  uuid: conplicity-15
+  uuid: conplicity-16
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "CONPLICITY_RUN_TIME"
@@ -29,6 +29,12 @@
       description: "Comma separated list of named volumes to blacklist."
       type: "string"
       required: false
+    - variable: "CONPLICITY_NO_VERIFY"
+      label: "CONPLICITY_NO_VERIFY"
+      description: "Whether to skip verification of volume backups."
+      type: "boolean"
+      required: false
+      default: false
     - variable: "DUPLICITY_TARGET_URL"
       label: "DUPLICITY_TARGET_URL"
       description: "Target URL passed to duplicity. The hostname and the name of the volume to backup are added to the path as directory levels."
