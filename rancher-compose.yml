@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Conplicity"
-  version: "v0.12.0c2c1"
+  version: "v0.12.0c2c2"
   description: "Conplicity backup"
-  uuid: conplicity-17
+  uuid: conplicity-18
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "CONPLICITY_RUN_TIME"
@@ -81,3 +81,15 @@
       description: "Output logs as JSON"
       type: "boolean"
       default: false
+    - variable: "CONPLICITY_LOG_LEVEL"
+      label: "Log level"
+      description: "Log level"
+      type: "enum"
+      options:
+        - "debug"
+        - "info"
+        - "warn"
+        - "error"
+        - "fatal"
+        - "panic"
+      default: "info"
