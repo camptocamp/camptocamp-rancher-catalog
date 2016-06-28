@@ -11,7 +11,7 @@ jobber:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
 conplicity:
-  image: camptocamp/conplicity:0.11.0
+  image: camptocamp/conplicity:0.12.0
   environment:
     CONPLICITY_FULL_IF_OLDER_THAN: ${CONPLICITY_FULL_IF_OLDER_THAN}
     CONPLICITY_REMOVE_OLDER_THAN: ${CONPLICITY_REMOVE_OLDER_THAN}
@@ -26,6 +26,7 @@ conplicity:
     SWIFT_USERNAME: ${SWIFT_USERNAME}
     SWIFT_PASSWORD: ${SWIFT_PASSWORD}
     SWIFT_REGIONNAME: ${SWIFT_REGIONNAME}
+    JSON_OUTPUT: ${JSON_OUTPUT}
   labels:
     io.conplicity: 'true'
     io.rancher.scheduler.global: 'true'

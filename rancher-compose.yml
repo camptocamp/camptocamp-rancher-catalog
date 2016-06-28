@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Conplicity"
-  version: "v0.11.0c2c1"
+  version: "v0.12.0c2c1"
   description: "Conplicity backup"
-  uuid: conplicity-16
+  uuid: conplicity-17
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "CONPLICITY_RUN_TIME"
@@ -76,3 +76,8 @@
       label: "SWIFT_REGIONNAME"
       description: "SWIFT_REGIONNAME"
       type: "string"
+    - variable: "JSON_OUTPUT"
+      label: "JSON Output"
+      description: "Output logs as JSON"
+      type: "boolean"
+      default: false
