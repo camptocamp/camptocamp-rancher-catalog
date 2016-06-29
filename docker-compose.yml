@@ -11,13 +11,14 @@ jobber:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
 conplicity:
-  image: camptocamp/conplicity:0.12.0
+  image: camptocamp/conplicity:0.13.0
   environment:
     CONPLICITY_FULL_IF_OLDER_THAN: ${CONPLICITY_FULL_IF_OLDER_THAN}
     CONPLICITY_REMOVE_OLDER_THAN: ${CONPLICITY_REMOVE_OLDER_THAN}
     CONPLICITY_VOLUMES_BLACKLIST: ${CONPLICITY_VOLUMES_BLACKLIST}
     CONPLICITY_NO_VERIFY: ${CONPLICITY_NO_VERIFY}
     CONPLICITY_LOG_LEVEL: ${CONPLICITY_LOG_LEVEL}
+    CONPLICITY_JSON_OUTPUT: ${JSON_OUTPUT}
     DUPLICITY_TARGET_URL: ${DUPLICITY_TARGET_URL}
     PUSHGATEWAY_URL: ${PUSHGATEWAY_URL}
     AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
@@ -27,7 +28,6 @@ conplicity:
     SWIFT_USERNAME: ${SWIFT_USERNAME}
     SWIFT_PASSWORD: ${SWIFT_PASSWORD}
     SWIFT_REGIONNAME: ${SWIFT_REGIONNAME}
-    JSON_OUTPUT: ${JSON_OUTPUT}
   labels:
     io.conplicity: 'true'
     io.rancher.scheduler.global: 'true'
