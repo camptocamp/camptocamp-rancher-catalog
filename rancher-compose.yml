@@ -18,5 +18,7 @@
 
 syslog:
   scale: 1
+dispatcher-conf:
+  scale: 1
 cleanup:
   scale: 1
