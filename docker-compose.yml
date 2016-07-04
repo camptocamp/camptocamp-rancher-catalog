@@ -129,5 +129,8 @@ prometheus:
   labels:
     io.rancher.loadbalancer.ssl.ports: '${PROMETHEUS_PORT}'
     io.rancher.scheduler.affinity:host_label: monitoring=true
+    haproxy_stats_path: '/stats'
+    haproxy_stats_port: '8008'
+    haproxy_stats_id: 'prometheus'
   image: rancher/load-balancer-service
 
