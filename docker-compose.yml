@@ -62,6 +62,21 @@ puppet:
   volumes_from:
   - r10k
 
+# Mcollectived Puppet Node
+mco-puppet-node:
+  image: camptocamp/mcollectived-node:0.1.0
+  environment:
+    GITHUB_TOKEN: ${GITHUB_TOKEN}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAM: ${GITHUB_TEAM}
+    GITHUB_USERS: ${GITHUB_USERS}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+  links:
+  - activemq
+  - puppetca
+  - puppetdb
+
 # R10K (sidekick to Puppet Server)
 r10k:
   image: camptocamp/r10k:2.2.0-11
