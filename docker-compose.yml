@@ -64,7 +64,7 @@ puppet:
 
 # Mcollectived Puppet Node
 mco-puppet-node:
-  image: camptocamp/mcollectived-node:0.1.0
+  image: camptocamp/mcollectived-node:0.2.3
   environment:
     GITHUB_TOKEN: ${GITHUB_TOKEN}
     GITHUB_ORG: ${GITHUB_ORG}
