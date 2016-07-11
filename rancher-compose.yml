@@ -31,6 +31,12 @@
       type: "string"
       default: "9443"
       required: true
+    - variable: "PROMETHEUS_SCHEME"
+      label: "Prometheus scheme"
+      description: "Don't change the default unless you know what you're doing."
+      type: "string"
+      default: "https"
+      required: true
     - variable: "GRAFANA_URL"
       label: "Grafana URL"
       description: "URL of Grafana instance, which will be added to outgoing CORS headers."
