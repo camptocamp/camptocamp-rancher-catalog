@@ -34,9 +34,11 @@
     - variable: "PROMETHEUS_SCHEME"
       label: "Prometheus scheme"
       description: "Don't change the default unless you know what you're doing."
-      type: "string"
+      type: "enum"
+      options:
+        - "https"
+        - "http"
       default: "https"
-      required: true
     - variable: "GRAFANA_URL"
       label: "Grafana URL"
       description: "URL of Grafana instance, which will be added to outgoing CORS headers."
