@@ -4,7 +4,7 @@ master:
   labels:
     io.rancher.container.pull_image: always
   volumes:
-    ${POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data
+    - ${POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data
 
 pgbackup:
   image: camptocamp/pghoard:9.5
@@ -23,4 +23,4 @@ pgbackup:
   links:
     - master
   volumes:
-    ${POSTGRES_VOLUME_NAME}:/home/postgres/master
+    - ${POSTGRES_VOLUME_NAME}:/home/postgres/master
