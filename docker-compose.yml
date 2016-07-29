@@ -18,6 +18,7 @@ pgbackup:
     - AWS_BUCKETNAME=${AWS_BUCKETNAME}
     - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
   labels:
+    io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/master
     io.rancher.container.pull_image: always
   links:
     - master
