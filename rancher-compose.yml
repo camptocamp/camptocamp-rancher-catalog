@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Conplicity"
-  version: "v0.13.3c2c1"
+  version: "v0.21.0c2c1"
   description: "Conplicity backup"
-  uuid: conplicity-22
+  uuid: conplicity-23
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "CONPLICITY_RUN_TIME"
