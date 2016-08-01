@@ -11,7 +11,7 @@ jobber:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
 conplicity:
-  image: camptocamp/conplicity:0.13.3
+  image: camptocamp/conplicity:0.21.0
   environment:
     CONPLICITY_FULL_IF_OLDER_THAN: ${CONPLICITY_FULL_IF_OLDER_THAN}
     CONPLICITY_REMOVE_OLDER_THAN: ${CONPLICITY_REMOVE_OLDER_THAN}
