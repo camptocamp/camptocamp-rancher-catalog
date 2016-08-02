@@ -23,6 +23,7 @@ pgbackup:
     - OS_AUTH_URL=${OS_AUTH_URL}
     - OS_CONTAINER_NAME=${STORAGE_TARGET}
     - OS_TENANT_NAME=${OS_TENANT_NAME}
+    - OS_REGION_NAME=${OS_REGION_NAME}
   labels:
     io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/master
     io.rancher.container.pull_image: always
