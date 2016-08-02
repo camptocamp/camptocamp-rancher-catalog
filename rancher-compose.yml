@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Postgres-cluster"
-  version: "v4"
+  version: "v5"
   description: "PostgreSQL Incremental Backup Cluster"
-  uuid: "postgres-cluster-4"
+  uuid: "postgres-cluster-5"
   minimum_rancher_version: "v1.0.0"
   questions:
     - variable: "POSTGRES_VOLUME_NAME"
