@@ -3,6 +3,7 @@ master:
   image: camptocamp/postgresql:9.5
   labels:
     io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: postgres.${POSTGRES_VOLUME_NAME}=true
   volumes:
     - ${POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data
 
