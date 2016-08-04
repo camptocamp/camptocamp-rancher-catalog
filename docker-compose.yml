@@ -1,6 +1,6 @@
 ---
 gogs:
-  image: gogs/gogs:0.9.13
+  image: gogs/gogs:0.9.60
   environment:
     GOGS_CUSTOM: /app/gogs/custom
   labels:
