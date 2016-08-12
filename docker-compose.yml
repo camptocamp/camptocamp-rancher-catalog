@@ -69,7 +69,7 @@ rancher:
     prometheus_port: '9010'
   image: infinityworks/prometheus-rancher-exporter:04
   environment:
-    DEBUG: ''
+    DEBUG: 'undef'
 
 collectd:
   labels:
