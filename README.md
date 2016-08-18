@@ -1,6 +1,116 @@
-Documentation out of date
+# Camptocamp PostgreSQL's Cluster for Rancher
 
-# PostgreSQL Incremental Backup
+## Features
+
+This stack will:
+
+* start one PostgreSQL per node in the environment,
+* configure the first one as master and the other ones as replicas,
+* provide a read-write entry point listening on port 5432 that redirects all
+queries to the PostgreSQL master container,
+* provide a read-only entry point listening on port 5433 that load balances all
+queries to all PostgreSQL containers,
+* start a PGHoard container that will do incremental backups to an object
+storage and allows Point In Time Recovery.
+
+## Replication
+
+The replication is set-up at database initialization. When a container is
+spawned, if it detects that it is not the first container of its service, then
+it configures itself as a replica of the master, performing a *pg_base_backup*,
+and registering as a *physical_slot_replication*.
+
+### Testing the replication
+
+Log into the master container and create a database:
+```
+$ psql -U postgres -c "CREATE DATABASE db1;"
+```
+
+Log into the replicas and check that the database is created:
+```
+$ psql -U postgres -l
+```
+
+If everything works as expected the database *db1* created on the current master
+is replicated on the replicas.
+
+## Load-balancing
+
+The load-balancing is performed by HAProxy.
+The first container is added to the read-write listener and enabled is it is not
+in *recovery*.
+All the containers are added to the read-only listener.
+
+### Testing the load-balancing
+
+To test the load balancing of read-only requests you can use something like this:
+
+```
+$ while true; do psql -Atq -h lb -p 5433 -U postgres -c "select inet_server_addr();"; done
+```
+
+### Simulate the crash of the master
+
+:bulb: To see what happens with the read/write access during this simulation,
+simply run the above command to generate continuous read requests and the script
+[cinsert](../scripts/cinsert.sh) to generate continuous write requests.
+
+The goal of this simulation is to promote a standby to become the master (with
+replication slots) and test again the replication. Here is the procedure step by
+step (which could be easily wrapped in a script):
+
+1. Deactivate the host that hosts the master container (so that Rancher does not
+respawn the container when you will delete it).
+
+2. Delete the current master container and remove its named volume (so that it
+will do the database initialization on respawning).
+
+```
+# docker volume rm <volume_name>
+```
+
+3. create the replication slots on the replica that will be promoted:
+
+```
+$ psql -U postgres "SELECT * FROM pg_create_physical_replication_slot('<replica_container_name>');"
+```
+
+4. promote the new master:
+
+```
+$ gosu postgres pg_ctl promote
+```
+
+5. create a new database (on the master):
+
+```
+$ psql -U postgres -c "CREATE DATABASE db2;"
+```
+
+6. Test the replication (on the replicas):
+
+```
+$ psql -U postgres -l
+```
+
+7. Activate the deactivated host. This will respawn the missing container.
+
+8. create a new database (on the master):
+
+```
+$ psql -U postgres -c "CREATE DATABASE db3;"
+```
+
+9. Test the replication (on the replicas):
+
+```
+$ psql -U postgres -l
+```
+
+## Incremental Backup
+
+## Point In Time Recovery
 
 This composition is based on the following softwares:
 
