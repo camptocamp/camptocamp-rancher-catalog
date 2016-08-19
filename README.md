@@ -63,50 +63,37 @@ step (which could be easily wrapped in a script):
 1. Deactivate the host that hosts the master container (so that Rancher does not
 respawn the container when you will delete it).
 
-2. Delete the current master container and remove its named volume (so that it
-will do the database initialization on respawning).
+2. Delete the current master container and its sidekick (very important), then
+remove its named volume (so that it will do the database initialization on
+respawning).
 
-```
-# docker volume rm <volume_name>
-```
+    # docker volume rm <volume_name>
 
 3. create the replication slots on the replica that will be promoted:
 
-```
-$ psql -U postgres "SELECT * FROM pg_create_physical_replication_slot('<replica_container_name>');"
-```
+    # psql -U postgres "SELECT * FROM pg_create_physical_replication_slot('<replica_container_name>');"
 
 4. promote the new master:
 
-```
-$ gosu postgres pg_ctl promote
-```
+    # gosu postgres pg_ctl promote
 
 5. create a new database (on the master):
 
-```
-$ psql -U postgres -c "CREATE DATABASE db2;"
-```
+    # psql -U postgres -c "CREATE DATABASE db2;"
 
 6. Test the replication (on the replicas):
 
-```
-$ psql -U postgres -l
-```
+    # psql -U postgres -l
 
 7. Activate the deactivated host. This will respawn the missing container.
 
 8. create a new database (on the master):
 
-```
-$ psql -U postgres -c "CREATE DATABASE db3;"
-```
+    # psql -U postgres -c "CREATE DATABASE db3;"
 
 9. Test the replication (on the replicas):
 
-```
-$ psql -U postgres -l
-```
+    # psql -U postgres -l
 
 ## Incremental Backup
 
