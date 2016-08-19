@@ -71,7 +71,7 @@ respawning).
 
 3. create the replication slots on the replica that will be promoted:
 
-        $ psql -U postgres "SELECT * FROM pg_create_physical_replication_slot('<replica_container_name>');"
+        $ psql -U postgres -c "SELECT * FROM pg_create_physical_replication_slot('<replica_container_name>');"
 
 4. promote the new master:
 
