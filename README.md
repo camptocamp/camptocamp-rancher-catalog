@@ -67,7 +67,7 @@ respawn the container when you will delete it).
 remove its named volume (so that it will do the database initialization on
 respawning).
 
-    $ docker volume rm <volume_name>
+        $ docker volume rm <volume_name>
 
 3. create the replication slots on the replica that will be promoted:
 
