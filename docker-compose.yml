@@ -24,12 +24,12 @@ syslog:
     - 'logging_spool:/var/spool/rsyslog'
 
 cleanup:
-  image: 'camptocamp/rsyslog-bin:v0.1.2'
+  image: 'camptocamp/rsyslog-bin:v0.1.3'
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
   entrypoint: '/bin/sh'
-  command: '/usr/local/bin/cleanup-old-logs.sh 10'
+  command: '/usr/local/bin/cleanup-old-logs.sh 10 80'
   volumes:
     - 'logging_logs:/var/log'
 
