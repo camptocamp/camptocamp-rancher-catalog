@@ -114,5 +114,6 @@ puppetboard:
   image: camptocamp/puppetboard:${PUPPETBOARD_TAG}
   environment:
     PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
+    PUPPETBOARD_SETTINGS: '/app/settings.py'
   links:
   - puppetdb
