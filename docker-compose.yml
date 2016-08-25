@@ -111,7 +111,7 @@ webhook:
 
 # Puppetboard
 puppetboard:
-  image: camptocamp/puppetboard:${PUPPETBOARD_TAG}
+  image: camptocamp/puppetboard:0.2.0-2
   environment:
     PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
     PUPPETBOARD_INVENTORY_FACTS: ${PUPPETBOARD_INVENTORY_FACTS}
