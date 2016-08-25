@@ -106,6 +106,12 @@
       description: "Puppetboard Overview filter"
       type: "string"
       required: false
+    - variable: "PUPPETBOARD_INVENTORY_FACTS"
+      label: "Puppetboard Inventory Facts"
+      description: "Facts to display in the Puppetboard Inventory"
+      type: "string"
+      default: "[('Hostname', 'fqdn'), ('IP Address', 'ipaddress'), ('OS', 'lsbdistdescription'), ('Architecture', 'hardwaremodel'), ('Kernel Version', 'kernelrelease'), ('Puppet Version', 'puppetversion'), ]"
+      required: false
     - variable: "R10K_REMOTE"
       label: "r10k remote"
       description: "r10k remote"
