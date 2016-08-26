@@ -46,7 +46,7 @@ activemq:
 
 # Puppet Server
 puppet:
-  image: camptocamp/puppetserver:2.4.0-11
+  image: camptocamp/puppetserver:2.4.0-13
   labels:
     io.rancher.sidekicks: r10k
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
