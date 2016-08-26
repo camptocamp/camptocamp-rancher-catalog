@@ -1,7 +1,7 @@
 ---
 # Puppet CA
 puppetca:
-  image: camptocamp/puppetserver:2.4.0-12
+  image: camptocamp/puppetserver:2.4.0-13
   labels:
     io.rancher.sidekicks: mco-puppetca
   environment:
@@ -28,7 +28,7 @@ mco-puppetca:
 
 # PuppetDB
 puppetdb:
-  image: camptocamp/puppetdb:4.1.2-1
+  image: camptocamp/puppetdb:4.2.2-1
   environment:
     ENABLE_HTTP: 'true'
     JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
