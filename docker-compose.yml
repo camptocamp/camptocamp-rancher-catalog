@@ -11,8 +11,10 @@ jenkins-slave:
     - /var/jenkins
 
 jenkins-master:
-  image: jenkins-master
+  image: jenkins
+  environment:
+    JAVA_OPTS: "-Dhudson.footerURL=http://camptocamp.com"
   volumes:
-    - /var/jenkins_home
+    - jenkinshome:/var/jenkins_home
   ports:
     - "8080:8080"
