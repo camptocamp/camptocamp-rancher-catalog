@@ -25,6 +25,6 @@
       default: |
         swarm
         docker-custom-build-environment
-        pipeline
+        workflow-aggregator
         docker-workflow
         github
