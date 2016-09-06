@@ -2,25 +2,26 @@ slave:
   environment:
     JENKINS_USERNAME: jenkins
     JENKINS_PASSWORD: jenkins
-    JENKINS_MASTER: http://jenkins-master:8080
+    JENKINS_MASTER: http://master:8080
   privileged: true
   image: jenkins-slave
   links:
-  - master:master
+    - master:master
   volumes:
     - /var/jenkins
 
 master:
   image: jenkins
   environment:
-    # 0 means random
-    JENKINS_SLAVE_AGENT_PORT: 0
-  #    JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
+    JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
+    JENKINS_ADMIN_USERNAME: jenkins
+    JENKINS_ADMIN_PASSWORD: jenkins
+  volumes_from:
+    - master-conf
   volumes:
     - jenkinshome:/var/jenkins_home
-    - ./config.xml:/var/jenkins_home/config.xml
   ports:
     - "8080:8080"
 
-#master-conf:
-#build: conf
+master-conf:
+  build: conf
