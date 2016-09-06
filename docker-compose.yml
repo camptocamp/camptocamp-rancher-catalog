@@ -21,6 +21,7 @@ master:
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
     JENKINS_ADMIN_USERNAME: ${JENKINS_ADMIN_USERNAME}
     JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+    JENKINS_PLUGINS: ${JENKINS_PLUGINS}
   volumes:
     - jenkins-home:/var/jenkins_home
   volumes_from:
@@ -29,4 +30,4 @@ master:
 master-conf:
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:2
+  image: camptocamp/jenkins-conf:3

@@ -17,3 +17,12 @@
       description: "Jenkins Admin Password"
       type: "password"
       required: true
+    - variable: "JENKINS_PLUGINS"
+      label: "Plugins"
+      description: "Jenkins plugins to install"
+      type: "multiline"
+      required: true
+      default: |
+        swarm
+        docker-custom-build-environment
+        github
