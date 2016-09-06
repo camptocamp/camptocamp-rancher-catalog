@@ -15,15 +15,16 @@ slave:
 master:
   image: jenkins:2.7.3
   labels:
+    io.rancher.scheduler.affinity:host_label: data.jenkins=true
     io.rancher.sidekicks: master-conf
   environment:
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
     JENKINS_ADMIN_USERNAME: ${JENKINS_ADMIN_USERNAME}
     JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+  volumes:
+    - jenkins-home:/var/jenkins_home
   volumes_from:
     - master-conf
-  volumes:
-    - jenkinshome:/var/jenkins_home
 
 master-conf:
   labels:
