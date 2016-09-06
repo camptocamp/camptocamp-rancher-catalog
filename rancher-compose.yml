@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.7.3-6"
+  version: "v2.7.3-7"
   description: "Jenkins build farm"
-  uuid: jenkins-6
+  uuid: jenkins-7
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ADMIN_USERNAME"
@@ -25,4 +25,6 @@
       default: |
         swarm
         docker-custom-build-environment
+        pipeline
+        docker-workflow
         github
