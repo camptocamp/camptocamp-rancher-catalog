@@ -28,6 +28,7 @@
         workflow-aggregator
         docker-workflow
         github
+        github-branch-source
     - variable: "NODE_LABELS"
       label: "Node Labels"
       description: "Which labels to apply to slave nodes"
