@@ -1,11 +1,13 @@
 slave:
-  image: camptocamp/jenkins-slave:2.2-2
+  image: camptocamp/jenkins-slave:2.2-4
   labels:
     io.rancher.scheduler.global: 'true'
   environment:
     JENKINS_USERNAME: ${JENKINS_ADMIN_USERNAME}
     JENKINS_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
     JENKINS_MASTER: http://master:8080
+    SLAVE_EXECUTORS: ${SLAVE_EXECUTORS}
+    NODE_LABELS: ${NODE_LABELS}
   privileged: true
   links:
     - master:master

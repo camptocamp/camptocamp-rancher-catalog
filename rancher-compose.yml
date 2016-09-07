@@ -28,3 +28,14 @@
         workflow-aggregator
         docker-workflow
         github
+    - variable: "NODE_LABELS"
+      label: "Node Labels"
+      description: "Which labels to apply to slave nodes"
+      type: "string"
+      required: false
+      default: "swarm docker"
+    - variable: "SLAVE_EXECUTORS"
+      label: "Slave executors"
+      description: "Number of executors per slave"
+      type: "int"
+      required: false
