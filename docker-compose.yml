@@ -1,5 +1,5 @@
 slave:
-  image: camptocamp/jenkins-slave:2.2-4
+  image: camptocamp/jenkins-slave:2.2-6
   labels:
     io.rancher.scheduler.global: 'true'
   environment:
