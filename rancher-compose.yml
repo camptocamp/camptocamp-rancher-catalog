@@ -1,8 +1,8 @@
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-c2c4"
+  version: "v9.5-c2c5"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-10
+  uuid: postgres-cluster-11
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -17,12 +17,6 @@
       type: "string"
       required: false
       default: "--log-statement=all"
-    - variable: "INSTALL_POSTGIS"
-      label: "Install PostGIS"
-      description: "Install PostGIS and pgRouting"
-      type: "boolean"
-      required: true
-      default: "false"
     - variable: "POSTGRES_VOLUME_NAME"
       label: "POSTGRES_VOLUME_NAME"
       description: "Volume name used to store PostgreSQL cluster"
@@ -46,6 +40,23 @@
       description: "Storage target for PGHoard (s3 bucket or swift container)"
       type: "string"
       default: "pghoard"
+    - variable: "PGHOARD_ACTIVE_BACKUP_MODE"
+      label: "PGHoard active backup mode"
+      description: "PGHoard active backup mode"
+      type: "enum"
+      options:
+        - "pg_receivexlog"
+        - "walreceiver"
+    - variable: "PGHOARD_BASEBACKUP_COUNT"
+      label: "PGHoard basebackup count"
+      description: "How many basebackups should be kept around for restoration purposes."
+      type: "integer"
+      default: 1
+    - variable: "PGHOARD_BASEBACKUP_INTERVAL_HOURS"
+      label: "PGHoard basebackup interval hours"
+      description: "How often to take a new basebackup of a cluster."
+      type: "integer"
+      default: 24
     - variable: "AWS_ACCESS_KEY_ID"
       label: "AWS_ACCESS_KEY_ID"
       description: "AWS_ACCESS_KEY_ID"
