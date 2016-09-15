@@ -1,0 +1,60 @@
+---
+gogs:
+  image: gogs/gogs:0.9.13
+  environment:
+    GOGS_CUSTOM: /app/gogs/custom
+  labels:
+    io.rancher.sidekicks: gogs-conf
+  external_links:
+    - ${GOGS_DATABASE_SERVICE}:db
+  volumes:
+    - gogs-data:/data
+  volumes_from:
+    - gogs-conf
+
+gogs-conf:
+  image: camptocamp/gogs-conf:20160411-1
+  labels:
+    io.rancher.container.start_once: 'true'
+  environment:
+    GOGS_DOMAIN: ${GOGS_DOMAIN}
+    GOGS_ROOT_URL: https://${GOGS_DOMAIN}/
+    GOGS_SSH_PORT: ${GOGS_SSH_PORT}
+
+auth:
+  image: camptocamp/oauth2_proxy:github_user
+  command:
+    - -http-address=0.0.0.0:4180
+    - -upstream=http://gogs:3000/
+    - -provider=github
+    - -client-id=${OAUTH_CLIENT_ID}
+    - -client-secret=${OAUTH_CLIENT_SECRET}
+    - -github-org=${OAUTH_GITHUB_ORG}
+    - -github-team=${OAUTH_GITHUB_TEAM}
+    - -cookie-secret=${OAUTH_COOKIE_SECRET}
+    - -cookie-secure=false
+    - -cookie-domain=${OAUTH_COOKIE_DOMAIN}
+    - -cookie-name=_gogs_oauth2_proxy
+    - -email-domain=*
+    - -redirect-url=https://${GOGS_DOMAIN}/oauth2/callback
+  links:
+    - gogs
+
+lb:
+  image: rancher/load-balancer-service
+  links:
+    - auth
+  ports:
+    - 443:4180
+  labels:
+    io.rancher.loadbalancer.ssl.ports: '443'
+    io.rancher.loadbalancer.target.auth: 443=4180
+
+lbtcp:
+  image: rancher/load-balancer-service
+  labels:
+    io.rancher.scheduler.affinity:container_label: io.rancher.stack_service.name=$${stack_name}/lb
+  links:
+    - gogs
+  ports:
+    - ${GOGS_SSH_PORT}:22/tcp
