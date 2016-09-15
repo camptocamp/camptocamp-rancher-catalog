@@ -1,0 +1,108 @@
+---
+.catalog:
+  name: "Gogs"
+  version: "v0.9.13c2c4"
+  description: "A painless self-hosted Git service"
+  uuid: "gogs-3"
+  minimum_rancher_version: "v1.0.0"
+  questions:
+    - variable: "GOGS_DATABASE_SERVICE"
+      label: "Gogs Database Service"
+      description: "The database service to use"
+      required: true
+      type: "service"
+    - variable: "GOGS_DOMAIN"
+      label: "Domain name of your server."
+      description: "Domain name of your server."
+      required: true
+      type: "string"
+    - variable: "GOGS_SSH_PORT"
+      label: "Gogs Ssh Port"
+      description: "ssh port to access gogs cli"
+      required: true
+      default: "10022"
+      type: "int"
+    - variable: "GOGS_SERVICE_ENABLE_NOTIFY_MAIL"
+      label: "Gogs mail notify watchers"
+      description: "Enable this to send e-mail to watchers of repository when something happens like creating issues, requires Mailer to be enabled."
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_MAILER_ENABLED"
+      label: "Gogs mail enabled"
+      description: "Enable this to use a mail service."
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_MAILER_FROM"
+      label: "Gogs mailer from"
+      description: "Mail from address, RFC 5322. This can be just an email address, or the “Name” <email@example.com> format."
+      required: false
+      default: "mail@gogs.example.com"
+      type: "string"
+    - variable: "GOGS_MAILER_HOST"
+      label: "Gogs SMTP mail host address and port (example: smtp.gogs.io:587)"
+      description: "Note, if the port ends with '465', SMTPS will be used. Using STARTTLS on port 587 is recommended per RFC 6409. If the server supports STARTTLS it will always be used.)"
+      required: false
+      default: "smtp.example.com:25"
+      type: "string"
+    - variable: "GOGS_MAILER_USER"
+      label: "Gogs mailer user"
+      description: "User name of mailer (usually just your e-mail address)."
+      required: false
+      type: "string"
+    - variable: "GOGS_MAILER_PASSWD"
+      label: "Gogs mailer password"
+      description: "Password of mailer."
+      required: false
+      type: "password"
+    - variable: "GOGS_MAILER_SKIP_VERIFY"
+      label: "Gogs mailer skip verify self signed certificates"
+      description: "Do not verify the self-signed certificates."
+      default: false
+      type: "boolean"
+    - variable: "OAUTH_CLIENT_ID"
+      label: "OAuth Client ID"
+      description: "OAuth Client ID"
+      required: true
+      type: "string"
+    - variable: "OAUTH_CLIENT_SECRET"
+      label: "OAuth Client Secret"
+      description: "OAuth Client Secret"
+      required: true
+      type: "password"
+    - variable: "OAUTH_GITHUB_ORG"
+      label: "OAuth GitHub Organization"
+      description: "OAuth GitHub Organization"
+      required: true
+      type: "string"
+    - variable: "OAUTH_GITHUB_TEAM"
+      label: "OAuth GitHub Team"
+      description: "OAuth GitHub Team"
+      type: "string"
+    - variable: "OAUTH_COOKIE_SECRET"
+      label: "OAuth cookie secret"
+      description: "OAuth cookie secret"
+      required: true
+      type: "password"
+    - variable: "OAUTH_COOKIE_DOMAIN"
+      label: "OAuth cookie domain"
+      description: "OAuth cookie domain"
+      required: false
+      type: "string"
+    - variable: "SSL_CERTIFICATE"
+      label: "SSL Certificate"
+      description: "SSL Certificate"
+      type: "string"
+      required: true
+
+lb:
+  load_balancer_config:
+    haproxy_config:
+  default_cert: ${SSL_CERTIFICATE}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
