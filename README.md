@@ -1,7 +1,7 @@
-Conplicity
-==========
+Rancher catalog template for Conplicity
+=======================================
 
-Conplicity lets you backup all your named Docker volumes using Duplicity or RClone.
+[Conplicity](https://github.com/camptocamp/conplicity) lets you backup all your named Docker volumes using Duplicity or RClone.
 
 Parameters
 ----------
