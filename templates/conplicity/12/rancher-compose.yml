@@ -1,0 +1,72 @@
+---
+.catalog:
+  name: "Conplicity"
+  version: "v0.8.0c2c3"
+  description: "Conplicity backup"
+  uuid: conplicity-12
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "CONPLICITY_RUN_TIME"
+      label: "CONPLICITY_RUN_TIME"
+      description: "CONPLICITY_RUN_TIME"
+      type: "string"
+      default: "0 2 * * *"
+      required: true
+    - variable: "CONPLICITY_FULL_IF_OLDER_THAN"
+      label: "CONPLICITY_FULL_IF_OLDER_THAN"
+      description: "Perform a full backup if the latest full backup in the collection is older than the given time."
+      type: "string"
+      default: "15D"
+      required: false
+    - variable: "CONPLICITY_REMOVE_OLDER_THAN"
+      label: "CONPLICITY_REMOVE_OLDER_THAN"
+      description: "Delete all backup sets older than the given time."
+      type: "string"
+      default: "30D"
+      required: false
+    - variable: "CONPLICITY_VOLUMES_BLACKLIST"
+      label: "CONPLICITY_VOLUMES_BLACKLIST"
+      description: "Comma separated list of named volumes to blacklist."
+      type: "string"
+      required: false
+    - variable: "DUPLICITY_TARGET_URL"
+      label: "DUPLICITY_TARGET_URL"
+      description: "Target URL passed to duplicity. The hostname and the name of the volume to backup are added to the path as directory levels."
+      type: "string"
+      required: true
+    - variable: "PUSHGATEWAY_URL"
+      label: "PUSHGATEWAY_URL"
+      description: "Prometheus Pushgateway service to push metrics to."
+      type: "string"
+      default: "http://pushgateway.metrics:9091"
+      required: true
+    - variable: "AWS_ACCESS_KEY_ID"
+      label: "AWS_ACCESS_KEY_ID"
+      description: "AWS_ACCESS_KEY_ID"
+      type: "string"
+      required: false
+    - variable: "AWS_SECRET_ACCESS_KEY"
+      label: "AWS_SECRET_ACCESS_KEY"
+      description: "AWS_SECRET_ACCESS_KEY"
+      type: "password"
+      required: false
+    - variable: "SWIFT_AUTHURL"
+      label: "SWIFT_AUTHURL"
+      description: "SWIFT_AUTHURL"
+      type: "string"
+    - variable: "SWIFT_TENANTNAME"
+      label: "SWIFT_TENANTNAME"
+      description: "SWIFT_TENANTNAME"
+      type: "string"
+    - variable: "SWIFT_USERNAME"
+      label: "SWIFT_USERNAME"
+      description: "SWIFT_USERNAME"
+      type: "string"
+    - variable: "SWIFT_PASSWORD"
+      label: "SWIFT_PASSWORD"
+      description: "SWIFT_PASSWORD"
+      type: "password"
+    - variable: "SWIFT_REGIONNAME"
+      label: "SWIFT_REGIONNAME"
+      description: "SWIFT_REGIONNAME"
+      type: "string"
