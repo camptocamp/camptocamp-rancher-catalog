@@ -10,7 +10,7 @@ jobber:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
 upkick:
-  image: camptocamp/upkick:0.4.0
+  image: camptocamp/upkick:0.5.0
   command: [ "--hostname-from-rancher" ]
   environment:
     UPKICK_LOG_LEVEL: ${UPKICK_LOG_LEVEL}
