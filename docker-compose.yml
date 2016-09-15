@@ -10,11 +10,13 @@ jobber:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
 upkick:
-  image: camptocamp/upkick:0.2.0
+  image: camptocamp/upkick:0.3.0
+  command: [ "--hostname-from-rancher" ]
   environment:
     UPKICK_LOG_LEVEL: ${UPKICK_LOG_LEVEL}
     UPKICK_JSON_OUTPUT: ${JSON_OUTPUT}
     UPKICK_WARN_ONLY: ${UPKICK_WARN_ONLY}
+    PUSHGATEWAY_URL: ${PUSHGATEWAY_URL}
   labels:
     io.upkick: 'true'
     io.rancher.scheduler.global: 'true'
