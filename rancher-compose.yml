@@ -27,6 +27,7 @@
       label: "PostgreSQL User"
       description: "PostgreSQL User"
       type: "string"
+      default: "postgres"
     - variable: "POSTGRES_PASSWORD"
       label: "PostgreSQL Password"
       description: "PostgreSQL Password"
