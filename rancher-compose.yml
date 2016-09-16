@@ -1,8 +1,8 @@
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-c2c5"
+  version: "v9.5-12"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-11
+  uuid: postgres-cluster-12
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "POSTGRES_IMAGE"
