@@ -18,6 +18,7 @@ postgres:
     io.rancher.container.pull_image: always
     io.rancher.scheduler.global: 'true'
     io.rancher.sidekicks: postgres-cluster-conf
+    com.camptocamp.monitoring.postgres: 'true'
   volumes:
     - ${POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data
   volumes_from:
