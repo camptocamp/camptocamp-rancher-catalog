@@ -100,3 +100,9 @@
       label: "OS_REGION_NAME"
       description: "OS_REGION_NAME"
       type: "string"
+
+postgresql:
+  metadata:
+    credentials:
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
