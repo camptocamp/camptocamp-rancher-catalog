@@ -12,6 +12,8 @@ postgres:
   image: ${POSTGRES_IMAGE}
   entrypoint: ["/postgres-c2c-conf/docker-entrypoint.sh"]
   environment:
+    POSTGRES_USER: ${POSTGRES_USER}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     REPLICATOR_PASSWORD: ${REPLICATOR_PASSWORD}
   command: "postgres ${POSTGRES_PARAMS}"
   labels:
