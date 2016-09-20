@@ -15,6 +15,11 @@
       description: "IP address of the ELK entrypoint. Same as above, leave empty by default."
       type: "string"
       default: ""
+    - variable: "EXTRA"
+      label: "Extra fields to add to structured logs"
+      description: "JSON hash of key-values to add to each log. Example: {\"foo\":\"bar\"}"
+      type: "string"
+      default: "{}"
 
 syslog:
   scale: 1
