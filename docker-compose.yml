@@ -1,5 +1,5 @@
 lb:
-  image: camptocamp/postgres-proxy-rancher:20160818-3
+  image: camptocamp/postgres-proxy-rancher:devel
   expose:
     - 5432:5432/tcp
     - 5433:5433/tcp
