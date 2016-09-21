@@ -1,8 +1,8 @@
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-18"
+  version: "v9.5-19"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-18
+  uuid: postgres-cluster-19
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -102,7 +102,7 @@
       description: "OS_REGION_NAME"
       type: "string"
 
-postgresql:
+postgres:
   metadata:
     credentials:
       user: ${POSTGRES_USER}
