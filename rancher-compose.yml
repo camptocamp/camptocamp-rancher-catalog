@@ -1,8 +1,8 @@
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-17"
+  version: "v9.5-18"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-17
+  uuid: postgres-cluster-18
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -32,6 +32,7 @@
       label: "PostgreSQL Password"
       description: "PostgreSQL Password"
       type: "password"
+      required: true
     - variable: "REPLICATOR_PASSWORD"
       label: "Replicator user's password"
       description: "Password used for replication"
