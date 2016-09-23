@@ -27,7 +27,7 @@ postgres:
     - postgres-cluster-conf
 
 postgres-cluster-conf:
-  image: camptocamp/postgres-cluster-conf:20160923-2
+  image: camptocamp/postgres-cluster-conf:20160923-3
   labels:
     io.rancher.container.pull_image: always
     io.rancher.container.start_once: true
