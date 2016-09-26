@@ -1,6 +1,6 @@
 ---
 jobber:
-  image: blacklabelops/cron-cloud
+  image: blacklabelops/jobber:docker
   environment:
     JOB_NAME1: upkick
     JOB_COMMAND1: docker start $$(docker ps -a -f label=io.upkick=true --format="{{.ID}}")
