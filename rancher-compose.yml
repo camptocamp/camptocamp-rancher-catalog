@@ -7,7 +7,7 @@
   questions:
     - variable: "SSL_CERTIFICATE"
       label: "SSL Certificate"
-      description: "A valid certificate from Rancher's infrastructure. Consider using Letsencrypt from the community catalog if you don't have any. The CN must match the 'Prometheus address' below."
+      description: "A valid certificate from Rancher's infrastructure. Consider using Letsencrypt from the community catalog if you don't have any. The CN must match the 'Prometheus FQDN' below."
       type: "string"
       required: true
     - variable: "PROMETHEUS_USERNAME"
@@ -21,7 +21,7 @@
       type: "password"
       required: true
     - variable: "PROMETHEUS_FQDN"
-      label: "Prometheus address"
+      label: "Prometheus FQDN. Must match the CN from the 'SSL Certificate' above."
       description: "The public FQDN (or IP address) where prometheus can be reached. Leave blank if you don't want this instance to be part of the central federation system."
       type: "string"
       required: false
