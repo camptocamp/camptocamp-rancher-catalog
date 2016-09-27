@@ -62,7 +62,6 @@ prometheus:
     haproxy_config:
       defaults: |-
         mode       http
-                log-format %{+Q}o{\"client_ip\":%ci,\"client_port\":%cp,\"verb\":%HM,\"timegenerated_gmt\":\"%t\",\"response.bytes\":%U,\"request.bytes\":%B,\"rawrequest\":%r,\"requestprotocol\":%HV,\"uri\":%HU,\"response\":%ST,\"actconn\":%ac,\"feconn\":%fc,\"beconn\":%bc,\"srv_conn\":%sc,\"retries\":%rc,\"srv_queue\":%sq,\"backend_queue\":%bq,\"timer_client\":%Tq,\"timer_queues\":%Tw,\"timer_backend\":%Tc,\"timer_response\":%Tr,\"timer_total\":%Tt,\"backend_name\":%b,\"frontend_name\":%ft,\"server_name\":%s,\"termination_state\":\"%tsc\"}
 
                 backend b_stats
                         stats enable
@@ -71,7 +70,7 @@ prometheus:
                 frontend f_stats
                         bind *:8008
                         default_backend b_stats
-      global: log 10.42.24.10:1514 local2
+      global: log 10.42.24.10:514 local2
   default_cert: ${SSL_CERTIFICATE}
   health_check:
     port: 42
