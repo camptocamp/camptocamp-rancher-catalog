@@ -20,6 +20,7 @@ postgres:
     io.rancher.container.pull_image: always
     io.rancher.scheduler.global: 'true'
     io.rancher.sidekicks: postgres-cluster-conf
+    io.rancher.scheduler.affinity:host_label: ${HOST_LABEL}
     com.camptocamp.monitoring.postgres: 'true'
   volumes:
     - ${POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data
