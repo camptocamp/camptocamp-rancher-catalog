@@ -1,8 +1,8 @@
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-24"
+  version: "v9.5-25"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-24
+  uuid: postgres-cluster-25
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -80,6 +80,10 @@
       description: "AWS_DEFAULT_REGION"
       type: "string"
       default: "eu-west-1"
+    - variable: "AWS_HOST"
+      label: "AWS_HOST"
+      description: "override host for non AWS-S3 implementations"
+      type: "string"
     - variable: "OS_USERNAME"
       label: "OS_USERNAME"
       description: "OS_USERNAME"
