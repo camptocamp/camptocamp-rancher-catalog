@@ -65,6 +65,7 @@ rancher:
   labels:
     io.rancher.container.create_agent: true
     io.rancher.container.agent.role: environment
+    io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: monitoring=true
     prometheus_port: '9010'
   image: infinityworks/prometheus-rancher-exporter:04
@@ -92,6 +93,7 @@ prometheus-server:
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.sidekicks: prometheus-server-conf
+    io.rancher.container.hostname_override: container_name
     prometheus_port: '9090'
   image: 'camptocamp/prometheus-server:v1.1.3'
   volumes_from:
@@ -104,6 +106,7 @@ prometheus-auth-conf:
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.start_once: 'true'
+    io.rancher.container.hostname_override: container_name
   environment:
     USERNAME: '${PROMETHEUS_USERNAME}'
     PASSWORD: '${PROMETHEUS_PASSWORD}'
@@ -116,6 +119,7 @@ prometheus-auth:
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.sidekicks: prometheus-auth-conf
+    io.rancher.container.hostname_override: container_name
   image: haproxy:1.6-alpine
   entrypoint: /entrypoint/run.sh
   volumes_from:
@@ -128,6 +132,7 @@ prometheus:
   - prometheus-auth:prometheus-auth
   labels:
     io.rancher.loadbalancer.ssl.ports: '${PROMETHEUS_PORT}'
+    io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: monitoring=true
     haproxy_stats_path: '/stats'
     haproxy_stats_port: '8008'
