@@ -81,7 +81,7 @@ collectd:
   image: 'prom/collectd-exporter:0.3.1'
 
 prometheus-server-conf:
-  image: 'camptocamp/prometheus-conf:latest' #TODO: fix version
+  image: 'camptocamp/prometheus-conf:0.1.4'
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
@@ -93,7 +93,7 @@ prometheus-server:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.sidekicks: prometheus-server-conf
     prometheus_port: '9090'
-  image: 'camptocamp/prometheus-server:v0.19.2'
+  image: 'camptocamp/prometheus-server:v1.1.3'
   volumes_from:
     - 'prometheus-server-conf'
   volumes:
