@@ -61,7 +61,8 @@ prometheus:
   load_balancer_config:
     haproxy_config:
       defaults: |-
-        mode       http
+        mode      http
+        option    httplog
 
                 backend b_stats
                         stats enable
