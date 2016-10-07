@@ -1,7 +1,7 @@
 ---
 # Puppet CA
 puppetca:
-  image: camptocamp/puppetserver:2.4.0-13
+  image: camptocamp/puppetserver:2.4.0-14
   labels:
     io.rancher.sidekicks: mco-puppetca
   environment:
