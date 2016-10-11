@@ -102,7 +102,7 @@ prometheus-server:
     - 'metrics_tsdb:/prometheus'
 
 prometheus-auth-conf:
-  image: 'camptocamp/prometheus-auth-conf:v0.1.2'
+  image: 'camptocamp/prometheus-auth-conf:latest' #TODO: use released version
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.start_once: 'true'
@@ -111,6 +111,7 @@ prometheus-auth-conf:
     USERNAME: '${PROMETHEUS_USERNAME}'
     PASSWORD: '${PROMETHEUS_PASSWORD}'
     GRAFANA_URL: '${GRAFANA_URL}'
+    RESOLVER: '169.254.169.250'
   volumes:
     - '/etc/haproxy'
     - '/entrypoint'
