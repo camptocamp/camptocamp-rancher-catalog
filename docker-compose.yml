@@ -10,7 +10,7 @@ jobber:
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
 conplicity:
-  image: camptocamp/conplicity:0.25.4
+  image: camptocamp/conplicity:0.25.6
   command: [ "--hostname-from-rancher" ]
   environment:
     CONPLICITY_FULL_IF_OLDER_THAN: ${CONPLICITY_FULL_IF_OLDER_THAN}
