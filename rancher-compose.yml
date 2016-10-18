@@ -1,8 +1,8 @@
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-25"
+  version: "v9.5-26"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-25
+  uuid: postgres-cluster-26
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -43,6 +43,7 @@
       description: "Storage type for PGHoard"
       type: "enum"
       options:
+        - "local"
         - "s3"
         - "swift"
     - variable: "PGHOARD_STORAGE_TARGET"

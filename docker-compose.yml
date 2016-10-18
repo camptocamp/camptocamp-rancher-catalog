@@ -45,6 +45,7 @@ pghoard:
     - PGHOARD_BASEBACKUP_COUNT=${PGHOARD_BASEBACKUP_COUNT}
     - PGHOARD_BASEBACKUP_INTERVAL_HOURS=${PGHOARD_BASEBACKUP_INTERVAL_HOURS}
     - PGHOARD_STATSD_ADDRESS=10.42.24.101
+    - PGHOARD_DIRECTORY=/home/postgres/pghoard/backup
     - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
     - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
     - AWS_BUCKETNAME=${PGHOARD_STORAGE_TARGET}
@@ -62,3 +63,5 @@ pghoard:
     io.rancher.container.pull_image: always
   links:
     - lb
+  volumes:
+    - ${POSTGRES_VOLUME_NAME}-pghoard:/home/postgres/pghoard
