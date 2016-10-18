@@ -34,7 +34,7 @@ postgres-cluster-conf:
     io.rancher.container.start_once: true
 
 pghoard:
-  image: camptocamp/pghoard:1.4.0_f38b187
+  image: camptocamp/pghoard:1.4.0_f38b187-1
   environment:
     - PG_HOST=lb
     - PG_PORT=5432
