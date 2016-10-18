@@ -1,7 +1,7 @@
 ---
 # Puppet CA
 puppetca:
-  image: camptocamp/puppetserver:2.4.0-14
+  image: camptocamp/puppetserver:2.4.0-15
   labels:
     io.rancher.sidekicks: mco-puppetca
   environment:
@@ -46,7 +46,7 @@ activemq:
 
 # Puppet Server
 puppet:
-  image: camptocamp/puppetserver:2.4.0-13
+  image: camptocamp/puppetserver:2.4.0-15
   labels:
     io.rancher.sidekicks: r10k
     io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
