@@ -5,6 +5,7 @@ lb:
     - 5433:5433/tcp
   labels:
     io.rancher.container.pull_image: always
+    io.rancher.scheduler.affinity:host_label: ${LB_LABEL}
   links:
     - postgres:postgres
 

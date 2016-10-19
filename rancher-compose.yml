@@ -1,8 +1,8 @@
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-27"
+  version: "v9.5-28"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-27
+  uuid: postgres-cluster-28
   minimum_rancher_version: v0.44.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -37,6 +37,18 @@
       label: "Replicator user's password"
       description: "Password used for replication"
       type: "password"
+      required: true
+    - variable: "HOST_LABEL"
+      label: "Host label"
+      description: "Host label"
+      type: "string"
+      default: "database=true"
+      required: true
+    - variable: "LB_LABEL"
+      label: "Load Balancer label"
+      description: "Load Balancer label"
+      type: "string"
+      default: "database=true"
       required: true
     - variable: "PGHOARD_STORAGE_TYPE"
       label: "PGHoard Storage type"
@@ -106,11 +118,6 @@
       label: "OS_REGION_NAME"
       description: "OS_REGION_NAME"
       type: "string"
-    - variable: "HOST_LABEL"
-      label: "Host label"
-      description: "Host label"
-      type: "string"
-      required: true
 
 postgres:
   metadata:
