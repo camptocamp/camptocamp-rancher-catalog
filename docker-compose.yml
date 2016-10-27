@@ -15,7 +15,7 @@ slave:
     - /var/jenkins
 
 master:
-  image: jenkins:2.7.3
+  image: jenkins:2.7.4
   labels:
     io.rancher.scheduler.affinity:host_label: data.jenkins=true
     io.rancher.sidekicks: master-conf
