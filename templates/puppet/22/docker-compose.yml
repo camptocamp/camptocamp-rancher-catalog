@@ -1,0 +1,67 @@
+puppetserver:
+  image: camptocamp/puppetserver-tainted:2.2.1-5${SITE}1
+  labels:
+    io.rancher.sidekicks: r10k
+  environment:
+    CERTNAME: ${CERTNAME}
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+  ports:
+  - 8140:8140/tcp
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+  volumes_from:
+  - r10k
+postgresql:
+  image: camptocamp/puppetdb_postgres:9.4-3
+  volumes:
+  - ${VOL_DB}:/var/lib/postgresql/data
+puppetdb:
+  image: camptocamp/puppetdb:3.2.3-2
+  environment:
+    ENABLE_HTTP: 'true'
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+puppetboard:
+  image: camptocamp/puppetboard:global_default
+r10k:
+  image: camptocamp/mcollectived-r10k
+  environment:
+    GITHUB_USER: ${GITHUB_USER}
+    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAMS: ${GITHUB_TEAMS}
+    GITHUB_USERS: ${GITHUB_USERS}
+    RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+  volumes:
+  - ${VOL_CODE}:/etc/puppetlabs/code/environments
+  - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
+activemq:
+  image: webcenter/activemq
+  environment:
+    ACTIVEMQ_NAME: mcollective
+    ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT: 'true'
+    ACTIVEMQ_ADMIN_LOGIN: admin
+    ACTIVEMQ_ADMIN_PASSWORD: secret
+    ACTIVEMQ_WRITE_LOGIN: mcollective
+    ACTIVEMQ_WRITE_PASSWORD: marionette
+    ACTIVEMQ_STATIC_TOPICS: mcollective.>
+    ACTIVEMQ_STATIC_QUEUES: mcollective.>
+    ACTIVEMQ_MIN_MEMORY: 1024
+    ACTIVEMQ_MAX_MEMORY: 4096
+    ACTIVEMQ_ENABLED_SCHEDULER: true
+r10kproxy:
+  image: camptocamp/r10k-gitproxy:0.7
+  environment:
+    GITHUB_USER: ${GITHUB_USER}
+    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAMS: ${GITHUB_TEAMS}
+    GITHUB_USERS: ${GITHUB_USERS}
+    RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+  ports:
+  - 2222:22/tcp
+  volumes:
+  - ${VOL_GIT}:/srv/puppetmaster.git
+  - ${VOL_SSH_HOST_KEYS}:/etc/ssh/ssh_host_keys
