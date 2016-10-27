@@ -1,0 +1,182 @@
+---
+.catalog:
+  name: "Puppet"
+  version: "v2.4.0-18"
+  description: "Puppet Master stack"
+  uuid: puppet-120
+  minimum_rancher_version: v0.44.0
+  questions:
+    - variable: "DNS_ALT_NAMES"
+      label: "Puppetmaster dns_alt_names"
+      description: "Puppet dns_alt_names to use"
+      default: "puppet"
+      type: "string"
+      required: true
+    - variable: "CA_DNS_ALT_NAMES"
+      label: "Puppet CA dns_alt_names"
+      description: "Puppet CA dns_alt_names to use"
+      default: "puppetca"
+      type: "string"
+      required: true
+    - variable: "PUPPETBOARD_TAG"
+      label: "Puppetboard Tag"
+      description: "Tag to use for Puppetboard service"
+      type: "enum"
+      default: "0.2.0-1"
+      options:
+      - "0.2.0-2"
+      - "0.2.0-1epfl3"
+      required: true
+    - variable: "PUPPETDB_POSTGRES_SERVICE"
+      label: "PuppetDB PostgreSQL"
+      description: "PuppetDB PostgreSQL Service"
+      type: "service"
+      required: true
+    - variable: "GITHUB_TOKEN"
+      label: "GitHub token"
+      description: "Token for r10k checkouts of private repositories on GitHub and MCollective keys deployment"
+      type: "password"
+      required: false
+    - variable: "GITHUB_ORG"
+      label: "GitHub Organization"
+      description: "A GitHub Organization for MCollective authorization"
+      type: "string"
+      required: false
+    - variable: "GITHUB_TEAM"
+      label: "GitHub Team"
+      description: "A GitHub Team for MCollective authorization"
+      type: "string"
+      required: false
+    - variable: "GITHUB_USERS"
+      label: "GitHub Users"
+      description: "Additional GitHub users for MCollective services"
+      type: "string"
+      default: "<github_token_user>=webhook"
+      required: false
+    - variable: "RSA_PRIVATE_KEY"
+      label: "RSA private key"
+      description: "RSA private key for r10k communications"
+      type: "multiline"
+      required: true
+    - variable: "MCOLLECTIVE_SERVER_KEY"
+      label: "MCollective server key"
+      description: "MCollective shared SSL server key"
+      type: "multiline"
+      required: true
+    - variable: "GPG_KEY"
+      label: "Puppetmaster GPG key to decrypt"
+      description: "GPG key used by puppetmaster to decrypt hiera eyaml data"
+      type: "multiline"
+      required: false
+    - variable: "CA_KEY"
+      label: "Puppet CA private key"
+      description: "Puppet CA private key"
+      type: "multiline"
+      required: false
+    - variable: "CA_CRT"
+      label: "Puppet CA certificate"
+      description: "Puppet CA certificate"
+      type: "multiline"
+      required: false
+    - variable: "WEBHOOK_SECRET"
+      label: "Webhook secret"
+      description: "The secret passed to the webhook"
+      type: "password"
+      required: true
+    - variable: "PUPPET_JAVA_ARGS"
+      label: "Puppetserver JAVA_ARGS"
+      desription: "Puppetserver JAVA_ARGS"
+      type: "string"
+      default: "-XX:OnOutOfMemoryError=\"kill -9 %p\" -Djava.security.egd=/dev/urandom -Xmx2g -Xms2g -XX:MaxPermSize=256m"
+      required: true
+    - variable: "PUPPETDB_JAVA_ARGS"
+      label: "PuppetDB JAVA_ARGS"
+      desription: "PuppetDB JAVA_ARGS"
+      type: "string"
+      default: "-XX:OnOutOfMemoryError=\"kill -9 %p\" -Djava.security.egd=/dev/urandom -Xmx192m"
+      required: true
+    - variable: "PUPPETCA_JAVA_ARGS"
+      label: "Puppet CA JAVA_ARGS"
+      desription: "Puppet CA JAVA_ARGS"
+      type: "string"
+      default: "-XX:OnOutOfMemoryError=\"kill -9 %p\" -Djava.security.egd=/dev/urandom -Xmx2g -Xms2g -XX:MaxPermSize=256m"
+      required: true
+    - variable: "PUPPETBOARD_OVERVIEW_FILTER"
+      label: "Puppetboard Overview filter"
+      description: "Puppetboard Overview filter"
+      type: "string"
+      required: false
+    - variable: "PUPPETBOARD_INVENTORY_FACTS"
+      label: "Puppetboard Inventory Facts"
+      description: "Facts to display in the Puppetboard Inventory"
+      type: "string"
+      default: "[('Hostname', 'fqdn'), ('IP Address', 'ipaddress'), ('OS', 'lsbdistdescription'), ('Architecture', 'hardwaremodel'), ('Kernel Version', 'kernelrelease'), ('Puppet Version', 'puppetversion'), ]"
+      required: false
+    - variable: "R10K_REMOTE"
+      label: "r10k remote"
+      description: "r10k remote"
+      type: "string"
+      required: true
+    - variable: "AUTH_CONF_ALLOW_CATALOG"
+      label: "auth.conf allow catalog"
+      description: "Allowed certnames for catalog endpoint"
+      type: "string"
+      required: false
+    - variable: "STOMP_PASSWORD"
+      label: "MCollective's stomp password"
+      description: "Password used to connect to the broker for MCollective"
+      type: "password"
+      required: true
+    - variable: "AUTOSIGN_PSK"
+      label: "Autosign PSK"
+      description: "Shared secret to autosign certificates"
+      type: "password"
+      required: false
+
+puppetca:
+  health_check:
+    port: 8140
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+postgresql:
+  health_check:
+    port: 5432
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppetdb:
+  health_check:
+    port: 8080
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+activemq:
+  health_check:
+    port: 61613
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppet:
+  health_check:
+    port: 8140
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppetboard:
+  health_check:
+    port: 80
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
