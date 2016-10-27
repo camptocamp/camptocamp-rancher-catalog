@@ -1,0 +1,85 @@
+.catalog:
+  name: "Puppet"
+  version: "v2.2.1-c2c40"
+  description: "Puppet Master stack"
+  uuid: puppet-40
+  minimum_rancher_version: v0.44.0
+  questions:
+    - variable: "DNS_ALT_NAMES"
+      label: "Puppetmaster dns_alt_names"
+      description: "Puppet dns_alt_names to use"
+      default: "puppet"
+      type: "string"
+      required: true
+    - variable: "VOL_CA"
+      label: "Puppet CA volume name"
+      description: "Puppet CA volume name"
+      default: "puppetca"
+      type: "string"
+      required: true
+    - variable: "VOL_DB"
+      label: "PuppetDB database volume name"
+      description: "PuppetDB database volume name"
+      default: "puppetdb"
+      type: "string"
+      required: true
+    - variable: "VOL_CODE"
+      label: "Puppet code volume name"
+      description: "Puppet code volume name"
+      default: "puppetcode"
+      type: "string"
+      required: true
+    - variable: "VOL_GIT"
+      label: "git repository volume name"
+      description: "git repository volume name"
+      default: "puppetgit"
+      type: "string"
+      required: true
+    - variable: "VOL_R10KCACHE"
+      label: "r10k cache volume name"
+      description: "r10k cache volume name"
+      default: "puppetr10kcache"
+      type: "string"
+      required: true
+    - variable: "VOL_SSH_HOST_KEYS"
+      label: "SSH host keys volume name"
+      description: "SSH host keys volume name"
+      default: "puppetr10ksshhostkeys"
+      type: "string"
+      required: true
+    - variable: "GITHUB_USER"
+      label: "GitHub user"
+      description: "Use to use to connect to GitHub"
+      type: "string"
+      required: false
+    - variable: "GITHUB_PASSWORD"
+      label: "GitHub password"
+      description: "Password to use to connect to GitHub"
+      type: "password"
+      required: false
+    - variable: "GITHUB_ORG"
+      label: "GitHub organization"
+      description: "GitHub Organization to connecte to"
+      default: "camptocamp"
+      type: "string"
+      required: false
+    - variable: "GITHUB_TEAMS"
+      label: "GitHub teams"
+      description: "GitHub Teams to allow to connect to r10k container"
+      type: "string"
+      required: false
+    - variable: "GITHUB_USERS"
+      label: "GitHub users"
+      description: "GitHub Users to allow to connect to r10k container"
+      type: "string"
+      required: false
+    - variable: "SITE"
+      label: "Puppetserver site"
+      description: "Puppetserver site for tainted images"
+      type: "string"
+      required: true
+    - variable: "RSA_PRIVATE_KEY"
+      label: "RSA private key"
+      description: "RSA private key for r10k communications"
+      type: "multiline"
+      required: true
