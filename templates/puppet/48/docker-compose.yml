@@ -1,0 +1,68 @@
+puppetca:
+  image: camptocamp/puppetserver:2.2.1-8
+  environment:
+    DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
+  ports:
+  - ${CA_PORT}:8140/tcp
+  volumes:
+  - puppetca:/etc/puppetlabs/puppet/ssl
+postgresql:
+  image: camptocamp/puppetdb_postgres:9.4-3
+  volumes:
+  - puppetdb:/var/lib/postgresql/data
+puppetdb:
+  image: camptocamp/puppetdb:3.2.3-4
+  environment:
+    ENABLE_HTTP: 'true'
+  links:
+  - postgresql
+  - puppetca
+puppet:
+  image: camptocamp/puppetserver:2.2.1-11
+  labels:
+    io.rancher.sidekicks: r10k
+  environment:
+    CA: 'false'
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+    GPG_KEY: ${GPG_KEY}
+    HIERA_YAML: ${HIERA_YAML}
+  links:
+  - activemq
+  - puppetca
+  - puppetdb
+  ports:
+  - 8140:8140/tcp
+  volumes_from:
+  - r10k
+puppetboard:
+  image: camptocamp/puppetboard:global_default
+  links:
+  - puppetdb
+r10k:
+  image: camptocamp/mcollectived-r10k:0.7
+  environment:
+    GITHUB_USER: ${GITHUB_USER}
+    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+  links:
+  - activemq
+  - puppetca
+activemq:
+  image: camptocamp/activemq-mcollective:5.6.0-1
+  links:
+  - puppetca
+r10kproxy:
+  image: camptocamp/r10k-gitproxy:0.16
+  environment:
+    GITHUB_USER: ${GITHUB_USER}
+    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAMS: ${GITHUB_TEAMS}
+    GITHUB_USERS: ${GITHUB_USERS}
+  links:
+  - activemq
+  - puppetca
+  ports:
+  - 2222:22/tcp
+  volumes:
+  - puppetgit:/srv/puppetmaster.git
+  - puppetr10ksshhostkeys:/etc/ssh/ssh_host_keys
