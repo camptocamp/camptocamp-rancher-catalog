@@ -28,10 +28,13 @@ mco-puppetca:
 
 # PuppetDB
 puppetdb:
-  image: camptocamp/puppetdb:4.2.2-1
+  image: camptocamp/puppetdb:4.2.2-3
   environment:
     ENABLE_HTTP: 'true'
     JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
+    POSTGRES_USER: ${PUPPETDB_POSTGRES_USER}
+    POSTGRES_PASSWORD: ${PUPPETDB_POSTGRES_PASSWORD}
+    POSTGRES_RO_SUBNAME: ${PUPPETDB_POSTGRES_RO_SUBNAME}
   links:
   - ${PUPPETDB_POSTGRES_SERVICE}:postgresql
   - puppetca
