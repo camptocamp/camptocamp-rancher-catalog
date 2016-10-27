@@ -28,7 +28,7 @@ mco-puppetca:
 
 # PuppetDB
 puppetdb:
-  image: camptocamp/puppetdb:4.2.2-3
+  image: camptocamp/puppetdb:4.2.2-4
   environment:
     ENABLE_HTTP: 'true'
     JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
