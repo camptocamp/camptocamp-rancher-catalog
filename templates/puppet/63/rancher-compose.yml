@@ -1,0 +1,132 @@
+.catalog:
+  name: "Puppet"
+  version: "v2.2.1-c2c63"
+  description: "Puppet Master stack"
+  uuid: puppet-63
+  minimum_rancher_version: v0.44.0
+  questions:
+    - variable: "DNS_ALT_NAMES"
+      label: "Puppetmaster dns_alt_names"
+      description: "Puppet dns_alt_names to use"
+      default: "puppet"
+      type: "string"
+      required: true
+    - variable: "CA_DNS_ALT_NAMES"
+      label: "Puppet CA dns_alt_names"
+      description: "Puppet CA dns_alt_names to use"
+      default: "puppetca"
+      type: "string"
+      required: true
+    - variable: "CA_PORT"
+      label: "Puppet CA listen port"
+      description: "Puppet CA listen port"
+      default: "8140"
+      type: "int"
+      required: true
+    - variable: "GITHUB_USER"
+      label: "GitHub user"
+      description: "Use to use to connect to GitHub"
+      type: "string"
+      required: false
+    - variable: "GITHUB_PASSWORD"
+      label: "GitHub password"
+      description: "Password to use to connect to GitHub"
+      type: "password"
+      required: false
+    - variable: "GITHUB_ORG"
+      label: "GitHub organization"
+      description: "GitHub Organization to connecte to"
+      default: "camptocamp"
+      type: "string"
+      required: false
+    - variable: "GITHUB_TEAMS"
+      label: "GitHub teams"
+      description: "GitHub Teams to allow to connect to r10k container"
+      type: "string"
+      required: false
+    - variable: "GITHUB_USERS"
+      label: "GitHub users"
+      description: "GitHub Users to allow to connect to r10k container"
+      type: "string"
+      required: false
+    - variable: "RSA_PRIVATE_KEY"
+      label: "RSA private key"
+      description: "RSA private key for r10k communications"
+      type: "multiline"
+      required: true
+    - variable: "GPG_KEY"
+      label: "Puppetmaster GPG key to decrypt"
+      description: "GPG key used by puppetmaster to decrypt hiera eyaml data"
+      type: "multiline"
+      required: false
+    - variable: "HIERA_YAML"
+      label: "hiera.yaml content"
+      description: "content of the hiera.yaml file"
+      type: "multiline"
+      required: false
+    - variable: "CA_KEY"
+      label: "Puppet CA private key"
+      description: "Puppet CA private key"
+      type: "multiline"
+      required: false
+    - variable: "CA_CRT"
+      label: "Puppet CA certificate"
+      description: "Puppet CA certificate"
+      type: "multiline"
+      required: false
+
+puppetca:
+  health_check:
+    port: 8140
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+postgresql:
+  health_check:
+    port: 5432
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppetdb:
+  health_check:
+    port: 8080
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+activemq:
+  health_check:
+    port: 61613
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppet:
+  health_check:
+    port: 8140
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+r10kproxy:
+  health_check:
+    port: 22
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+
+puppetboard:
+  health_check:
+    port: 80
+    interval: 10000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
