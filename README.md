@@ -1,7 +1,7 @@
 Camptocamp's Rancher Catalog
 ============================
 
-This catalog provides templates created by the Camptocamp.
+This catalog provides templates created by Camptocamp.
 
 License
 -------
