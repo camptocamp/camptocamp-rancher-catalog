@@ -1,0 +1,120 @@
+---
+# Puppet CA
+puppetca:
+  image: camptocamp/puppetserver:2.4.0-11
+  labels:
+    io.rancher.sidekicks: mco-puppetca
+  environment:
+    CA_KEY: ${CA_KEY}
+    CA_CRT: ${CA_CRT}
+    DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
+    JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
+    AUTOSIGN_PSK: ${AUTOSIGN_PSK}
+
+# MCollectived-puppetca (sidekick to Puppet CA)
+mco-puppetca:
+  image: camptocamp/mcollectived-puppetca:1.1.4-2
+  environment:
+    GITHUB_TOKEN: ${GITHUB_TOKEN}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAM: ${GITHUB_TEAM}
+    GITHUB_USERS: ${GITHUB_USERS}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+  volumes_from:
+  - puppetca
+  links:
+  - activemq
+
+# PuppetDB
+puppetdb:
+  image: camptocamp/puppetdb:4.1.0-2
+  environment:
+    ENABLE_HTTP: 'true'
+    JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
+  links:
+  - ${PUPPETDB_POSTGRES_SERVICE}:postgresql
+  - puppetca
+
+# ActiveMQ
+activemq:
+  image: camptocamp/activemq-mcollective:5.13.3-2
+  environment:
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
+  links:
+  - puppetca
+
+# Puppet Server
+puppet:
+  image: camptocamp/puppetserver:2.4.0-11
+  labels:
+    io.rancher.sidekicks: r10k
+    io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
+  environment:
+    CA: 'false'
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+    GPG_KEY: ${GPG_KEY}
+    JAVA_ARGS: ${PUPPET_JAVA_ARGS}
+    AUTH_CONF_ALLOW_CATALOG: ${AUTH_CONF_ALLOW_CATALOG}
+  links:
+  - activemq
+  - puppetca
+  - puppetdb
+  volumes_from:
+  - r10k
+
+# Mcollectived Puppet Node
+mco-puppet-node:
+  image: camptocamp/mcollectived-node:0.3.0
+  environment:
+    GITHUB_TOKEN: ${GITHUB_TOKEN}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAM: ${GITHUB_TEAM}
+    GITHUB_USERS: ${GITHUB_USERS}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+  links:
+  - activemq
+  - puppetca
+  - puppetdb
+
+# R10K (sidekick to Puppet Server)
+r10k:
+  image: camptocamp/r10k:2.2.0-11
+  environment:
+    GITHUB_TOKEN: ${GITHUB_TOKEN}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAM: ${GITHUB_TEAM}
+    GITHUB_USERS: ${GITHUB_USERS}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
+    REMOTE: ${R10K_REMOTE}
+    RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+  volumes:
+  - puppetcodecache:/etc/puppetlabs/code/environments
+  - puppetr10kcache:/opt/puppetlabs/r10k/cache
+  links:
+  - activemq
+  - puppetca
+
+# R10K Webhook
+webhook:
+  image: camptocamp/r10k-webhook:2.1.0-1
+  environment:
+    HOOKS_SECRET: ${WEBHOOK_SECRET}
+    STOMP_PASSWORD: ${STOMP_PASSWORD}
+    MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
+    MCOLLECTIVE_CLIENT_USER: webhook
+    MCOLLECTIVE_CLIENT_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+  links:
+  - activemq
+
+# Puppetboard
+puppetboard:
+  image: camptocamp/puppetboard:0.2.0-2
+  environment:
+    PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
+    PUPPETBOARD_INVENTORY_FACTS: ${PUPPETBOARD_INVENTORY_FACTS}
+    PUPPETBOARD_SETTINGS: '/app/settings.py'
+  links:
+  - puppetdb
