@@ -1,0 +1,10 @@
+puppetserver:
+  image: camptocamp/puppetserver:2.2.1-5
+  environment:
+    CERTNAME: ${CERTNAME}
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+  ports:
+  - 8140:8140/tcp
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
