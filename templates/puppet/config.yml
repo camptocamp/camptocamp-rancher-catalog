@@ -1,0 +1,6 @@
+---
+name: Puppet
+description: |
+  Puppet Master stack
+version: v2.6.0-4
+category: "Camptocamp services"
