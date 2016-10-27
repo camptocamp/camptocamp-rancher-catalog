@@ -1,0 +1,42 @@
+puppetserver:
+  image: camptocamp/puppetserver:2.2.1-5
+  environment:
+    CERTNAME: ${CERTNAME}
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+  ports:
+  - 8140:8140/tcp
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+  - ${VOL_CODE}:/etc/puppetlabs/code/environments
+  - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
+postgresql:
+  image: camptocamp/puppetdb_postgres:9.4-3
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_DB}:/var/lib/postgresql/data
+puppetdb:
+  image: camptocamp/puppetdb:3.2.3-2
+  environment:
+    ENABLE_HTTP: 'true'
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_CA}:/etc/puppetlabs/puppet/ssl
+puppetboard:
+  image: camptocamp/puppetboard:global_default
+r10k:
+  image: camptocamp/r10k-githook:2.1.1-1
+  environment:
+    GITHUB_USER: ${GITHUB_USER}
+    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    GITHUB_ORG: ${GITHUB_ORG}
+    GITHUB_TEAMS: ${GITHUB_TEAMS}
+    GITHUB_USERS: ${GITHUB_USERS}
+  ports:
+  - 2222:22/tcp
+  volume_driver: convoy-gluster
+  volumes:
+  - ${VOL_CODE}:/etc/puppetlabs/code/environments
+  - ${VOL_GIT}:/srv/puppetmaster.git
+  - ${VOL_R10KCACHE}:/opt/puppetlabs/r10k/cache
+  - ${VOL_SSH_HOST_KEYS}:/etc/ssh/ssh_host_keys
