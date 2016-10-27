@@ -1,0 +1,71 @@
+puppetca:
+  image: camptocamp/puppetserver:2.2.1-26
+  environment:
+    CA_KEY: ${CA_KEY}
+    CA_CRT: ${CA_CRT}
+    DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
+    JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
+  ports:
+  - ${CA_PORT}:8140/tcp
+postgresql:
+  image: camptocamp/puppetdb_postgres:9.4-3
+  volumes:
+  - puppetdb:/var/lib/postgresql/data
+puppetdb:
+  image: camptocamp/puppetdb:3.2.3-4
+  environment:
+    ENABLE_HTTP: 'true'
+    JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
+  links:
+  - postgresql
+  - puppetca
+activemq:
+  image: camptocamp/activemq-mcollective:5.6.0-1
+  links:
+  - puppetca
+puppet:
+  image: camptocamp/puppetserver:2.2.1-26
+  labels:
+    io.rancher.sidekicks: r10k
+  environment:
+    CA: 'false'
+    DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+    GPG_KEY: ${GPG_KEY}
+    HIERA_YAML: ${HIERA_YAML}
+    JAVA_ARGS: ${PUPPET_JAVA_ARGS}
+    AUTH_CONF_ALLOW_CATALOG: ${AUTH_CONF_ALLOW_CATALOG}
+  links:
+  - activemq
+  - puppetca
+  - puppetdb
+  ports:
+  - 8140:8140/tcp
+  volumes_from:
+  - r10k
+r10k:
+  image: camptocamp/r10k:0.12
+  environment:
+    GITHUB_USER: ${GITHUB_USER}
+    GITHUB_PASSWORD: ${GITHUB_PASSWORD}
+    REMOTE: ${R10K_REMOTE}
+    RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
+  volumes:
+  - puppetcodecache:/etc/puppetlabs/code/environments
+  - puppetr10kcache:/opt/puppetlabs/r10k/cache
+  links:
+  - activemq
+  - puppetca
+webhook:
+  image: camptocamp/r10k-webhook:1.0.0-5
+  environment:
+    HOOKS_SECRET: ${WEBHOOK_SECRET}
+  links:
+  - activemq
+  ports:
+  - 9000:9000/tcp
+puppetboard:
+  image: camptocamp/puppetboard:global_default
+  environment:
+    PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
+  links:
+  - puppetdb
