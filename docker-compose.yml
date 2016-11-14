@@ -13,6 +13,7 @@ slave:
   volumes:
     - /var/jenkins
     - /var/run/docker.sock:/var/run/docker.sock
+    - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
 
 master:
   image: jenkins:2.7.4
