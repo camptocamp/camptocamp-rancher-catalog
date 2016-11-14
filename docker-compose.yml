@@ -1,5 +1,5 @@
 slave:
-  image: camptocamp/jenkins-slave:2.2-9
+  image: camptocamp/jenkins-slave:2.2-12
   labels:
     io.rancher.scheduler.global: 'true'
   environment:
@@ -8,11 +8,11 @@ slave:
     JENKINS_MASTER: http://master:8080
     SLAVE_EXECUTORS: ${SLAVE_EXECUTORS}
     NODE_LABELS: ${NODE_LABELS}
-  privileged: true
   links:
     - master:master
   volumes:
     - /var/jenkins
+    - /var/run/docker.sock:/var/run/docker.sock
 
 master:
   image: jenkins:2.7.4
