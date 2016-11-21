@@ -1,0 +1,42 @@
+---
+.catalog:
+  name: "Upkick"
+  version: "v0.4.0-1"
+  description: "Unattended upgrades for Docker containers"
+  uuid: upkick-3
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "UPKICK_RUN_TIME"
+      label: "UPKICK_RUN_TIME"
+      description: "UPKICK_RUN_TIME"
+      type: "string"
+      default: "0 2 * * *"
+      required: true
+    - variable: "JSON_OUTPUT"
+      label: "JSON Output"
+      description: "Output logs as JSON"
+      type: "boolean"
+      default: false
+    - variable: "UPKICK_LOG_LEVEL"
+      label: "Log level"
+      description: "Log level"
+      type: "enum"
+      options:
+        - "debug"
+        - "info"
+        - "warn"
+        - "error"
+        - "fatal"
+        - "panic"
+      default: "info"
+    - variable: "UPKICK_WARN_ONLY"
+      label: "Warn only"
+      description: "Whether to only warn instead of removing containers"
+      type: "boolean"
+      default: false
+    - variable: "PUSHGATEWAY_URL"
+      label: "PUSHGATEWAY_URL"
+      description: "Prometheus Pushgateway service to push metrics to."
+      type: "string"
+      default: "http://pushgateway.metrics:9091"
+      required: true
