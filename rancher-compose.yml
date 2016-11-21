@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Upkick"
-  version: "v0.6.0-1"
+  version: "v0.6.0-2"
   description: "Unattended upgrades for Docker containers"
-  uuid: upkick-6
+  uuid: upkick-7
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "UPKICK_RUN_TIME"

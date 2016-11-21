@@ -7,6 +7,7 @@ jobber:
     JOB_TIME1: 0 ${UPKICK_RUN_TIME}
   labels:
     io.rancher.scheduler.global: 'true'
+    io.upkick.warn_only: 'false'
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
 upkick:
@@ -22,5 +23,6 @@ upkick:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.start_once: 'true'
     io.rancher.container.hostname_override: container_name
+    io.upkick.warn_only: 'false'
   volumes:
   - /var/run/docker.sock:/var/run/docker.sock
