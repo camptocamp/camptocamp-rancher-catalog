@@ -12,8 +12,14 @@ It currently includes the following:
 * [Upkick](https://github.com/camptocamp/upkick), a small tool for container unattended upgrades
 
 
-License
--------
+## How to use
+
+In order to use this catalog, simply add it to your Rancher server (Admin → Settings → Add Catalog):
+
+![Adding catalog](add_catalog.png)
+
+
+## License
 
 Copyright (c) 2016 [Camptocamp](http://www.camptocamp.com).
 
