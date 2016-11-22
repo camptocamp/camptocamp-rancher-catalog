@@ -1,6 +1,6 @@
 ---
 name: Jenkins
 description: |
-  Jenkins CI stack
+  Jenkins CI setup with global swarm nodes
 version: v2.19.3-1
 category: "Camptocamp services"
