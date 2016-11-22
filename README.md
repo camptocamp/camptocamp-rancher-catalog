@@ -1,7 +1,16 @@
 Camptocamp's Rancher Catalog
 ============================
 
-This catalog provides templates created by Camptocamp.
+This catalog provides Rancher templates created by Camptocamp.
+
+It currently includes the following:
+
+* [Conplicity](https://github.com/camptocamp/conplicity), a backup tool for Docker volumes
+* A [Gogs](https://gogs.io) setup with an external PostgreSQL database
+* A [Jenkins CI](https://jenkins.io) with one master and global working nodes (in swarm mode)
+* A full [Puppet](https://puppet.com)/MCollective/Puppetboard stack
+* [Upkick](https://github.com/camptocamp/upkick), a small tool for container unattended upgrades
+
 
 License
 -------
