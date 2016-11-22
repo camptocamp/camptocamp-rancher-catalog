@@ -1,0 +1,30 @@
+---
+.catalog:
+  name: "Jenkins"
+  version: "v2.7.3-8"
+  description: "Jenkins build farm"
+  uuid: jenkins-8
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "JENKINS_ADMIN_USERNAME"
+      label: "Admin Username"
+      description: "Jenkins Admin Username"
+      type: "string"
+      default: "admin"
+      required: true
+    - variable: "JENKINS_ADMIN_PASSWORD"
+      label: "Admin Password"
+      description: "Jenkins Admin Password"
+      type: "password"
+      required: true
+    - variable: "JENKINS_PLUGINS"
+      label: "Plugins"
+      description: "Jenkins plugins to install"
+      type: "multiline"
+      required: true
+      default: |
+        swarm
+        docker-custom-build-environment
+        workflow-aggregator
+        docker-workflow
+        github
