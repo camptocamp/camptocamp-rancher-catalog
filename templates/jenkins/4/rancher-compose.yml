@@ -1,0 +1,19 @@
+---
+.catalog:
+  name: "Jenkins"
+  version: "v2.7.3-4"
+  description: "Jenkins build farm"
+  uuid: jenkins-4
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "JENKINS_ADMIN_USERNAME"
+      label: "Admin Username"
+      description: "Jenkins Admin Username"
+      type: "string"
+      default: "admin"
+      required: true
+    - variable: "JENKINS_ADMIN_PASSWORD"
+      label: "Admin Password"
+      description: "Jenkins Admin Password"
+      type: "password"
+      required: true
