@@ -1,6 +1,9 @@
 Camptocamp's Rancher Catalog
 ============================
 
+[![By Camptocamp](https://img.shields.io/badge/by-camptocamp-fb7047.svg)](http://www.camptocamp.com)
+
+
 This catalog provides Rancher templates created by Camptocamp.
 
 It currently includes the following:
