@@ -16,7 +16,7 @@ slave:
     - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
 
 master:
-  image: jenkins:2.7.4
+  image: jenkins:2.19.3
   labels:
     io.rancher.scheduler.affinity:host_label: data.jenkins=true
     io.rancher.sidekicks: master-conf
