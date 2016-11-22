@@ -1,0 +1,6 @@
+---
+name: Jenkins
+description: |
+  Jenkins CI stack
+version: v2.19.3-1
+category: "Camptocamp services"
