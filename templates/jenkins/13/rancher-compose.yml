@@ -1,0 +1,42 @@
+---
+.catalog:
+  name: "Jenkins"
+  version: "v2.7.4-1"
+  description: "Jenkins build farm"
+  uuid: jenkins-13
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "JENKINS_ADMIN_USERNAME"
+      label: "Admin Username"
+      description: "Jenkins Admin Username"
+      type: "string"
+      default: "admin"
+      required: true
+    - variable: "JENKINS_ADMIN_PASSWORD"
+      label: "Admin Password"
+      description: "Jenkins Admin Password"
+      type: "password"
+      required: true
+    - variable: "JENKINS_PLUGINS"
+      label: "Plugins"
+      description: "Jenkins plugins to install"
+      type: "multiline"
+      required: true
+      default: |
+        swarm
+        docker-custom-build-environment
+        workflow-aggregator
+        docker-workflow
+        github
+        github-branch-source
+    - variable: "NODE_LABELS"
+      label: "Node Labels"
+      description: "Which labels to apply to slave nodes"
+      type: "string"
+      required: false
+      default: "swarm docker"
+    - variable: "SLAVE_EXECUTORS"
+      label: "Slave executors"
+      description: "Number of executors per slave"
+      type: "int"
+      required: false
