@@ -1,0 +1,29 @@
+slave:
+  image: camptocamp/jenkins-slave:2.2
+  labels:
+    io.rancher.scheduler.global: 'true'
+  environment:
+    JENKINS_USERNAME: ${JENKINS_ADMIN_USERNAME}
+    JENKINS_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+    JENKINS_MASTER: http://master:8080
+  privileged: true
+  links:
+    - master:master
+  volumes:
+    - /var/jenkins
+
+master:
+  image: jenkins:2.7.3
+  labels:
+    io.rancher.sidekicks: master-conf
+  environment:
+    JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
+    JENKINS_ADMIN_USERNAME: ${JENKINS_ADMIN_USERNAME}
+    JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+  volumes_from:
+    - master-conf
+  volumes:
+    - jenkinshome:/var/jenkins_home
+
+master-conf:
+  image: camptocamp/jenkins-conf
