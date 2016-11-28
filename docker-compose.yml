@@ -82,7 +82,7 @@ collectd:
   image: 'prom/collectd-exporter:0.3.1'
 
 prometheus-server-conf:
-  image: 'camptocamp/prometheus-conf:v0.1.4'
+  image: 'camptocamp/prometheus-conf:v0.1.5'
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
