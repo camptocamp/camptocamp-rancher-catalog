@@ -1,0 +1,20 @@
+---
+docker-gc:
+  image: spotify/docker-gc
+  labels:
+    com.spotify.docker-gc: 'true'
+    io.rancher.container.start_once: 'true'
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+
+jobber:
+  environment:
+    JOB_COMMAND1: docker volume ls -qf dangling=true | awk 'length($0)==64' | xargs -r docker volume rm
+    JOB_NAME1: volume-gc
+    JOB_TIME1: ${VOLUME_GC_RUN_TIME}
+    JOB_COMMAND2: docker start $$(docker ps -a -f label=com.spotify.docker-gc=true --format="{{.ID}}")
+    JOB_NAME2: docker-gc
+    JOB_TIME2: ${DOCKER_GC_RUN_TIME}
+  image: blacklabelops/jobber:docker
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
