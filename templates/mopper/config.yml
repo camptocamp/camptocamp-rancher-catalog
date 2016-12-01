@@ -1,0 +1,6 @@
+---
+name: Mopper
+description: |
+  Clean up the Docker Daemon
+version: v0.0.1-0
+category: "Camptocamp services"
