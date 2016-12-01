@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "mopper"
-  version: "v0.0.1-1"
+  version: "v0.0.1-2"
   description: "Clean up the Docker Daemon"
-  uuid: mopper-1
+  uuid: mopper-2
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "DOCKER_GC_RUN_TIME"
