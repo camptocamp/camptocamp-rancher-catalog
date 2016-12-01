@@ -1,0 +1,20 @@
+---
+.catalog:
+  name: "mopper"
+  version: "v0.0.1-1"
+  description: "Clean up the Docker Daemon"
+  uuid: mopper-1
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "DOCKER_GC_RUN_TIME"
+      label: "DOCKER_GC_RUN_TIME"
+      description: "DOCKER_GC_RUN_TIME"
+      type: "string"
+      default: "0 * * * *"
+      required: true
+    - variable: "VOLUME_GC_RUN_TIME"
+      label: "VOLUME_GC_RUN_TIME"
+      description: "VOLUME_GC_RUN_TIME"
+      type: "string"
+      default: "30 * * * *"
+      required: true
