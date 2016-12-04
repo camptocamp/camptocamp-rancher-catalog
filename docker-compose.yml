@@ -1,20 +1,55 @@
 ---
-docker-gc:
-  image: spotify/docker-gc
+mopper-data:
+  image: msutter/mopper-conf
   labels:
-    com.spotify.docker-gc: 'true'
+    com.camptocamp.mopper-data: 'true'
+    io.rancher.container.network: 'true'
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /etc/conf.d/mopper
+  environment:
+    CONFD_INTERVAL: ${MOPPER_INTERVAL}
+    CONFD_LOG_LEVEL: debug
+    CONFD_BACKEND: rancher
+    CONFD_PREFIX: /2015-07-25
+
+mopper:
+  image: meltwater/docker-cleanup
+  labels:
+    io.rancher.container.network: 'true'
+    com.camptocamp.mopper: 'true'
     io.rancher.container.start_once: 'true'
   volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
+    - /var/lib/docker:/var/lib/docker
+  volumes_from:
+    - mopper-data
+  entrypoint: >
+    /bin/bash -c "
+      # wait on the config file provided by mopper-conf
+      while [ ! -f /etc/conf.d/mopper/docker-cleanup.env ];
+      do
+        echo 'waiting on mopper config from mopper-conf';
+        sleep 1;
+      done;
 
-jobber:
-  environment:
-    JOB_COMMAND1: docker volume ls -qf dangling=true | awk 'length($$0)==64' | xargs -r docker volume rm
-    JOB_NAME1: volume-gc
-    JOB_TIME1: 0 ${VOLUME_GC_RUN_TIME}
-    JOB_COMMAND2: docker start $$(docker ps -a -f label=com.spotify.docker-gc=true --format="{{.ID}}")
-    JOB_NAME2: docker-gc
-    JOB_TIME2: 0 ${DOCKER_GC_RUN_TIME}
-  image: blacklabelops/jobber:docker
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
+      echo 'mopper config found';
+
+      # double check if rancher containers were written to avoid removal of wrong objects
+      if `grep -q "rancher-agent" /etc/conf.d/mopper/docker-cleanup.env`;
+      then
+        echo 'Config file is valid';
+      else
+        echo 'Config file is invalid';
+        exit 1;
+      fi
+
+      # source the env vars for the cleaning run
+      . /etc/conf.d/mopper/docker-cleanup.env;
+      echo 'mopper config sourced';
+
+      # remove the env vars config file to force a sync on each interval
+      rm /etc/conf.d/mopper/docker-cleanup.env
+      echo 'mopper config file removed for next interval';
+
+      exec /run.sh
+    "
