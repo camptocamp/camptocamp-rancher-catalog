@@ -1,0 +1,14 @@
+---
+.catalog:
+  name: "mopper"
+  version: "v0.0.1-5"
+  description: "Clean up the Docker Daemon"
+  uuid: mopper-5
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "MOPPER_INTERVAL"
+      label: "MOPPER_INTERVAL"
+      description: "Mopper interval in second"
+      type: "string"
+      default: "1800"
+      required: true
