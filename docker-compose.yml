@@ -7,7 +7,8 @@ mopper-data:
     io.rancher.sidekicks: mopper
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - /etc/conf.d/mopper
+  volumes_from:
+    - mopper
   environment:
     CONFD_INTERVAL: ${MOPPER_INTERVAL}
     CONFD_LOG_LEVEL: debug
@@ -21,8 +22,7 @@ mopper:
     io.rancher.container.start_once: 'true'
   volumes:
     - /var/lib/docker:/var/lib/docker
-  volumes_from:
-    - mopper-data
+    - /etc/conf.d/mopper
   entrypoint: >
     /bin/bash -c "
       # wait on the config file provided by mopper-conf
