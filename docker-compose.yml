@@ -5,8 +5,6 @@ mopper-data:
     com.camptocamp.mopper-data: 'true'
     io.rancher.scheduler.global: 'true'
     io.rancher.sidekicks: mopper
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
   volumes_from:
     - mopper
   environment:
@@ -21,6 +19,7 @@ mopper:
     com.camptocamp.mopper: 'true'
     io.rancher.container.start_once: 'true'
   volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
     - /var/lib/docker:/var/lib/docker
     - /etc/conf.d/mopper
   entrypoint: >
