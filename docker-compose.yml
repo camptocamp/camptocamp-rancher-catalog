@@ -3,7 +3,8 @@ mopper-data:
   image: msutter/mopper-conf
   labels:
     com.camptocamp.mopper-data: 'true'
-    io.rancher.container.network: 'true'
+    io.rancher.scheduler.global: 'true'
+    io.rancher.sidekicks: mopper
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - /etc/conf.d/mopper
@@ -16,7 +17,6 @@ mopper-data:
 mopper:
   image: meltwater/docker-cleanup
   labels:
-    io.rancher.container.network: 'true'
     com.camptocamp.mopper: 'true'
     io.rancher.container.start_once: 'true'
   volumes:
