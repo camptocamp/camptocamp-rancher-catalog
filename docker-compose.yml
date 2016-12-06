@@ -27,7 +27,7 @@ mopper:
       # wait on the config file provided by mopper-conf
       while [ ! -f /etc/conf.d/mopper/docker-cleanup.env ];
       do
-        echo 'waiting on mopper config from mopper-conf';
+        echo 'waiting on mopper config file from mopper-conf';
         sleep 1;
       done;
 
@@ -37,18 +37,19 @@ mopper:
       if `grep -q "rancher-agent" /etc/conf.d/mopper/docker-cleanup.env`;
       then
         echo 'Config file is valid';
+        cat /etc/conf.d/mopper/docker-cleanup.env;
       else
         echo 'Config file is invalid';
         exit 1;
       fi
 
       # source the env vars for the cleaning run
-      . /etc/conf.d/mopper/docker-cleanup.env;
+      source /etc/conf.d/mopper/docker-cleanup.env;
       echo 'mopper config sourced';
 
-      # remove the env vars config file to force a sync on each interval
-      rm /etc/conf.d/mopper/docker-cleanup.env
-      echo 'mopper config file removed for next interval';
+      # modifiy the env vars config file to force a sync on each interval
+      echo "cleanup applied" >> /etc/conf.d/mopper/docker-cleanup.env
+      echo 'mopper config file tagged for next interval';
 
       exec /run.sh
     "
