@@ -9,12 +9,13 @@ mopper-data:
     - mopper
   environment:
     CONFD_INTERVAL: ${MOPPER_INTERVAL}
+    MOPPER_KEEP_VOLUMES_NAMED: ${MOPPER_KEEP_VOLUMES_NAMED}
     CONFD_LOG_LEVEL: debug
     CONFD_BACKEND: rancher
     CONFD_PREFIX: /2015-07-25
 
 mopper:
-  image: meltwater/docker-cleanup
+  image: msutter/docker-cleanup
   labels:
     com.camptocamp.mopper: 'true'
     io.rancher.container.start_once: 'true'
