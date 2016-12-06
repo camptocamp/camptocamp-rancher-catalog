@@ -37,7 +37,9 @@ mopper:
       if `grep -q "rancher-agent" /etc/conf.d/mopper/docker-cleanup.env`;
       then
         echo 'Config file is valid';
+        echo '-------------------- /etc/conf.d/mopper/docker-cleanup.env --------------------';
         cat /etc/conf.d/mopper/docker-cleanup.env;
+        echo '-------------------------------------------------------------------------------';
       else
         echo 'Config file is invalid';
         exit 1;
