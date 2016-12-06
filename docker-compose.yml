@@ -39,6 +39,7 @@ mopper:
         echo 'Config file is valid';
         echo '-------------------- /etc/conf.d/mopper/docker-cleanup.env --------------------';
         cat /etc/conf.d/mopper/docker-cleanup.env;
+        echo
         echo '-------------------------------------------------------------------------------';
       else
         echo 'Config file is invalid';
@@ -50,7 +51,7 @@ mopper:
       echo 'mopper config sourced';
 
       # modifiy the env vars config file to force a sync on each interval
-      echo "cleanup applied" >> /etc/conf.d/mopper/docker-cleanup.env
+      echo 'cleanup applied' >> /etc/conf.d/mopper/docker-cleanup.env
       echo 'mopper config file tagged for next interval';
 
       exec /run.sh
