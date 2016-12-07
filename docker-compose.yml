@@ -41,8 +41,9 @@ puppetdb:
 
 # ActiveMQ
 activemq:
-  image: camptocamp/activemq-mcollective:5.13.3-2
+  image: camptocamp/activemq-mcollective:5.14.1-2
   environment:
+    DNS_ALT_NAMES: ${ACTIVEMQ_DNS_ALT_NAMES}
     STOMP_PASSWORD: ${STOMP_PASSWORD}
   links:
   - puppetca
