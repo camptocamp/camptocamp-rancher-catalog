@@ -102,7 +102,7 @@ prometheus-server:
     - 'metrics_tsdb:/prometheus'
 
 prometheus-auth-conf:
-  image: 'camptocamp/prometheus-auth-conf:latest' #TODO: use released version
+  image: 'camptocamp/prometheus-auth-conf:v0.1.3
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.start_once: 'true'
