@@ -35,8 +35,9 @@ puppetdb:
     POSTGRES_USER: ${PUPPETDB_POSTGRES_USER}
     POSTGRES_PASSWORD: ${PUPPETDB_POSTGRES_PASSWORD}
     POSTGRES_RO_SUBNAME: ${PUPPETDB_POSTGRES_RO_SUBNAME}
-  links:
+  external_links:
   - ${PUPPETDB_POSTGRES_SERVICE}:postgresql
+  links:
   - puppetca
 
 # ActiveMQ
