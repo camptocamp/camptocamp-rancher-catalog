@@ -60,6 +60,7 @@ pushgateway:
   - 'metrics_pushgw:/state'
   command:
   - -persistence.file=/state/pushgateway.state
+  - -log.format=logger:stdout?json=true
 
 rancher:
   labels:
@@ -80,6 +81,7 @@ collectd:
     io.rancher.container.hostname_override: container_name
   command:
   - -collectd.listen-address=:25826
+  - -log.format=logger:stdout?json=true
   image: 'prom/collectd-exporter:0.3.1'
 
 prometheus-server-conf:
