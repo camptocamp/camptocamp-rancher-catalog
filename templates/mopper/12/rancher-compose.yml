@@ -1,0 +1,32 @@
+---
+.catalog:
+  name: "mopper"
+  version: "v0.0.1-12"
+  description: "Clean up the Docker Daemon"
+  uuid: mopper-12
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "MOPPER_INTERVAL"
+      label: "MOPPER_INTERVAL"
+      description: "Mopper interval in second"
+      type: "string"
+      default: "1800"
+      required: true
+    - variable: "MOPPER_KEEP_VOLUMES_NAMED"
+      label: "MOPPER_KEEP_VOLUMES_NAMED"
+      description: "A list of named volumes to keep. To keep all named volumes use '**All**'"
+      type: "string"
+      default: "**All**"
+      required: true
+    - variable: "MOPPER_KEEP_CONTAINERS_NAMED"
+      label: "MOPPER_KEEP_CONTAINERS_NAMED"
+      description: "A list of named containers to keep."
+      type: "string"
+      default: ""
+      required: true
+    - variable: "MOPPER_DEBUG"
+      label: "MOPPER_DEBUG"
+      description: "Debug mode. Use '1' to enable."
+      type: "int"
+      default: 0
+      required: true
