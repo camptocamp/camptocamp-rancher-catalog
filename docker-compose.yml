@@ -3,7 +3,7 @@ containers:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.hostname_override: container_name
     prometheus_port: '9104'
-  image: google/cadvisor:v0.24.0
+  image: google/cadvisor:v0.24.1
   volumes:
   - /:/rootfs:ro
   - /var/run:/var/run:rw
