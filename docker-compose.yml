@@ -1,18 +1,20 @@
 ---
-mopper-data:
+mopper-conf:
   image: msutter/mopper-conf
   labels:
-    com.camptocamp.mopper-data: 'true'
+    com.camptocamp.mopper-conf: 'true'
     io.rancher.scheduler.global: 'true'
     io.rancher.sidekicks: mopper
   volumes_from:
     - mopper
   environment:
     CONFD_INTERVAL: ${MOPPER_INTERVAL}
-    MOPPER_KEEP_VOLUMES_NAMED: ${MOPPER_KEEP_VOLUMES_NAMED}
     CONFD_LOG_LEVEL: debug
     CONFD_BACKEND: rancher
     CONFD_PREFIX: /2015-07-25
+    MOPPER_KEEP_VOLUMES_NAMED: ${MOPPER_KEEP_VOLUMES_NAMED}
+    MOPPER_KEEP_CONTAINERS_NAMED: ${MOPPER_KEEP_CONTAINERS_NAMED}
+    MOPPER_DEBUG: ${MOPPER_DEBUG}
 
 mopper:
   image: msutter/docker-cleanup
