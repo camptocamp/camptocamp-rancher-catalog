@@ -1,6 +1,6 @@
 ---
 mopper-conf:
-  image: msutter/mopper-conf
+  image: camptocamp/mopper-conf
   labels:
     com.camptocamp.mopper-conf: 'true'
     io.rancher.scheduler.global: 'true'
@@ -17,7 +17,7 @@ mopper-conf:
     MOPPER_DEBUG: ${MOPPER_DEBUG}
 
 mopper:
-  image: msutter/docker-cleanup
+  image: camptocamp/docker-cleanup
   labels:
     com.camptocamp.mopper: 'true'
     io.rancher.container.start_once: 'true'
