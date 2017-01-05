@@ -1,0 +1,44 @@
+---
+.catalog:
+  name: "mopper"
+  version: "v0.0.1-14"
+  description: "Clean up the Docker Daemon"
+  uuid: mopper-14
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "MOPPER_INTERVAL"
+      label: "MOPPER_INTERVAL"
+      description: "Mopper clean process interval in second"
+      type: "string"
+      default: "1800"
+      required: true
+    - variable: "MOPPER_DELAY_TIME"
+      label: "MOPPER_DELAY_TIME"
+      description: "Seconds to wait before removing exited containers and unused images. Defaults to 0 seconds = immediately."
+      type: "string"
+      default: "0"
+      required: true
+    - variable: "MOPPER_KEEP_CONTAINERS"
+      label: "MOPPER_KEEP_CONTAINERS"
+      description: "A comma-separated list of additional containers to keep. Containers known by Rancher are always keeped."
+      type: "string"
+      default: ""
+      required: false
+    - variable: "MOPPER_KEEP_VOLUMES_NAMED"
+      label: "MOPPER_KEEP_VOLUMES_NAMED"
+      description: "A comma-separated list of named volumes to keep. All unamed volumes are always deleted. To keep all named volumes use '**All**', to remove all dangling named volumes use '**None**'"
+      type: "string"
+      default: "**All**"
+      required: true
+    - variable: "MOPPER_KEEP_IMAGES"
+      label: "MOPPER_KEEP_IMAGES"
+      description: "A comma-separated list of images to avoid cleaning. Defaults to clean all unused images with '**None**'. To keep all unused images use '**All**'"
+      type: "string"
+      default: "**None**"
+      required: true
+    - variable: "MOPPER_DEBUG"
+      label: "MOPPER_DEBUG"
+      description: "Debug mode. This will output debug information in the logs. Use '1' to enable."
+      type: "int"
+      default: 0
+      required: true
