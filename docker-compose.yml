@@ -39,7 +39,7 @@ mopper:
       echo 'mopper config found';
 
       # double check if rancher containers were written to avoid removal of wrong objects
-      if `grep -q "rancher-agent" /etc/conf.d/mopper/docker-cleanup.env`;
+      if `grep -q "[aA]gent" /etc/conf.d/mopper/docker-cleanup.env`;
       then
         echo 'Config file is valid';
         echo '-------------------- /etc/conf.d/mopper/docker-cleanup.env --------------------';
