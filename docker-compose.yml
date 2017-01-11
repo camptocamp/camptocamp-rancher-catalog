@@ -25,7 +25,6 @@ node:
   - 'node-conf'
   volumes:
   - /:/rootfs:ro
-  - /dev/log:/dev/log
 
 node-conf:
   labels:
@@ -45,8 +44,6 @@ statsd:
     io.rancher.container.requested_ip: 10.42.24.101
   image: 'camptocamp/statsd-collectd:v0.1.2'
   stop_signal: 'SIGHUP'
-  volumes:
-  - /dev/log:/dev/log
 
 pushgateway:
   labels:
