@@ -19,7 +19,8 @@ node:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: 'node-conf'
-  image: 'camptocamp/node-collectd:v0.1.1'
+    prometheus_port: '9103'
+  image: 'camptocamp/node-collectd:v0.2.0'
   stop_signal: 'SIGHUP'
   volumes_from:
   - 'node-conf'
@@ -42,7 +43,8 @@ statsd:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
     io.rancher.container.requested_ip: 10.42.24.101
-  image: 'camptocamp/statsd-collectd:v0.1.2'
+    prometheus_port: '9103'
+  image: 'camptocamp/statsd-collectd:v0.2.0'
   stop_signal: 'SIGHUP'
 
 pushgateway:
