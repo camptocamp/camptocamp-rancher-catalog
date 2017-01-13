@@ -69,7 +69,7 @@ rancher:
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: monitoring=true
     prometheus_port: '9010'
-  image: infinityworks/prometheus-rancher-exporter:04
+  image: infinityworks/prometheus-rancher-exporter:v0.22.40
   environment:
     DEBUG: 'undef'
 

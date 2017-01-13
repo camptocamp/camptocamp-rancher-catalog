@@ -1,8 +1,8 @@
 .catalog:
   name: "metrics"
-  version: "v18"
+  version: "v19"
   description: "Camptocamp Prometheus-based monitoring system. Add mandatory 'monitoring=true' label on exactly one host before installing."
-  uuid: metrics-18
+  uuid: metrics-19
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "SSL_CERTIFICATE"
