@@ -63,7 +63,6 @@ pushgateway:
 
 rancher:
   labels:
-    io.rancher.container.start_once: 'true'
     io.rancher.container.create_agent: true
     io.rancher.container.agent.role: environment
     io.rancher.container.hostname_override: container_name
