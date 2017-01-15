@@ -1,0 +1,65 @@
+---
+mopper-conf:
+  image: camptocamp/mopper-conf:1.0.0
+  labels:
+    com.camptocamp.mopper-conf: 'true'
+    io.rancher.scheduler.global: 'true'
+    io.rancher.sidekicks: mopper
+  volumes_from:
+    - mopper
+  environment:
+    CONFD_INTERVAL: ${MOPPER_INTERVAL}
+    CONFD_LOG_LEVEL: debug
+    CONFD_BACKEND: rancher
+    CONFD_PREFIX: /2015-07-25
+    MOPPER_DELAY_TIME: ${MOPPER_DELAY_TIME}
+    MOPPER_KEEP_CONTAINERS: ${MOPPER_KEEP_CONTAINERS}
+    MOPPER_KEEP_VOLUMES_NAMED: ${MOPPER_KEEP_VOLUMES_NAMED}
+    MOPPER_KEEP_VOLUMES_ATIME_SINCE: ${MOPPER_KEEP_VOLUMES_ATIME_SINCE}
+    MOPPER_KEEP_VOLUMES_MTIME_SINCE: ${MOPPER_KEEP_VOLUMES_MTIME_SINCE}
+    MOPPER_KEEP_IMAGES: ${MOPPER_KEEP_IMAGES}
+    MOPPER_DEBUG: ${MOPPER_DEBUG}
+
+mopper:
+  image: camptocamp/docker-cleanup:1.9.0
+  labels:
+    com.camptocamp.mopper: 'true'
+    io.rancher.container.start_once: 'true'
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /var/lib/docker:/var/lib/docker
+    - /etc/conf.d/mopper
+  entrypoint: >
+    /bin/bash -c "
+      # wait on the config file provided by mopper-conf
+      while [ ! -f /etc/conf.d/mopper/docker-cleanup.env ];
+      do
+        echo 'waiting on mopper config file from mopper-conf';
+        sleep 1;
+      done;
+
+      echo 'mopper config found';
+
+      # double check if rancher containers were written to avoid removal of wrong objects
+      if `grep -q "[aA]gent" /etc/conf.d/mopper/docker-cleanup.env`;
+      then
+        echo 'Config file is valid';
+        echo '-------------------- /etc/conf.d/mopper/docker-cleanup.env --------------------';
+        cat /etc/conf.d/mopper/docker-cleanup.env;
+        echo
+        echo '-------------------------------------------------------------------------------';
+      else
+        echo 'Config file is invalid';
+        exit 1;
+      fi
+
+      # source the env vars for the cleaning run
+      source /etc/conf.d/mopper/docker-cleanup.env;
+      echo 'mopper config sourced';
+
+      # modifiy the env vars config file to force a sync on each interval
+      echo 'cleanup applied' >> /etc/conf.d/mopper/docker-cleanup.env
+      echo 'mopper config file tagged for next interval';
+
+      exec /run.sh
+    "
