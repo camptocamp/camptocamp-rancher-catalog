@@ -16,7 +16,7 @@ slave:
     - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
 
 master:
-  image: jenkins:2.19.3
+  image: jenkins:2.32.1
   labels:
     io.rancher.scheduler.affinity:host_label: data.jenkins=true
     io.rancher.sidekicks: master-conf
@@ -25,6 +25,14 @@ master:
     JENKINS_ADMIN_USERNAME: ${JENKINS_ADMIN_USERNAME}
     JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
     JENKINS_PLUGINS: ${JENKINS_PLUGINS}
+    JENKINS_LDAP_SERVER: ${JENKINS_LDAP_SERVER}
+    JENKINS_LDAP_ROOT_DN: ${JENKINS_LDAP_ROOT_DN}
+    JENKINS_LDAP_USER_SEARCH_BASE: ${JENKINS_LDAP_USER_SEARCH_BASE}
+    JENKINS_LDAP_USER_SEARCH_FILTER: ${JENKINS_LDAP_USER_SEARCH_FILTER}
+    JENKINS_LDAP_GROUP_SEARCH_BASE: ${JENKINS_LDAP_GROUP_SEARCH_BASE}
+    JENKINS_LDAP_GROUP_SEARCH_FILTER: ${JENKINS_LDAP_GROUP_SEARCH_FILTER}
+    JENKINS_LDAP_MANAGER_USER_DN: ${JENKINS_LDAP_MANAGER_USER_DN}
+    JENKINS_LDAP_MANAGER_USER_PASSWORD: ${JENKINS_LDAP_MANAGER_USER_PASSWORD}
   volumes:
     - jenkins-home:/var/jenkins_home
   volumes_from:
@@ -33,4 +41,4 @@ master:
 master-conf:
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:4
+  image: camptocamp/jenkins-conf:5
