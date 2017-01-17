@@ -73,7 +73,7 @@ rancher:
     DEBUG: 'undef'
 
 prometheus-server-conf:
-  image: 'camptocamp/prometheus-conf:v0.1.5'
+  image: 'camptocamp/prometheus-conf:v0.1.6'
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
