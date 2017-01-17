@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-1"
+  version: "v2.32.1-2"
   description: "Jenkins build farm"
-  uuid: jenkins-18
+  uuid: jenkins-19
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ADMIN_USERNAME"
@@ -23,6 +23,11 @@
       type: "string"
       default: "ldaps://ldap.example.com"
       required: true
+    - variable: "JENKINS_LDAP_CA_CRT"
+      label: "LDAP CA Certificate"
+      description: "LDAP CA Certificate"
+      type: "multiline"
+      required: false
     - variable: "JENKINS_LDAP_ROOT_DN"
       label: "LDAP Root DN"
       description: "LDAP Root DN"
@@ -45,19 +50,19 @@
       label: "LDAP Group Search Base"
       description: "LDAP Group Search Base"
       type: "string"
-      default: ""
+      default: "cn=Groups"
       required: true
     - variable: "JENKINS_LDAP_GROUP_SEARCH_FILTER"
       label: "LDAP Group Search Base Filter"
       description: "LDAP Group Search Base Filter"
       type: "string"
-      default: "cn={0}"
+      default: "gid={0}"
       required: true
     - variable: "JENKINS_LDAP_MANAGER_USER_DN"
       label: "LDAP Manager User"
       description: "LDAP Manager User"
       type: "string"
-      default: "jenkins"
+      default: "uid=jenkins,cn=Users,cn=accounts,cn=example,cn=com"
       required: true
     - variable: "JENKINS_LDAP_MANAGER_USER_PASSWORD"
       label: "LDAP Manager User Password"
@@ -65,10 +70,6 @@
       type: "password"
       default: "jenkins"
       required: true
-
-
-
-
     - variable: "JENKINS_PLUGINS"
       label: "Plugins"
       description: "Jenkins plugins to install"
