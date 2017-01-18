@@ -78,7 +78,7 @@ prometheus-server-conf:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
   volumes:
-    - '/etc/prometheus-config/'
+    - 'metrics_prom_targets:/etc/prometheus-targets/'
 
 prometheus-server:
   labels:
@@ -87,9 +87,8 @@ prometheus-server:
     #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
     prometheus_port: '9090'
   image: 'camptocamp/prometheus-server:v1.1.3'
-  volumes_from:
-    - 'prometheus-server-conf'
   volumes:
+    - 'metrics_prom_targets:/etc/prometheus-targets/'
     - 'metrics_tsdb:/prometheus'
 
 prometheus-auth-conf:
