@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-8"
+  version: "v2.32.1-9"
   description: "Jenkins build farm"
-  uuid: jenkins-24
+  uuid: jenkins-25
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ADMIN_USERNAME"
@@ -56,7 +56,7 @@
       label: "LDAP Group Search Base Filter"
       description: "LDAP Group Search Base Filter"
       type: "string"
-      default: "gid={0}"
+      default: "cn={0}"
       required: true
     - variable: "JENKINS_LDAP_MANAGER_USER_DN"
       label: "LDAP Manager User"
@@ -69,6 +69,42 @@
       description: "LDAP Manager User Password"
       type: "password"
       default: "jenkins"
+      required: true
+    - variable: "JENKINS_MAIL_USER"
+      label: "Jenkins Mail User"
+      description: "Jenkins Mail User"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_PASSWORD"
+      label: "Jenkins Mail Password"
+      description: "Jenkins Mail Password"
+      type: "password"
+      default: "password"
+      required: true
+    - variable: "JENKINS_MAIL_REPLY"
+      label: "Jenkins Mail Reply"
+      description: "Jenkins Mail Reply"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_HOST"
+      label: "Jenkins Mail Smtp Host"
+      description: "Jenkins Mail Smtp Host"
+      type: "string"
+      default: "smtp.example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_SSL"
+      label: "Jenkins Mail Smtp SSL"
+      description: "Jenkins Mail Smtp SSL"
+      type: "bool"
+      default: true
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_PORT"
+      label: "Jenkins Mail Smtp Port"
+      description: "Jenkins Mail Smtp Port"
+      type: "integer"
+      default: 465
       required: true
     - variable: "JENKINS_PLUGINS"
       label: "Plugins"
@@ -84,7 +120,6 @@
         github-branch-source
         blueocean
         credentials-binding
-        email-ext
         embeddable-build-status
         lockable-resources
         ssh-agent
