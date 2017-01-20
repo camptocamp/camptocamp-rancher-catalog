@@ -1,27 +1,16 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-18"
+  version: "v2.32.1-19"
   description: "Jenkins build farm"
-  uuid: jenkins-34
+  uuid: jenkins-35
   minimum_rancher_version: v1.0.0
   questions:
-    - variable: "JENKINS_ADMIN_USERNAME"
-      label: "Admin Username"
-      description: "Jenkins Admin Username"
-      type: "string"
-      default: "admin"
-      required: true
     - variable: "JENKINS_ADMIN_GROUPNAME"
       label: "Admin Groupname (LDAP)"
       description: "Jenkins Admin Groupname"
       type: "string"
       default: "admin"
-      required: true
-    - variable: "JENKINS_ADMIN_PASSWORD"
-      label: "Admin Password"
-      description: "Jenkins Admin Password"
-      type: "password"
       required: true
     - variable: "JENKINS_LDAP_SERVER"
       label: "LDAP Servers"
