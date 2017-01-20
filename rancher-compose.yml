@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-11"
+  version: "v2.32.1-12"
   description: "Jenkins build farm"
-  uuid: jenkins-27
+  uuid: jenkins-28
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ADMIN_USERNAME"
@@ -97,7 +97,7 @@
     - variable: "JENKINS_MAIL_SMTP_SSL"
       label: "Jenkins Mail Smtp SSL"
       description: "Jenkins Mail Smtp SSL"
-      type: "bool"
+      type: "boolean"
       default: true
       required: true
     - variable: "JENKINS_MAIL_SMTP_PORT"
