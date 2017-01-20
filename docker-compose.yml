@@ -24,6 +24,7 @@ master:
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djavax.net.ssl.trustStore=/var/jenkins_home/.keystore/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
     JENKINS_ADMIN_USERNAME: ${JENKINS_ADMIN_USERNAME}
     JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+    JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
     JENKINS_PLUGINS: ${JENKINS_PLUGINS}
     JENKINS_LDAP_SERVER: ${JENKINS_LDAP_SERVER}
     JENKINS_LDAP_ROOT_DN: ${JENKINS_LDAP_ROOT_DN}
@@ -51,4 +52,4 @@ master-conf:
     JENKINS_HOME: /var/jenkins_home
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:16
+  image: camptocamp/jenkins-conf:17
