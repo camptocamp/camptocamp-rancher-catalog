@@ -3,8 +3,8 @@ slave:
   labels:
     io.rancher.scheduler.global: 'true'
   environment:
-    JENKINS_USERNAME: ${JENKINS_ADMIN_USERNAME}
-    JENKINS_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+    JENKINS_USERNAME: ${JENKINS_SWARM_USERNAME}
+    JENKINS_PASSWORD: ${JENKINS_SWARM_PASSWORD}
     JENKINS_MASTER: http://master:8080
     SLAVE_EXECUTORS: ${SLAVE_EXECUTORS}
     NODE_LABELS: ${NODE_LABELS}
@@ -51,4 +51,4 @@ master-conf:
     JENKINS_HOME: /var/jenkins_home
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:10
+  image: camptocamp/jenkins-conf:11
