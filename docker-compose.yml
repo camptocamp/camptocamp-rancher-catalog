@@ -86,10 +86,16 @@ prometheus-server:
     io.rancher.sidekicks: prometheus-server-conf
     #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
     prometheus_port: '9090'
-  image: 'camptocamp/prometheus-server:v1.1.3'
+  image: 'camptocamp/prometheus-server:v1.4.1'
   volumes:
     - 'metrics_prom_targets:/etc/prometheus-targets/'
     - 'metrics_tsdb:/prometheus'
+  command:
+  - -config.file=/etc/prometheus-config/prometheus.yml
+  - -storage.local.path=/prometheus
+  - -storage.local.max-chunks-to-persist=131072
+  - -storage.local.memory-chunks=262144
+  - -log.format=logger:stdout?json=true
 
 prometheus-auth-conf:
   image: 'camptocamp/prometheus-auth-conf:v0.1.3'
