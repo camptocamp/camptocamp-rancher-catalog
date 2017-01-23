@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "mopper"
-  version: "v0.0.1-22"
+  version: "v0.0.1-23"
   description: "Clean up the Docker Daemon"
-  uuid: mopper-22
+  uuid: mopper-23
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "MOPPER_INTERVAL"
@@ -30,8 +30,8 @@
     - variable: "MOPPER_KEEP_VOLUMES_UNNAMED"
       label: "Keep all unnamed Volumes"
       description: "Keep all unnamed Volumes"
-      type: "boolean"
-      default: true
+      type: "string"
+      default: "true"
       required: true
     - variable: "MOPPER_KEEP_VOLUMES_NAMED"
       label: "MOPPER_KEEP_VOLUMES_NAMED"
