@@ -71,7 +71,7 @@ rancher:
   image: infinityworks/prometheus-rancher-exporter:v0.22.40
 
 prometheus-server-conf:
-  image: 'camptocamp/prometheus-conf:v0.1.6'
+  image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.0'
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
@@ -81,7 +81,6 @@ prometheus-server-conf:
 prometheus-server:
   labels:
     io.rancher.scheduler.affinity:host_label: monitoring=true
-    io.rancher.sidekicks: prometheus-server-conf
     #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
     prometheus_port: '9090'
   image: 'camptocamp/prometheus-server:v1.4.1'
