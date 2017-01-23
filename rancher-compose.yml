@@ -77,9 +77,9 @@
       type: "password"
       default: "password"
       required: true
-    - variable: "JENKINS_MAIL_REPLY"
-      label: "Jenkins Mail Reply"
-      description: "Jenkins Mail Reply"
+    - variable: "JENKINS_MAIL_ADDRESS"
+      label: "Jenkins Mail Adress"
+      description: "Jenkins Mail Adress"
       type: "string"
       default: "jenkins@example.com"
       required: true
