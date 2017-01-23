@@ -1,6 +1,6 @@
 ---
 mopper-conf:
-  image: camptocamp/mopper-conf:1.0.1
+  image: camptocamp/mopper-conf:1.0.2
   labels:
     com.camptocamp.mopper-conf: 'true'
     io.rancher.scheduler.global: 'true'
@@ -14,15 +14,15 @@ mopper-conf:
     CONFD_PREFIX: /2015-07-25
     MOPPER_DELAY_TIME: ${MOPPER_DELAY_TIME}
     MOPPER_KEEP_CONTAINERS: ${MOPPER_KEEP_CONTAINERS}
+    MOPPER_KEEP_VOLUMES_UNNAMED: ${MOPPER_KEEP_VOLUMES_UNNAMED}
     MOPPER_KEEP_VOLUMES_NAMED: ${MOPPER_KEEP_VOLUMES_NAMED}
     MOPPER_KEEP_VOLUMES_ATIME_SINCE: ${MOPPER_KEEP_VOLUMES_ATIME_SINCE}
     MOPPER_KEEP_VOLUMES_MTIME_SINCE: ${MOPPER_KEEP_VOLUMES_MTIME_SINCE}
     MOPPER_KEEP_IMAGES: ${MOPPER_KEEP_IMAGES}
     MOPPER_DEBUG: ${MOPPER_DEBUG}
 
-
 mopper:
-  image: camptocamp/docker-cleanup:1.9.3
+  image: camptocamp/docker-cleanup:1.10.0
   labels:
     com.camptocamp.mopper: 'true'
     io.rancher.container.start_once: 'true'
