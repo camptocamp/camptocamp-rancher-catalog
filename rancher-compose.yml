@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "mopper"
-  version: "v0.0.1-23"
+  version: "v0.0.1-24"
   description: "Clean up the Docker Daemon"
-  uuid: mopper-23
+  uuid: mopper-24
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "MOPPER_INTERVAL"
@@ -11,7 +11,7 @@
       description: |
         Mopper clean process interval in duration string.
         This is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as '300ms', '1.5h' or '2h45m'.
-        Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
+        Valid time units are 'ns', 'us' , 'ms', 's', 'm', 'h'.
       type: "string"
       default: "30m"
       required: true
@@ -44,7 +44,7 @@
       description: |
         An duration string since last access. If a volume had a read access on one of its files since less than this value, the volume will be keeped.
         This is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as '300ms', '1.5h' or '2h45m'.
-        Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
+        Valid time units are 'ns', 'us' , 'ms', 's', 'm', 'h'.
       type: "string"
       default: "24h"
       required: true
@@ -53,7 +53,7 @@
       description: |
         An duration string since last modification. If a volume had a write access on one of its files since less than this value, the volume will be keeped.
         This is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as '300ms', '1.5h' or '2h45m'.
-        Valid time units are 'ns', 'us' (or 'µs'), 'ms', 's', 'm', 'h'.
+        Valid time units are 'ns', 'us' , 'ms', 's', 'm', 'h'.
       type: "string"
       default: "24h"
       required: true
