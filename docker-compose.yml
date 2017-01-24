@@ -18,7 +18,7 @@ node:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: 'node-conf'
     prometheus_port: '9103'
-  image: 'camptocamp/node-collectd:v0.2.1'
+  image: 'camptocamp/node-collectd:v0.2.2'
   stop_signal: 'SIGHUP'
   volumes_from:
   - 'node-conf'
