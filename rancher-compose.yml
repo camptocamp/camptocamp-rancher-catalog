@@ -58,6 +58,38 @@ prometheus-auth:
   scale: 1
 prometheus:
   scale: 1
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
+  start_on_create: true
+  # rancher 1.2+ haproxy config:
+  lb_config:
+    certs: []
+    config: |-
+      global
+          log 10.42.24.10:514 local2
+
+      defaults
+          log           global
+          mode      http
+          option    httplog
+          log-tag   haproxy-promssl
+
+      listen stats
+          bind *:8008
+          stats enable
+          stats uri /stats
+
+    default_cert: ${SSL_CERTIFICATE}
+    port_rules:
+    - protocol: https
+      service: prometheus-auth
+      source_port: 9443
+      target_port: 8080
+  # rancher pre-1.2 haproxy config:
   load_balancer_config:
     haproxy_config:
       defaults: |-
@@ -74,9 +106,3 @@ prometheus:
                         default_backend b_stats
       global: log 10.42.24.10:514 local2
   default_cert: ${SSL_CERTIFICATE}
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
