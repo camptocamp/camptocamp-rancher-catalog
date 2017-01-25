@@ -40,6 +40,7 @@ master:
     JENKINS_MAIL_SMTP_SSL: ${JENKINS_MAIL_SMTP_SSL}
     JENKINS_MAIL_SMTP_PORT: ${JENKINS_MAIL_SMTP_PORT}
     JENKINS_GITHUB_ORG: ${JENKINS_GITHUB_ORG}
+    JENKINS_GITHUB_USER: ${JENKINS_GITHUB_USER}
     JENKINS_GITHUB_TOKEN: ${JENKINS_GITHUB_TOKEN}
     JENKINS_BASE_JOB_DSL_REPO: ${JENKINS_BASE_JOB_DSL_REPO}
 
@@ -54,4 +55,4 @@ master-conf:
     JENKINS_HOME: /var/jenkins_home
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:25
+  image: camptocamp/jenkins-conf:26

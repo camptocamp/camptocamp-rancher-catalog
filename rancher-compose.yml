@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-26"
+  version: "v2.32.1-27"
   description: "Jenkins build farm"
-  uuid: jenkins-42
+  uuid: jenkins-43
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ADMIN_GROUPNAME"
@@ -106,6 +106,12 @@
       description: "Github Organisation"
       type: "string"
       default: "my-organisation"
+      required: true
+    - variable: "JENKINS_GITHUB_USER"
+      label: "Github User"
+      description: "Github User (with org/team view permission)"
+      type: "string"
+      default: "my-user"
       required: true
     - variable: "JENKINS_GITHUB_TOKEN"
       label: "Github Token"
