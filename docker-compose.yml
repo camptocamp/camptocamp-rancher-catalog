@@ -30,7 +30,7 @@ cleanup:
     io.rancher.scheduler.affinity:host_label: monitoring=true
     io.rancher.container.hostname_override: container_name
   entrypoint: '/bin/sh'
-  command: '/usr/local/bin/cleanup-old-logs.sh 10 80'
+  command: '/usr/local/bin/cleanup-old-logs.sh ${CLEANUP_DAYS} ${CLEANUP_DF_PCT}'
   volumes:
     - 'logging_logs:/var/log'
 

@@ -20,6 +20,16 @@
       description: "JSON hash of key-values to add to each log. Example: {\"foo\":\"bar\"}"
       type: "string"
       default: "{}"
+    - variable: "CLEANUP_DAYS"
+      label: "Log files retention (days)"
+      description: "Log files older than N days will be deleted"
+      type: "string"
+      default: "10"
+    - variable: "CLEANUP_DF_PCT"
+      label: "Diskfull threshold (percentage)"
+      description: "When disk usage threshold is reached, log files are deleted, olders first"
+      type: "string"
+      default: "80"
 
 syslog:
   scale: 1
