@@ -55,4 +55,4 @@ master-conf:
     JENKINS_HOME: /var/jenkins_home
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:27
+  image: camptocamp/jenkins-conf:28
