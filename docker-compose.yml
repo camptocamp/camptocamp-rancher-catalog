@@ -20,7 +20,9 @@ master:
   labels:
     io.rancher.scheduler.affinity:host_label: data.jenkins=true
     io.rancher.sidekicks: master-conf
+    prometheus_port: 8080
   environment:
+    PROMETHEUS_ENDPOINT: "metrics"
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djavax.net.ssl.trustStore=/var/jenkins_home/.keystore/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
     JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
     JENKINS_TEAMS: ${JENKINS_TEAMS}
@@ -56,4 +58,4 @@ master-conf:
     JENKINS_HOME: /var/jenkins_home
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:29
+  image: camptocamp/jenkins-conf:30
