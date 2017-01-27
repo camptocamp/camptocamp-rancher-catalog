@@ -22,7 +22,6 @@ master:
     io.rancher.sidekicks: master-conf
     prometheus_port: 8080
   environment:
-    PROMETHEUS_ENDPOINT: "metrics"
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djavax.net.ssl.trustStore=/var/jenkins_home/.keystore/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
     JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
     JENKINS_TEAMS: ${JENKINS_TEAMS}
