@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-36"
+  version: "v2.32.1-37"
   description: "Jenkins build farm"
-  uuid: jenkins-52
+  uuid: jenkins-53
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ADMIN_GROUPNAME"
@@ -124,6 +124,12 @@
       description: "Base job dsl Github Repo name"
       type: "string"
       default: "jenkins-base-jobs"
+      required: true
+    - variable: "JENKINS_TIMEZONE"
+      label: "Time Zone"
+      description: "Time Zone"
+      type: "string"
+      default: "Europe/Zurich"
       required: true
     - variable: "JENKINS_PLUGINS"
       label: "Plugins"
