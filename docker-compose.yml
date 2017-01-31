@@ -1,6 +1,7 @@
 slave:
   image: camptocamp/jenkins-slave:2.2-13
   labels:
+    io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: slave.jenkins=true
   environment:
     JENKINS_USERNAME: ${JENKINS_SWARM_USERNAME}
