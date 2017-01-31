@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-38"
+  version: "v2.32.1-39"
   description: "Jenkins build farm"
-  uuid: jenkins-54
+  uuid: jenkins-55
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ADMIN_GROUPNAME"
