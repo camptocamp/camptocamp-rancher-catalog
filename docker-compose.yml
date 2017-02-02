@@ -17,7 +17,7 @@ slave:
     - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
 
 master:
-  image: jenkins:2.32.1
+  image: jenkins:2.32.2
   labels:
     io.rancher.scheduler.affinity:host_label: data.jenkins=true
     io.rancher.sidekicks: master-conf
@@ -27,6 +27,7 @@ master:
     JENKINS_TIMEZONE: ${JENKINS_TIMEZONE}
     JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
     JENKINS_PLUGINS: ${JENKINS_PLUGINS}
+    JENKINS_ROOT_URL: ${JENKINS_ROOT_URL}
     JENKINS_LDAP_SERVER: ${JENKINS_LDAP_SERVER}
     JENKINS_LDAP_ROOT_DN: ${JENKINS_LDAP_ROOT_DN}
     JENKINS_LDAP_USER_SEARCH_BASE: ${JENKINS_LDAP_USER_SEARCH_BASE}
@@ -58,4 +59,4 @@ master-conf:
     JENKINS_HOME: /var/jenkins_home
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:37
+  image: camptocamp/jenkins-conf:38
