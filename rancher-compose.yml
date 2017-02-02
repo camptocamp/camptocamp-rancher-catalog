@@ -18,12 +18,6 @@ version: '2'
       type: "string"
       required: false
       default: "--log-statement=all"
-    - variable: "POSTGRES_VOLUME_NAME"
-      label: "POSTGRES_VOLUME_NAME"
-      description: "Volume name used to store PostgreSQL cluster"
-      type: "string"
-      required: true
-      default: "pgdata"
     - variable: "POSTGRES_USER"
       label: "PostgreSQL User"
       description: "PostgreSQL User"

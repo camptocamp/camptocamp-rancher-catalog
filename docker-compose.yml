@@ -1,4 +1,7 @@
 version: '2'
+volumes:
+  pgdata: {}
+  pghoard: {}
 services:
   lb:
     image: camptocamp/postgres-proxy-rancher:20160921-1
@@ -26,7 +29,7 @@ services:
       io.rancher.scheduler.affinity:host_label: ${HOST_LABEL}
       com.camptocamp.monitoring.postgres: 'true'
     volumes:
-      - ${POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     volumes_from:
       - postgres-cluster-conf
 
@@ -67,4 +70,4 @@ services:
     links:
       - lb
     volumes:
-      - ${POSTGRES_VOLUME_NAME}-pghoard:/home/postgres/pghoard
+      - pghoard:/home/postgres/pghoard
