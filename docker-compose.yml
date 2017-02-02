@@ -1,5 +1,5 @@
 slave:
-  image: camptocamp/jenkins-slave:2.2-15
+  image: camptocamp/jenkins-slave:2.2-16
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: slave.jenkins=true
@@ -59,4 +59,4 @@ master-conf:
     JENKINS_HOME: /var/jenkins_home
   labels:
     io.rancher.container.start_once: 'true'
-  image: camptocamp/jenkins-conf:38
+  image: camptocamp/jenkins-conf:39

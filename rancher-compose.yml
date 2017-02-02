@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.1-46"
+  version: "v2.32.1-47"
   description: "Jenkins build farm"
-  uuid: jenkins-62
+  uuid: jenkins-63
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ROOT_URL"
@@ -145,18 +145,23 @@
       default: |
         swarm
         ldap
-        docker-custom-build-environment
+        email-ext
+        ansicolor
+        locale
+        blueocean
         workflow-aggregator
+        docker-custom-build-environment
         docker-workflow
+        credentials-binding
+        job-dsl
+        job-restrictions
         github
         github-branch-source
-        blueocean
-        email-ext
-        credentials-binding
         embeddable-build-status
         lockable-resources
         ssh-agent
-        job-dsl
+        prometheus
+        hipchat
     - variable: "NODE_LABELS"
       label: "Node Labels"
       description: "Which labels to apply to slave nodes"
