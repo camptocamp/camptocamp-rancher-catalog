@@ -148,6 +148,7 @@
         email-ext
         ansicolor
         locale
+        pipeline-model-definition
         blueocean
         workflow-aggregator
         docker-custom-build-environment
