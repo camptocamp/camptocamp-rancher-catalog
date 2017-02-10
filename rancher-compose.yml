@@ -120,8 +120,9 @@ version: '2'
       description: "OS_REGION_NAME"
       type: "string"
 
-postgres:
-  metadata:
-    credentials:
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
+services:
+  postgres:
+    metadata:
+      credentials:
+        user: ${POSTGRES_USER}
+        password: ${POSTGRES_PASSWORD}
