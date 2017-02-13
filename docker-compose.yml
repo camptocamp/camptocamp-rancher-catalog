@@ -50,7 +50,7 @@ master:
     - master-conf
 
 master-conf:
-  image: camptocamp/jenkins-conf:2.32.2-43
+  image: camptocamp/jenkins-conf:2.32.2-44
   environment:
     JENKINS_HOME: /var/jenkins_home
     JENKINS_PLUGINS: ${JENKINS_PLUGINS}
