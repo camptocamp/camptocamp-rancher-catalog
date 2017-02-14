@@ -50,6 +50,7 @@ collectd:
   scale: 1
 statsd:
   scale: 1
+  retain_ip: true
 rancher:
   scale: 1
 prometheus-server:
