@@ -33,6 +33,7 @@
 
 syslog:
   scale: 1
+  retain_ip: true
 dispatcher-conf:
   scale: 1
 cleanup:
