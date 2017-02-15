@@ -120,21 +120,21 @@ services:
     volumes_from:
       - 'prometheus-auth-conf'
 
-	prometheus:
-		image: rancher/lb-service-haproxy:v0.4.9
-		links:
-			- prometheus-auth:prometheus-auth
-		ports:
-			- ${PROMETHEUS_PORT}:9443/tcp
-		labels:
-			io.rancher.container.agent.role: environmentAdmin
-			io.rancher.scheduler.affinity:host_label: monitoring=true
-			io.rancher.container.hostname_override: container_name
-			io.rancher.container.create_agent: 'true'
-			haproxy_stats_port: '8008'
-			haproxy_stats_id: 'prometheus'
-			haproxy_stats_path: '/stats'
- 
+  prometheus:
+    image: rancher/lb-service-haproxy:v0.4.9
+    links:
+      - prometheus-auth:prometheus-auth
+    ports:
+      - ${PROMETHEUS_PORT}:9443/tcp
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.scheduler.affinity:host_label: monitoring=true
+      io.rancher.container.hostname_override: container_name  		
+      io.rancher.container.create_agent: 'true'
+      haproxy_stats_port: '8008'
+      haproxy_stats_id: 'prometheus'
+      haproxy_stats_path: '/stats'
+  
   # keep this around for backwards compatibility, remove once all the
   # collectd-based images have switched to write_prometheus.
   collectd:
