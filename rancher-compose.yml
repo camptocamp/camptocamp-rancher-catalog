@@ -1,9 +1,10 @@
+version: '2'
 .catalog:
   name: "metrics"
-  version: "v23"
+  version: "v24"
   description: "Camptocamp Prometheus-based monitoring system. Add mandatory 'monitoring=true' label on exactly one host before installing."
-  uuid: metrics-23
-  minimum_rancher_version: v1.0.0
+  uuid: metrics-24
+  minimum_rancher_version: v1.2.0
   questions:
     - variable: "SSL_CERTIFICATE"
       label: "SSL Certificate"
@@ -46,46 +47,46 @@
       default: "https://grafana.camptocamp.net"
       required: true
 
-collectd:
-  scale: 1
-statsd:
-  scale: 1
-  retain_ip: true
-rancher:
-  scale: 1
-prometheus-server:
-  scale: 1
-prometheus-auth:
-  scale: 1
-prometheus:
-  scale: 1
-  health_check:
-    port: 42
-    interval: 2000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-  start_on_create: true
-  lb_config:
-    certs: []
-    config: |-
-      global
-          log 10.42.24.10:514 local2
-
-      defaults
-          log           global
-          mode      http
-          option    httplog
-          log-tag   haproxy-promssl
-
-      listen stats
-          bind *:8008
-          stats enable
-          stats uri /stats
-
-    default_cert: ${SSL_CERTIFICATE}
-    port_rules:
-    - protocol: https
-      service: prometheus-auth
-      source_port: 9443
-      target_port: 8080
+services:
+  collectd:
+    scale: 1
+  statsd:
+    scale: 1
+    retain_ip: true
+  rancher:
+    scale: 1
+  prometheus-server:
+    scale: 1
+  prometheus-auth:
+    scale: 1
+  prometheus:
+    scale: 1
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+    start_on_create: true
+    lb_config:
+      config: |-
+        global
+            log 10.42.24.10:514 local2
+  
+        defaults
+            log           global
+            mode      http
+            option    httplog
+            log-tag   haproxy-promssl
+  
+        listen stats
+            bind *:8008
+            stats enable
+            stats uri /stats
+  
+      default_cert: ${SSL_CERTIFICATE}
+      port_rules:
+      - protocol: https
+        service: prometheus-auth
+        source_port: 9443
+        target_port: 8080
