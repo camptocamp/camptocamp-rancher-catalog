@@ -1,5 +1,5 @@
 slave:
-  image: camptocamp/jenkins-slave:2.2-13
+  image: camptocamp/jenkins-slave:2.2-16
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: slave.jenkins=true
