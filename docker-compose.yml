@@ -51,6 +51,7 @@ pushgateway:
     io.rancher.container.hostname_override: container_name
     io.rancher.scheduler.affinity:host_label: monitoring=true
     prometheus_port: '9091'
+    ssh_tunnel.port: '9091'
     io.rancher.container.requested_ip: 10.42.24.102
   image: 'prom/pushgateway:v0.3.1'
   volumes:
