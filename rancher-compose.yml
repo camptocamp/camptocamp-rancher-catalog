@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.2-64"
+  version: "v2.32.2-65"
   description: "Jenkins build farm"
-  uuid: jenkins-79
+  uuid: jenkins-80
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ROOT_URL"
