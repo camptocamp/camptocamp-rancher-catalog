@@ -1,0 +1,186 @@
+---
+.catalog:
+  name: "Jenkins"
+  version: "v2.32.2-65"
+  description: "Jenkins build farm"
+  uuid: jenkins-80
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "JENKINS_ROOT_URL"
+      label: "Jenkins root url"
+      description: "Jenkins root url"
+      type: "string"
+      default: "http://jenkins.example.com"
+      required: true
+    - variable: "JENKINS_ADMIN_GROUPNAME"
+      label: "Admin Groupname (LDAP)"
+      description: "Jenkins Admin Groupname"
+      type: "string"
+      default: "admin"
+      required: true
+    - variable: "JENKINS_LDAP_SERVER"
+      label: "LDAP Servers"
+      description: "LDAP Servers"
+      type: "string"
+      default: "ldaps://ldap.example.com"
+      required: true
+    - variable: "JENKINS_LDAP_CA_CRT"
+      label: "LDAP CA Certificate"
+      description: "LDAP CA Certificate"
+      type: "multiline"
+      required: false
+    - variable: "JENKINS_LDAP_ROOT_DN"
+      label: "LDAP Root DN"
+      description: "LDAP Root DN"
+      type: "string"
+      default: "cn=accounts,cn=example,cn=com"
+      required: true
+    - variable: "JENKINS_LDAP_USER_SEARCH_BASE"
+      label: "LDAP User Search Base"
+      description: "LDAP User Search Base"
+      type: "string"
+      default: "cn=Users"
+      required: true
+    - variable: "JENKINS_LDAP_USER_SEARCH_FILTER"
+      label: "LDAP User Search Base Filter"
+      description: "LDAP User Search Base Filter"
+      type: "string"
+      default: "uid={0}"
+      required: true
+    - variable: "JENKINS_LDAP_GROUP_SEARCH_BASE"
+      label: "LDAP Group Search Base"
+      description: "LDAP Group Search Base"
+      type: "string"
+      default: "cn=Groups"
+      required: true
+    - variable: "JENKINS_LDAP_GROUP_SEARCH_FILTER"
+      label: "LDAP Group Search Base Filter"
+      description: "LDAP Group Search Base Filter"
+      type: "string"
+      default: "cn={0}"
+      required: true
+    - variable: "JENKINS_LDAP_MANAGER_USER_DN"
+      label: "LDAP Manager User"
+      description: "LDAP Manager User"
+      type: "string"
+      default: "uid=jenkins,cn=Users,cn=accounts,cn=example,cn=com"
+      required: true
+    - variable: "JENKINS_LDAP_MANAGER_USER_PASSWORD"
+      label: "LDAP Manager User Password"
+      description: "LDAP Manager User Password"
+      type: "password"
+      default: "jenkins"
+      required: true
+    - variable: "JENKINS_MAIL_USER"
+      label: "Jenkins Mail User"
+      description: "Jenkins Mail User"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_PASSWORD"
+      label: "Jenkins Mail Password"
+      description: "Jenkins Mail Password"
+      type: "password"
+      default: "password"
+      required: true
+    - variable: "JENKINS_MAIL_ADDRESS"
+      label: "Jenkins Mail Adress"
+      description: "Jenkins Mail Adress"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_HOST"
+      label: "Jenkins Mail Smtp Host"
+      description: "Jenkins Mail Smtp Host"
+      type: "string"
+      default: "smtp.example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_SSL"
+      label: "Jenkins Mail Smtp SSL"
+      description: "Jenkins Mail Smtp SSL"
+      type: "boolean"
+      default: true
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_PORT"
+      label: "Jenkins Mail Smtp Port"
+      description: "Jenkins Mail Smtp Port"
+      type: "integer"
+      default: 465
+      required: true
+    - variable: "JENKINS_GITHUB_ORG"
+      label: "Github Organisation"
+      description: "Github Organisation"
+      type: "string"
+      default: "my-organisation"
+      required: true
+    - variable: "JENKINS_GITHUB_USER"
+      label: "Github User"
+      description: "Github User (with org/team view permission)"
+      type: "string"
+      default: "my-user"
+      required: true
+    - variable: "JENKINS_GITHUB_TOKEN"
+      label: "Github Token"
+      description: "Github Token"
+      type: "string"
+      default: "my-secret-token"
+      required: true
+    - variable: "JENKINS_BASE_JOB_DSL_REPO"
+      label: "Base job dsl Github Repo name"
+      description: "Base job dsl Github Repo name"
+      type: "string"
+      default: "jenkins-base-jobs"
+      required: true
+    - variable: "JENKINS_TIMEZONE"
+      label: "Time Zone"
+      description: "Time Zone"
+      type: "string"
+      default: "Europe/Zurich"
+      required: true
+    - variable: "JENKINS_PLUGINS"
+      label: "Plugins"
+      description: "Jenkins plugins to install"
+      type: "multiline"
+      required: true
+      default: |
+        swarm
+        ldap
+        email-ext
+        ansicolor
+        locale
+        pipeline-model-definition
+        blueocean
+        workflow-aggregator
+        docker-custom-build-environment
+        docker-workflow
+        credentials-binding
+        job-dsl
+        job-restrictions
+        github
+        github-branch-source
+        embeddable-build-status
+        lockable-resources
+        ssh-agent
+        prometheus
+        hipchat
+    - variable: "NODE_LABELS"
+      label: "Node Labels"
+      description: "Which labels to apply to slave nodes"
+      type: "string"
+      required: false
+      default: "swarm docker"
+    - variable: "SLAVE_EXECUTORS"
+      label: "Slave executors"
+      description: "Number of executors per slave"
+      type: "int"
+      required: false
+    - variable: "JENKINS_SWARM_USERNAME"
+      label: "Slave username used to join"
+      description: "Slave username used to join"
+      type: "string"
+      required: true
+    - variable: "JENKINS_SWARM_PASSWORD"
+      label: "Slave password used to join"
+      description: "Slave password used to join"
+      type: "password"
+      required: true
