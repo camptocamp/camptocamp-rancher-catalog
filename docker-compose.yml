@@ -25,6 +25,7 @@ master:
   environment:
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djavax.net.ssl.trustStore=/var/jenkins_home/.keystore/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
     JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
+    JENKINS_PLUGINS: ${JENKINS_PLUGINS}
     JENKINS_LDAP_SERVER: ${JENKINS_LDAP_SERVER}
     JENKINS_LDAP_ROOT_DN: ${JENKINS_LDAP_ROOT_DN}
     JENKINS_LDAP_USER_SEARCH_BASE: ${JENKINS_LDAP_USER_SEARCH_BASE}
@@ -51,7 +52,7 @@ master:
     - master-conf
 
 master-conf:
-  image: camptocamp/jenkins-conf:2.32.2-56
+  image: camptocamp/jenkins-conf:2.32.2-57
   environment:
     JENKINS_HOME: /var/jenkins_home
     JENKINS_PLUGINS: ${JENKINS_PLUGINS}
