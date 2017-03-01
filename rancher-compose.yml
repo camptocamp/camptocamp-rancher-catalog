@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.2-68"
+  version: "v2.32.2-69"
   description: "Jenkins build farm"
-  uuid: jenkins-83
+  uuid: jenkins-84
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ROOT_URL"
@@ -113,24 +113,42 @@
       type: "string"
       default: "my-organisation"
       required: true
-    - variable: "JENKINS_GITHUB_USER"
+    - variable: "JENKINS_GITHUB_ADMIN_USER"
       label: "Github User"
       description: "Github User (with org/team view permission)"
       type: "string"
       default: "my-user"
       required: true
-    - variable: "JENKINS_GITHUB_TOKEN"
-      label: "Github Token"
-      description: "Github Token"
+    - variable: "JENKINS_GITHUB_ADMIN_TOKEN"
+      label: "Github Admin Token"
+      description: "Github Admin Token"
       type: "string"
-      default: "my-secret-token"
+      default: "my-secret-admin-token"
       required: true
-    - variable: "JENKINS_BASE_JOB_DSL_REPO"
-      label: "Base job dsl Github Repo name"
-      description: "Base job dsl Github Repo name"
+    - variable: "JENKINS_GITHUB_PIPELINE_TOKEN"
+      label: "Github Pipeline Token"
+      description: "Github PipelineToken"
       type: "string"
-      default: "jenkins-base-jobs"
+      default: "my-secret-pipeline-token"
       required: true
+    - variable: "JENKINS_PIPELINE_LIB_NAME"
+      label: "Shared Pipeline Library Name"
+      description: "Shared Pipeline Library Name"
+      type: "string"
+      default: "jenkins-pipeline-library"
+      required: true
+    - variable: "JENKINS_PIPELINE_LIB_REPO"
+      label: "Shared Pipeline Library Repository"
+      description: "Shared Pipeline Library Repository"
+      type: "string"
+      default: "https://github.com/myAccount/pipeline-library.git"
+      required: false
+    - variable: "JENKINS_INITIAL_DSL_REPO"
+      label: "Initial dsl repo"
+      description: "Initial Groovy DSL Repository"
+      type: "string"
+      default: "https://github.com/myAccount/jenkins-initial-dsl.git"
+      required: false
     - variable: "JENKINS_TIMEZONE"
       label: "Time Zone"
       description: "Time Zone"
