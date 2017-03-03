@@ -1,0 +1,291 @@
+---
+.catalog:
+  name: "Jenkins"
+  version: "v2.32.3-02"
+  description: "Jenkins build farm"
+  uuid: jenkins-87
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "JENKINS_ROOT_URL"
+      label: "Jenkins root url"
+      description: "Jenkins root url"
+      type: "string"
+      default: "http://jenkins.example.com"
+      required: true
+    - variable: "JENKINS_ADMIN_GROUPNAME"
+      label: "Admin Groupname (LDAP)"
+      description: "Jenkins Admin Groupname"
+      type: "string"
+      default: "admin"
+      required: true
+    - variable: "JENKINS_LDAP_SERVER"
+      label: "LDAP Servers"
+      description: "LDAP Servers"
+      type: "string"
+      default: "ldaps://ldap.example.com"
+      required: true
+    - variable: "JENKINS_LDAP_CA_CRT"
+      label: "LDAP CA Certificate"
+      description: "LDAP CA Certificate"
+      type: "multiline"
+      required: false
+    - variable: "JENKINS_LDAP_ROOT_DN"
+      label: "LDAP Root DN"
+      description: "LDAP Root DN"
+      type: "string"
+      default: "cn=accounts,cn=example,cn=com"
+      required: true
+    - variable: "JENKINS_LDAP_USER_SEARCH_BASE"
+      label: "LDAP User Search Base"
+      description: "LDAP User Search Base"
+      type: "string"
+      default: "cn=Users"
+      required: true
+    - variable: "JENKINS_LDAP_USER_SEARCH_FILTER"
+      label: "LDAP User Search Base Filter"
+      description: "LDAP User Search Base Filter"
+      type: "string"
+      default: "uid={0}"
+      required: true
+    - variable: "JENKINS_LDAP_GROUP_SEARCH_BASE"
+      label: "LDAP Group Search Base"
+      description: "LDAP Group Search Base"
+      type: "string"
+      default: "cn=Groups"
+      required: true
+    - variable: "JENKINS_LDAP_GROUP_SEARCH_FILTER"
+      label: "LDAP Group Search Base Filter"
+      description: "LDAP Group Search Base Filter"
+      type: "string"
+      default: "cn={0}"
+      required: true
+    - variable: "JENKINS_LDAP_MANAGER_USER_DN"
+      label: "LDAP Manager User"
+      description: "LDAP Manager User"
+      type: "string"
+      default: "uid=jenkins,cn=Users,cn=accounts,cn=example,cn=com"
+      required: true
+    - variable: "JENKINS_LDAP_MANAGER_USER_PASSWORD"
+      label: "LDAP Manager User Password"
+      description: "LDAP Manager User Password"
+      type: "password"
+      default: "jenkins"
+      required: true
+    - variable: "JENKINS_MAIL_USER"
+      label: "Jenkins Mail User"
+      description: "Jenkins Mail User"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_PASSWORD"
+      label: "Jenkins Mail Password"
+      description: "Jenkins Mail Password"
+      type: "password"
+      default: "password"
+      required: true
+    - variable: "JENKINS_MAIL_ADDRESS"
+      label: "Jenkins Mail Adress"
+      description: "Jenkins Mail Adress"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_HOST"
+      label: "Jenkins Mail Smtp Host"
+      description: "Jenkins Mail Smtp Host"
+      type: "string"
+      default: "smtp.example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_SSL"
+      label: "Jenkins Mail Smtp SSL"
+      description: "Jenkins Mail Smtp SSL"
+      type: "boolean"
+      default: true
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_PORT"
+      label: "Jenkins Mail Smtp Port"
+      description: "Jenkins Mail Smtp Port"
+      type: "integer"
+      default: 465
+      required: true
+    - variable: "JENKINS_HIPCHAT_TOKEN"
+      label: "HipChat token"
+      description: "HipChat token"
+      type: "string"
+      default: "HipChatToken1234"
+      required: false
+    - variable: "JENKINS_GITHUB_ORG"
+      label: "Github Organisation"
+      description: "Github Organisation"
+      type: "string"
+      default: "my-organisation"
+      required: true
+    - variable: "JENKINS_GITHUB_ADMIN_USER"
+      label: "Github User"
+      description: "Github User (with org/team view permission)"
+      type: "string"
+      default: "my-user"
+      required: true
+    - variable: "JENKINS_GITHUB_ADMIN_TOKEN"
+      label: "Github Admin Token"
+      description: "Github Admin Token"
+      type: "string"
+      default: "my-secret-admin-token"
+      required: true
+    - variable: "JENKINS_GITHUB_PIPELINE_TOKEN"
+      label: "Github Pipeline Token"
+      description: "Github PipelineToken"
+      type: "string"
+      default: "my-secret-pipeline-token"
+      required: true
+    - variable: "JENKINS_PIPELINE_LIB_NAME"
+      label: "Shared Pipeline Library Name"
+      description: "Shared Pipeline Library Name"
+      type: "string"
+      default: "jenkins-pipeline-library"
+      required: true
+    - variable: "JENKINS_PIPELINE_LIB_REPO"
+      label: "Shared Pipeline Library Repository"
+      description: "Shared Pipeline Library Repository"
+      type: "string"
+      default: "https://github.com/myAccount/pipeline-library.git"
+      required: false
+    - variable: "JENKINS_INITIAL_DSL_REPO"
+      label: "Initial dsl repo"
+      description: "Initial Groovy DSL Repository"
+      type: "string"
+      default: "https://github.com/myAccount/jenkins-initial-dsl.git"
+      required: false
+    - variable: "JENKINS_TIMEZONE"
+      label: "Time Zone"
+      description: "Time Zone"
+      type: "string"
+      default: "Europe/Zurich"
+      required: true
+    - variable: "JENKINS_PLUGINS"
+      label: "Plugins"
+      description: "Jenkins plugins to install"
+      type: "multiline"
+      required: true
+      default: |
+        blueocean-i18n:1.0.0-b24
+        blueocean-jwt:1.0.0-b24
+        ansicolor:0.4.3
+        github-organization-folder:1.6
+        blueocean-commons:1.0.0-b24
+        job-dsl:1.58
+        github-api:1.85
+        matrix-project:1.8
+        hipchat:2.1.1
+        pipeline-model-declarative-agent:1.0.2
+        docker-workflow:1.10
+        blueocean-git-pipeline:1.0.0-b24
+        disk-usage:0.28
+        pipeline-stage-tags-metadata:1.0.2
+        workflow-support:2.13
+        blueocean-github-pipeline:1.0.0-b24
+        blueocean-web:1.0.0-b24
+        jackson2-api:2.7.3
+        blueocean-rest:1.0.0-b24
+        metrics:3.1.2.9
+        cloudbees-folder:5.18
+        handlebars:1.1.1
+        git-server:1.7
+        workflow-basic-steps:2.4
+        lockable-resources:1.11.1
+        scm-api:2.0.8
+        credentials-binding:1.10
+        aws-java-sdk:1.11.68
+        blueocean-display-url:1.5.1
+        pipeline-input-step:2.5
+        metrics-diskusage:3.0.0
+        branch-api:2.0.7
+        pipeline-graph-analysis:1.3
+        ssh-agent:1.14
+        pipeline-rest-api:2.5
+        pipeline-model-api:1.0.2
+        sse-gateway:1.15
+        blueocean-config:1.0.0-b24
+        favorite:2.0.4
+        pam-auth:1.3
+        authentication-tokens:1.3
+        workflow-api:2.11
+        pipeline-stage-step:2.2
+        junit:1.20
+        node-iterator-api:1.5.0
+        pipeline-build-step:2.4
+        job-restrictions:0.6
+        icon-shim:2.0.3
+        external-monitor-job:1.7
+        display-url-api:1.1.1
+        prometheus:1.0.6
+        build-timeout:1.18
+        credentials:2.1.13
+        pubsub-light:1.7
+        ssh-credentials:1.13
+        script-security:1.27
+        mailer:1.19
+        pipeline-milestone-step:1.3
+        variant:1.1
+        workflow-step-api:2.9
+        docker-custom-build-environment:1.6.5
+        workflow-aggregator:2.5
+        docker-commons:1.6
+        windows-slaves:1.2
+        blueocean-dashboard:1.0.0-b24
+        swarm:3.3
+        github:1.26.1
+        bouncycastle-api:2.16.0
+        momentjs:1.1.1
+        durable-task:1.13
+        workflow-multibranch:2.12
+        github-branch-source:2.0.3
+        locale:1.2
+        blueocean-autofavorite:0.6
+        workflow-cps-global-lib:2.6
+        pipeline-github-lib:1.0
+        jquery-detached:1.2.1
+        workflow-cps:2.28
+        matrix-auth:1.4
+        git-client:2.3.0
+        workflow-scm-step:2.4
+        job-node-stalker:1.0.5
+        plain-credentials:1.4
+        email-ext:2.57
+        blueocean-personalization:1.0.0-b24
+        blueocean-pipeline-api-impl:1.0.0-b24
+        ace-editor:1.1
+        workflow-durable-task-step:2.9
+        structs:1.6
+        embeddable-build-status:1.9
+        blueocean:1.0.0-b24
+        workflow-job:2.10
+        antisamy-markup-formatter:1.5
+        pipeline-model-definition:1.0.2
+        git:3.0.5
+        groovy:1.30
+        ldap:1.14
+        blueocean-events:1.0.0-b24
+        blueocean-rest-impl:1.0.0-b24
+        token-macro:2.0
+        pipeline-stage-view:2.5
+    - variable: "NODE_LABELS"
+      label: "Node Labels"
+      description: "Which labels to apply to slave nodes"
+      type: "string"
+      required: false
+      default: "swarm docker"
+    - variable: "SLAVE_EXECUTORS"
+      label: "Slave executors"
+      description: "Number of executors per slave"
+      type: "int"
+      required: false
+    - variable: "JENKINS_SWARM_USERNAME"
+      label: "Slave username used to join"
+      description: "Slave username used to join"
+      type: "string"
+      required: true
+    - variable: "JENKINS_SWARM_PASSWORD"
+      label: "Slave password used to join"
+      description: "Slave password used to join"
+      type: "password"
+      required: true
