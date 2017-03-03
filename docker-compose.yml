@@ -17,7 +17,7 @@ slave:
     - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
 
 master:
-  image: jenkins:2.32.2
+  image: jenkins:2.32.3
   labels:
     io.rancher.scheduler.affinity:host_label: data.jenkins=true
     io.rancher.sidekicks: master-conf
@@ -56,7 +56,7 @@ master:
     - master-conf
 
 master-conf:
-  image: camptocamp/jenkins-conf:2.32.2-58
+  image: camptocamp/jenkins-conf:2.32.3-01
   environment:
     JENKINS_HOME: /var/jenkins_home
     JENKINS_PLUGINS: ${JENKINS_PLUGINS}
