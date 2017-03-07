@@ -1,9 +1,9 @@
 version: '2'
 .catalog:
   name: "Posgresql-cluster"
-  version: "v9.5-37"
+  version: "v9.5-38"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-37
+  uuid: postgres-cluster-38
   minimum_rancher_version: v1.2.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -119,6 +119,12 @@ version: '2'
       label: "OS_REGION_NAME"
       description: "OS_REGION_NAME"
       type: "string"
+    - variable: "HAPROXY_TIMEOUT"
+      label: "HAProxy timeout"
+      description: "HAProxy timeout"
+      type: "string"
+      default: "10800s"
+      required: "true"
 
 services:
   postgres:

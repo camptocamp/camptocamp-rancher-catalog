@@ -1,7 +1,9 @@
 version: '2'
 services:
   lb:
-    image: camptocamp/postgres-proxy-rancher:20160921-1
+    image: camptocamp/postgres-proxy-rancher:20170307-1
+    environment:
+      TIMEOUT: ${HAPROXY_TIMEOUT}
     expose:
       - 5432:5432/tcp
       - 5433:5433/tcp
