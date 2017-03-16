@@ -1,17 +1,6 @@
 ---
 version: '2'
 services:
-  jobber:
-    image: blacklabelops/jobber:docker
-    environment:
-      JOB_NAME1: conplicity
-      JOB_COMMAND1: docker start $$(docker ps -a -f label=io.conplicity=true --format="{{.ID}}")
-      JOB_TIME1: 0 ${CONPLICITY_RUN_TIME}
-    labels:
-      io.rancher.scheduler.global: 'true'
-      io.upkick.warn_only: 'false'
-    volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
   conplicity:
     image: camptocamp/conplicity:0.26.0
     command: [ "--hostname-from-rancher" ]
@@ -32,7 +21,7 @@ services:
       SWIFT_PASSWORD: ${SWIFT_PASSWORD}
       SWIFT_REGIONNAME: ${SWIFT_REGIONNAME}
     labels:
-      io.conplicity: 'true'
+      cron.schedule: 0 ${CONPLICITY_RUN_TIME}
       io.rancher.scheduler.global: 'true'
       io.rancher.container.start_once: 'true'
       io.rancher.container.hostname_override: container_name

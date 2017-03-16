@@ -3,6 +3,8 @@ Rancher catalog template for Conplicity
 
 [Conplicity](https://github.com/camptocamp/conplicity) lets you backup all your named Docker volumes using Duplicity or RClone.
 
+Requires `Rancher Container Crontab`.
+
 Parameters
 ----------
 
