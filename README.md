@@ -57,8 +57,8 @@ The script is fetched from the repository defined in *Initial Groovy DSL Reposit
 To help github integration, some questions are mandatory:
 
 * *Github Organisation* (variable JENKINS_GITHUB_ORG) is the organisation that owns the repositories Jenkins will operate on (fetch the code from)
-* *Github User* (variable JENKINS_GITHUB_ADMIN_USER) is used to list all the repositories of the *Github Organisation* and check if they contain a Jenkinsfile
-* *Github Admin Token* (variable JENKINS_GITHUB_ADMIN_TOKEN) is the GitHub token used to authenticate the *Github User*
+* *Github User* (variable JENKINS_GITHUB_USER) is used to list all the repositories of the *Github Organisation* and check if they contain a Jenkinsfile
+* *Github Admin Token* (variable JENKINS_GITHUB_TOKEN) is the GitHub token used to authenticate the *Github User*
 * *Github Pipeline Token* (variable JENKINS_GITHUB_PIPELINE_TOKEN) is used to authenticate the *Github User* for actions on the repository (clone and write build state)
 
 The flow is as follows:
