@@ -130,7 +130,7 @@ services:
       - 'prometheus-auth-conf'
 
   prometheus:
-    image: rancher/lb-service-haproxy:v0.4.9
+    image: rancher/lb-service-haproxy:v0.5.9
     links:
       - prometheus-auth:prometheus-auth
     ports:
