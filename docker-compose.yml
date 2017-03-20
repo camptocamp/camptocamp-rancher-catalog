@@ -71,7 +71,7 @@ services:
       prometheus_port: '9173'
     image: infinityworks/prometheus-rancher-exporter:v0.22.52
   
-  prometheus-server-conf:
+  prometheus-targets-conf:
     image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.0'
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
