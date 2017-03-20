@@ -86,7 +86,7 @@ services:
   
       default_cert: ${SSL_CERTIFICATE}
       port_rules:
-      - protocol: https
+      - protocol: ${PROMETHEUS_SCHEME}
         service: prometheus-auth
-        source_port: 9443
+        source_port: ${PROMETHEUS_PORT}
         target_port: 8080

@@ -134,7 +134,7 @@ services:
     links:
       - prometheus-auth:prometheus-auth
     ports:
-      - ${PROMETHEUS_PORT}:9443/tcp
+      - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}/tcp
     labels:
       io.rancher.container.agent.role: environmentAdmin
       io.rancher.scheduler.affinity:host_label: monitoring=true
