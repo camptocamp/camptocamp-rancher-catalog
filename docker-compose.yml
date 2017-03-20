@@ -91,7 +91,7 @@ services:
       io.rancher.sidekicks: prometheus-server-conf
       #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
       prometheus_port: '9090'
-    image: 'prom/prometheus:v1.4.1'
+    image: 'prom/prometheus:v1.5.2'
     volumes:
       - 'metrics_prom_targets:/etc/prometheus-targets/'
       - 'metrics_tsdb:/prometheus'
