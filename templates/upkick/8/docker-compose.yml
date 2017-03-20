@@ -1,0 +1,19 @@
+---
+version: '2'
+services:
+  upkick:
+    image: camptocamp/upkick:0.6.0
+    command: [ "--hostname-from-rancher" ]
+    environment:
+      UPKICK_LOG_LEVEL: ${UPKICK_LOG_LEVEL}
+      UPKICK_JSON_OUTPUT: ${JSON_OUTPUT}
+      UPKICK_WARN_ONLY: ${UPKICK_WARN_ONLY}
+      PUSHGATEWAY_URL: ${PUSHGATEWAY_URL}
+    labels:
+      cron.schedule: 0 ${UPKICK_RUN_TIME}
+      io.rancher.scheduler.global: 'true'
+      io.rancher.container.start_once: 'true'
+      io.rancher.container.hostname_override: container_name
+      io.upkick.warn_only: 'false'
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
