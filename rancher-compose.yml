@@ -162,7 +162,7 @@
       default: "https://github.com/camptocamp/jenkins-initial-dsl-job.git"
       required: false
     - variable: "JENKINS_INITIAL_DSL_BRANCH"
-      label: "The branch of teh repository containing the initial dsl script"
+      label: "The branch of the repository containing the initial dsl script"
       description: "The branch of the repository containing the initial dsl script"
       type: "string"
       default: "master"
@@ -206,3 +206,9 @@
       description: "Slave password used to join"
       type: "password"
       required: true
+    - variable: "JENKINS_MASTER_DATA_VOLUME_DRIVER"
+      label: "Docker Volume Driver for jenkins master data"
+      description: "The driver to use for the volume that will store the Jenkins Master data (AKA JENKINS_HOME)"
+      type: "string"
+      required: true
+      default: local
