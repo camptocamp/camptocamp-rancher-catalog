@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.3-08"
+  version: "v2.32.3-09"
   description: "Jenkins build farm"
-  uuid: jenkins-93
+  uuid: jenkins-94
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ROOT_URL"
@@ -157,7 +157,7 @@
       required: false
     - variable: "JENKINS_GITHUB_CONFIG_REPO"
       label: "Custom configuration repository"
-      description: "Custom configuration repository with teams configs. Teams configuration will be skipped when empty"
+      description: "Custom configuration repository with teams configs. Please give just the name of the repo, as we already know the owner. Teams configuration will be skipped when empty"
       type: "string"
       default: ""
       required: false

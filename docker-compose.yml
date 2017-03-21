@@ -24,7 +24,7 @@ master:
     prometheus_port: 8080
   environment:
     JENKINS_INITIAL_DSL_REPO: https://github.com/camptocamp/jenkins-initial-dsl-job.git
-    JENKINS_INITIAL_DSL_REF: v0.0.1
+    JENKINS_INITIAL_DSL_REF: master
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djavax.net.ssl.trustStore=/var/jenkins_home/.keystore/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
     JENKINS_ROOT_URL: ${JENKINS_ROOT_URL}
     JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
@@ -59,7 +59,7 @@ master:
     - master-conf
 
 master-conf:
-  image: camptocamp/jenkins-conf:2.32.3-10
+  image: camptocamp/jenkins-conf:2.32.3-11
   environment:
     JENKINS_HOME: /var/jenkins_home
     JENKINS_PLUGINS: ${JENKINS_PLUGINS}
