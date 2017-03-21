@@ -23,8 +23,6 @@ master:
     io.rancher.sidekicks: master-conf
     prometheus_port: 8080
   environment:
-    JENKINS_INITIAL_DSL_REPO: https://github.com/camptocamp/jenkins-initial-dsl-job.git
-    JENKINS_INITIAL_DSL_BRANCH: master
     JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djavax.net.ssl.trustStore=/var/jenkins_home/.keystore/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
     JENKINS_ROOT_URL: ${JENKINS_ROOT_URL}
     JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
@@ -51,6 +49,8 @@ master:
     JENKINS_GITHUB_PIPELINE_TOKEN: ${JENKINS_GITHUB_PIPELINE_TOKEN}
     JENKINS_PIPELINE_LIB_NAME: ${JENKINS_PIPELINE_LIB_NAME}
     JENKINS_PIPELINE_LIB_REPO: ${JENKINS_PIPELINE_LIB_REPO}
+    JENKINS_INITIAL_DSL_REPO: ${JENKINS_INITIAL_DSL_REPO}
+    JENKINS_INITIAL_DSL_BRANCH: ${JENKINS_INITIAL_DSL_BRANCH}
     JENKINS_GITHUB_CONFIG_REPO: ${JENKINS_GITHUB_CONFIG_REPO}
 
   volumes:

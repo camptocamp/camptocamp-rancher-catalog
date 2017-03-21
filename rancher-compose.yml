@@ -155,6 +155,18 @@
       type: "string"
       default: ""
       required: false
+    - variable: "JENKINS_INITIAL_DSL_REPO"
+      label: "The Repository containing the initial dsl script"
+      description: "You can use the provided public repository for teams configuration or use your own script"
+      type: "string"
+      default: "https://github.com/camptocamp/jenkins-initial-dsl-job.git"
+      required: false
+    - variable: "JENKINS_INITIAL_DSL_BRANCH"
+      label: "The branch of teh repository containing the initial dsl script"
+      description: "The branch of the repository containing the initial dsl script"
+      type: "string"
+      default: "master"
+      required: false
     - variable: "JENKINS_GITHUB_CONFIG_REPO"
       label: "Custom configuration repository"
       description: "Custom configuration repository with teams configs. Please give just the name of the repo, as we already know the owner. Teams configuration will be skipped when empty"
