@@ -155,9 +155,9 @@
       type: "string"
       default: ""
       required: false
-    - variable: "JENKINS_INITIAL_DSL_REPO"
-      label: "Initial dsl repo"
-      description: "Initial Groovy DSL Repository"
+    - variable: "JENKINS_GITHUB_CONFIG_REPO"
+      label: "Custom configuration repository"
+      description: "Custom configuration repository with teams configs. Teams configuration will be skipped when empty"
       type: "string"
       default: ""
       required: false
