@@ -67,15 +67,16 @@ To help github integration, some questions are mandatory:
 
 The flow is as follows:
 
-1. Jenkins starts normally, clones the *Initial Groovy DSL Repository* and checkout branch *The branch of the repository containing the initial dsl script*
-2. Jenkins adds a Job visible only to Jenkins Admins to execute the Initial Groovy DSL
+1. Jenkins starts normally
+2. At startup, Jenkins adds a initial Job visible only to Jenkins Admins to execute the Initial Groovy DSL script for teams configuration.
 3. An Admin user login and executes the job "admins/00\_initial\_dsl\_job"
-4. The Admin user executes the job "admins/01\_team\_credentials\_and\_allocated\_slaves" providing mandatory Build Parameter (the repository containing the List of Teams)
-5. The Job clones the repository from *Custom configuration repository* containing the List of Teams and uses the teams.list file to create the Teams in Jenkins
-6. The Job creates a Job for each Team (Job is *Team Name*/Auto-Generate Pipelines)
-7. A Team member logs-in and executes *Team Name*/Auto-Generate Pipelines
-8. The job scans the organisation using the Team token defined in the teams.list file, and adds a job for each repository containing a Jenkinsfile
-9. The Team member configures the github service to notify the jenkins instance of changes in the repository (using the *Jenkins (github)* service not the *Jenkins (git)* one)
+4. The "admins/00\_initial\_dsl\_job" Job clones the repository from *Custom configuration repository* containing the List of Teams and uses the teams.list file to create the Teams in Jenkins
+5. The "admins/00\_initial\_dsl\_job" Job creates a Job for each Team (Job is *Team Name*/Auto-Generate Pipelines)
+6. The "admins/00\_initial\_dsl\_job" Job creates the Job "admins/01\_team\_credentials\_and\_allocated\_slaves".
+7. The Admin user executes the job "admins/01\_team\_credentials\_and\_allocated\_slaves". This will configure teams credentials and slaves allocations.
+8. A Team member logs-in and executes *Team Name*/Auto-Generate Pipelines
+9. The job scans the organisation using the Team token defined in the teams.list file, and adds a job for each repository containing a Jenkinsfile
+10. The Team member configures the github service to notify the jenkins instance of changes in the repository (using the *Jenkins (github)* service not the *Jenkins (git)* one)
 
 ## Jenkins Shared Library<a name="Jenkins-Shared-Library"></a>
 
