@@ -1,0 +1,75 @@
+version: 'v2'
+
+services:
+  slave:
+    image: camptocamp/jenkins-slave:2.2-16
+    labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.scheduler.affinity:host_label: slave.jenkins=true
+    environment:
+      JENKINS_USERNAME: ${JENKINS_SWARM_USERNAME}
+      JENKINS_PASSWORD: ${JENKINS_SWARM_PASSWORD}
+      JENKINS_MASTER: http://master:8080
+      SLAVE_EXECUTORS: ${SLAVE_EXECUTORS}
+      NODE_LABELS: ${NODE_LABELS}
+    links:
+      - master:master
+    volumes:
+      - /var/jenkins
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
+
+  master:
+    image: jenkins:2.32.3
+    labels:
+      io.rancher.scheduler.affinity:host_label: data.jenkins=true
+      io.rancher.sidekicks: master-conf
+      prometheus_port: 8080
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Djavax.net.ssl.trustStore=/var/jenkins_home/.keystore/cacerts -Djavax.net.ssl.trustStorePassword=changeit"
+      JENKINS_ROOT_URL: ${JENKINS_ROOT_URL}
+      JENKINS_ADMIN_GROUPNAME: ${JENKINS_ADMIN_GROUPNAME}
+      JENKINS_LDAP_SERVER: ${JENKINS_LDAP_SERVER}
+      JENKINS_LDAP_ROOT_DN: ${JENKINS_LDAP_ROOT_DN}
+      JENKINS_LDAP_USER_SEARCH_BASE: ${JENKINS_LDAP_USER_SEARCH_BASE}
+      JENKINS_LDAP_USER_SEARCH_FILTER: ${JENKINS_LDAP_USER_SEARCH_FILTER}
+      JENKINS_LDAP_GROUP_SEARCH_BASE: ${JENKINS_LDAP_GROUP_SEARCH_BASE}
+      JENKINS_LDAP_GROUP_SEARCH_FILTER: ${JENKINS_LDAP_GROUP_SEARCH_FILTER}
+      JENKINS_LDAP_MANAGER_USER_DN: ${JENKINS_LDAP_MANAGER_USER_DN}
+      JENKINS_LDAP_MANAGER_USER_PASSWORD: ${JENKINS_LDAP_MANAGER_USER_PASSWORD}
+      JENKINS_SWARM_USERNAME: ${JENKINS_SWARM_USERNAME}
+      JENKINS_MAIL_USER: ${JENKINS_MAIL_USER}
+      JENKINS_MAIL_PASSWORD: ${JENKINS_MAIL_PASSWORD}
+      JENKINS_MAIL_ADDRESS: ${JENKINS_MAIL_ADDRESS}
+      JENKINS_MAIL_SMTP_HOST: ${JENKINS_MAIL_SMTP_HOST}
+      JENKINS_MAIL_SMTP_SSL: ${JENKINS_MAIL_SMTP_SSL}
+      JENKINS_MAIL_SMTP_PORT: ${JENKINS_MAIL_SMTP_PORT}
+      JENKINS_HIPCHAT_TOKEN: ${JENKINS_HIPCHAT_TOKEN}
+      JENKINS_GITHUB_ORG: ${JENKINS_GITHUB_ORG}
+      JENKINS_GITHUB_USER: ${JENKINS_GITHUB_USER}
+      JENKINS_GITHUB_TOKEN: ${JENKINS_GITHUB_TOKEN}
+      JENKINS_GITHUB_SSH_PRIVATE_KEY: ${JENKINS_GITHUB_SSH_PRIVATE_KEY}
+      JENKINS_GITHUB_PIPELINE_TOKEN: ${JENKINS_GITHUB_PIPELINE_TOKEN}
+      JENKINS_PIPELINE_LIB_NAME: ${JENKINS_PIPELINE_LIB_NAME}
+      JENKINS_PIPELINE_LIB_REPO: ${JENKINS_PIPELINE_LIB_REPO}
+      JENKINS_INITIAL_DSL_REPO: ${JENKINS_INITIAL_DSL_REPO}
+      JENKINS_INITIAL_DSL_BRANCH: ${JENKINS_INITIAL_DSL_BRANCH}
+      JENKINS_GITHUB_CONFIG_REPO: ${JENKINS_GITHUB_CONFIG_REPO}
+
+    volumes:
+      - jenkins-home:/var/jenkins_home
+    volumes_from:
+      - master-conf
+
+  master-conf:
+    image: camptocamp/jenkins-conf:2.32.3-13
+    environment:
+      JENKINS_HOME: /var/jenkins_home
+      JENKINS_PLUGINS: ${JENKINS_PLUGINS}
+      JENKINS_LDAP_CA_CRT: ${JENKINS_LDAP_CA_CRT}
+    labels:
+      io.rancher.container.start_once: 'true'
+
+volumes:
+  jenkins-home:
+    driver: ${JENKINS_MASTER_DATA_VOLUME_DRIVER}
