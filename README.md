@@ -17,7 +17,7 @@ Rancher and docker compose templates for launching Jenkins cluster
 The flow is as follows:
 1. The template is started, creates the sidekick *master-conf*
 2. The container *master-conf* will download the plugins defined in *Plugins* (if a specific version of the dependencies is needed, it should be placed in the list too)
-3. The container *master* is then started using the volume where *master-conf* downloaded the plugins (in addition to other volumes including a permanent named volume) 
+3. The container *master* is then started using the volume where *master-conf* downloaded the plugins (in addition to other volumes including a permanent named volume)
 4. The startup of the *master* container, will copy the plugins downloaded in *master-conf* to the final location (inside the named volume) (note this is racy with the download of plugins, if the jenkins master is not setup with all *Plugins*, restart it)
 5. The Jenkins master instance is then started and configured
 6. The [Authentication](#Authentication) is setup
