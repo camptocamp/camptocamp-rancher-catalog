@@ -134,7 +134,7 @@
     - variable: "JENKINS_GITHUB_SSH_PRIVATE_KEY"
       label: "Github SSH private key"
       description: "Github SSH private key"
-      type: "string"
+      type: "multiline"
       default: "PRIVATE KEY"
       required: true
     - variable: "JENKINS_GITHUB_PIPELINE_TOKEN"
