@@ -93,7 +93,6 @@ version: '2'
       label: "AWS_DEFAULT_REGION"
       description: "AWS_DEFAULT_REGION"
       type: "string"
-      default: "eu-west-1"
     - variable: "AWS_HOST"
       label: "AWS_HOST"
       description: "override host for non AWS-S3 implementations"
