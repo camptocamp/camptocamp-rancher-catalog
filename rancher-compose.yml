@@ -109,7 +109,6 @@ version: '2'
       label: "OS_AUTH_URL"
       description: "OS_AUTH_URL"
       type: "string"
-      default: "https://auth.cloud.ovh.net/v2.0"
     - variable: "OS_TENANT_NAME"
       label: "OS_TENANT_NAME"
       description: "OS_TENANT_NAME"
