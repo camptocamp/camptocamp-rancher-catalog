@@ -14,7 +14,7 @@ services:
       - postgres:postgres
 
   postgres:
-    image: ${POSTGRES_IMAGE}
+    image: ${POSTGRES_IMAGE}:${POSTGRES_VERSION}
     entrypoint: ["/postgres-c2c-conf/docker-entrypoint.sh"]
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -40,7 +40,7 @@ services:
       io.rancher.container.start_once: true
 
   pghoard:
-    image: camptocamp/pghoard:1.4.0_f38b187-1
+    image: camptocamp/pghoard:${POSTGRES_VERSION}
     environment:
       - PG_HOST=lb
       - PG_PORT=5432
