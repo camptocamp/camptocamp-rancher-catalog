@@ -71,6 +71,7 @@ version: '2'
       options:
         - "pg_receivexlog"
         - "walreceiver"
+      default: "pg_receivexlog"
     - variable: "PGHOARD_BASEBACKUP_COUNT"
       label: "PGHoard basebackup count"
       description: "How many basebackups should be kept around for restoration purposes."
