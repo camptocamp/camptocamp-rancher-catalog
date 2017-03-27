@@ -12,7 +12,6 @@ Rancher and docker compose templates for launching Jenkins cluster
 * *Slave password used to join* (variable JENKINS\_SWARM\_PASSWORD) the password the slaves will use to register to the Jenkins Master
 * *Shared Pipeline Library Repository* (variable JENKINS\_PIPELINE\_LIB\_REPO) Repository of the Groovy Shared Library (see the [Jenkins Shared Library](#Jenkins-Shared-Library) section)
 * *Custom configuration repository* (variable JENKINS\_GITHUB\_CONFIG\_REPO) Repository for the Teams configurations (and others to come), should be private and only accessible with the *Github Token* (see the [Github Integration](#Github-Integration) section)
-* *Shared Pipeline Library Name* (variable JENKINS\_PIPELINE\_LIB\_NAME) Name of the shared Library (see the [Jenkins Shared Library](#Jenkins-Shared-Library) section)
 * *Initial dsl repo* (variable JENKINS\_INITIAL\_DSL\_REPO) The Repository containing the helpers (see the [Github Integration](#Github-Integration) section)
 * *The branch of the repository containing the initial dsl script* (variable JENKINS\_INITIAL\_DSL\_BRANCH) The branch to use in the *Initial dsl repo* (see the [Github Integration](#Github-Integration) section)
 * *Docker Volume Driver for jenkins master data* (variable JENKINS\_MASTER\_DATA\_VOLUME\_DRIVER) The Docker Volume driver to use for the JENKINS\_HOME of the Jenkins Master.
@@ -26,7 +25,7 @@ The flow is as follows:
 6. The [Authentication](#Authentication) is setup
 7. The [Github Integration](#Github-Integration) is setup
 8. The [Jenkins Shared Library](#Jenkins-Shared-Library) is setup
-9. Slaves are started and use the credentials *Slave username used to join* and *Slave password used to join* to connect to the master
+9. Slaves are started and use the credentials *Slave username used to join* and *Slave password used to join* to connect to the master. Note: these users should be defined in your LDAP server.
 
 ## Authentication<a name="Authentication"></a>
 
@@ -52,18 +51,31 @@ The flow is as follows:
 5. All groups matchin the previous request are added to the profile of the user
 6. If the user is member of *Admin Groupname (LDAP)* he is granted administrative rights on the Jenkins Instance
 
+## E-mail Integration
+
+* *Jenkins Mail User* (variable JENKINS\_MAIL\_USER)
+* *Jenkins Mail Password* (variable JENKINS\_MAIL\_PASSWORD)
+* *Jenkins Mail Adress* (variable JENKINS\_MAIL\_ADDRESS)
+* *Jenkins Mail Smtp Host* (variable JENKINS\_MAIL\_SMTP\_HOST)
+* *Jenkins Mail Smtp Port* (variable JENKINS\_MAIL\_SMTP\_PORT)
+* *Jenkins Mail Smtp SSL* (variable JENKINS\_MAIL\_SMTP\_SSL)
+
+## HipChat Integration
+
+Room is not yet configurable. Default to 'Jenkins CI' room.
+
+* *HipChat token* (variable JENKINS\_HIPCHAT\_TOKEN)
+
 ## GitHub Integration<a name="Github-Integration"></a>
 
-This Jenkins instance will be setup for github integration. All integration steps are performed using the initial groovy script.
-The script is fetched from the repository defined in *Initial Groovy DSL Repository* (variable JENKINS\_INITIAL\_DSL\_REPO).
+This Jenkins instance will be setup for github integration. All teams integration steps are performed using the initial groovy script. The script is fetched from the repository defined in *Initial Groovy DSL Repository* (variable JENKINS\_INITIAL\_DSL\_REPO).
 
 To help github integration, some questions are mandatory:
 
 * *Github Organisation* (variable JENKINS\_GITHUB\_ORG) is the organisation that owns the repositories Jenkins will operate on (fetch the code from)
-* *Github User* (variable JENKINS\_GITHUB\_USER) is used to list all the repositories of the *Github Organisation* and check if they contain a Jenkinsfile
-* *Github Token* (variable JENKINS\_GITHUB\_TOKEN) is the GitHub token used to authenticate the *Github User*
-* *Github Pipeline Token* (variable JENKINS\_GITHUB\_PIPELINE\_TOKEN) is used to authenticate the *Github User* for actions on the repository (clone and write build state)
-* *Github SSH private key* (variable JENKINS\_GITHUB\_SSH\_PRIVATE\_KEY) SSH Key to be used to checkout repositories via SSH.
+* *Github User* (variable JENKINS\_GITHUB\_USER) is used to list all the repositories of the *Github Organisation*, and check if they contain a Jenkinsfile. This user should have read access to repositories and organisation teams.
+* *Github Token* (variable JENKINS\_GITHUB\_TOKEN) is the GitHub token used to authenticate the *Github User*. This token credential is only accessible to administrative tasks like the jobs in the admin folder.
+* *Github SSH private key* (variable JENKINS\_GITHUB\_SSH\_PRIVATE\_KEY) SSH Key to be used to checkout repositories via SSH as the *Github User*. This SSH credential is only accessible to administrative tasks like the jobs in the admin folder.
 
 The flow is as follows:
 
@@ -80,22 +92,15 @@ The flow is as follows:
 
 ## Jenkins Shared Library<a name="Jenkins-Shared-Library"></a>
 
-To help the creation of pipelines, some parts can be factored out using shared libraries, to have secrets outside the scope of these libraries, these secrets are put into the [Credentials plugin](https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin).
+To help the creation of pipelines, some parts can be factored out using shared libraries. When you have multiple Pipeline jobs, you often want to share some parts of the Pipeline scripts between them to keep Pipeline scripts DRY. A very common use case is that you have many projects that are built in the similar way.
 
-These secrets are the following:
+This functionality allows you to create a “shared library script” SCM repository which can be defined in external source control repositories and loaded into existing Pipelines.
 
-For email sending:
+* *Shared Pipeline Library Name* (variable JENKINS\_PIPELINE\_LIB\_NAME) Name of the shared Library. Only give the name of the github repository (organisation is not needed)
 
-* *Jenkins Mail User* (variable JENKINS\_MAIL\_USER)
-* *Jenkins Mail Password* (variable JENKINS\_MAIL\_PASSWORD)
-* *Jenkins Mail Adress* (variable JENKINS\_MAIL\_ADDRESS)
-* *Jenkins Mail Smtp Host* (variable JENKINS\_MAIL\_SMTP\_HOST)
-* *Jenkins Mail Smtp Port* (variable JENKINS\_MAIL\_SMTP\_PORT)
-* *Jenkins Mail Smtp SSL* (variable JENKINS\_MAIL\_SMTP\_SSL)
+* *Github Pipeline Token* (variable JENKINS\_GITHUB\_PIPELINE\_TOKEN) is used to checkout the 'shared pipeline library' repository. This token credential is accessible to all users and can be used in every Jenkinsfile.
 
-For HipChat integration:
-
-* *HipChat token* (variable JENKINS\_HIPCHAT\_TOKEN)
+Secrets are stored outside the scope of these libraries, these secrets are put into the [Credentials plugin](https://wiki.jenkins-ci.org/display/JENKINS/Credentials+Plugin).
 
 ## Upgrade Notes
 

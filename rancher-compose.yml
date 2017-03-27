@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Jenkins"
-  version: "v2.32.3-16"
+  version: "v2.32.3-17"
   description: "Jenkins build farm"
-  uuid: jenkins-101
+  uuid: jenkins-102
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "JENKINS_ROOT_URL"
@@ -134,7 +134,7 @@
     - variable: "JENKINS_GITHUB_SSH_PRIVATE_KEY"
       label: "Github SSH private key"
       description: "Github SSH private key"
-      type: "string"
+      type: "multiline"
       default: "PRIVATE KEY"
       required: true
     - variable: "JENKINS_GITHUB_PIPELINE_TOKEN"
