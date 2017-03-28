@@ -1,0 +1,28 @@
+---
+.catalog:
+  name: "s3fs"
+  version: "v1.80-1"
+  description: "S3fs Stack"
+  uuid: s3fs-0
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "BUCKET"
+      label: "Bucket"
+      description: "S3 bucket"
+      type: "string"
+      required: true
+    - variable: "AWS_ACCESS_KEY_ID"
+      label: "AWS_ACCESS_KEY_ID"
+      description: "AWS Access Key ID"
+      type: "string"
+      required: true
+    - variable: "AWS_SECRET_KEY_ID"
+      label: "AWS_SECRET_KEY_ID"
+      description: "AWS Secret Key ID"
+      type: "password"
+      required: true
+    - variable: "VOLUME"
+      label: "Volume Name"
+      description: "Local volume name"
+      type: "string"
+      required: true
