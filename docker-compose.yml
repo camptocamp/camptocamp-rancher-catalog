@@ -28,8 +28,9 @@ mco-puppetca:
 
 # PuppetDB
 puppetdb:
-  image: camptocamp/puppetdb:4.2.2-4
+  image: camptocamp/puppetdb:4.2.2-5
   environment:
+    DNS_ALT_NAMES: ${DB_DNS_ALT_NAMES}
     ENABLE_HTTP: 'true'
     JAVA_ARGS: ${PUPPETDB_JAVA_ARGS}
     POSTGRES_USER: ${PUPPETDB_POSTGRES_USER}
