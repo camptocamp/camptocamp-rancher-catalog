@@ -1,0 +1,18 @@
+---
+version: "2"
+services:
+  s3fs:
+    image: "camptocamp/s3fs:1.80-1"
+    cap_add:
+      - SYS_ADMIN
+      - MKNOD
+    privileged: true
+    devices:
+      - "/dev/fuse"
+    environment:
+      BUCKETNAME: "${BUCKET}"
+      AWSACCESSKEYID: "${AWS_ACCESS_KEY_ID}"
+      AWSSECRETACCESSKEY: "${AWS_SECRET_KEY_ID}"
+    volumes:
+      - "/var/lib/s3fs/${VOLUME}:/home/shared/s3:shared"
+    tty: true
