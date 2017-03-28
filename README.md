@@ -1,4 +1,3 @@
 # S3fs Stack
 
-## Parameters
-
+This stack mounts a volume from an S3 bucket and exposes it in `/var/lib/s3fs/${VOLUME}`.
