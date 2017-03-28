@@ -1,0 +1,6 @@
+---
+name: S3fs
+description: |
+  S3fs Stack
+version: v1.80-1
+category: "Camptocamp services"
