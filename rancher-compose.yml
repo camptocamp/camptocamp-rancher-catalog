@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "s3fs"
-  version: "v1.80-1"
+  version: "v1.80-2"
   description: "S3fs Stack"
-  uuid: s3fs-0
+  uuid: s3fs-1
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "BUCKET"
@@ -26,3 +26,13 @@
       description: "Local volume name"
       type: "string"
       required: true
+    - variable: "UID"
+      label: "UID"
+      description: "User UID for the mount point"
+      type: "string"
+      required: false
+    - variable: "GID"
+      label: "GID"
+      description: "User GID for the mount point"
+      type: "string"
+      required: false
