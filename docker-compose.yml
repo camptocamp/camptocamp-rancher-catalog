@@ -10,6 +10,30 @@ puppetca:
     DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
     JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
     AUTOSIGN_PSK: ${AUTOSIGN_PSK}
+  volumes:
+    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
+
+# Puppet CA storage
+puppetca-s3fs:
+  image: camptocamp/s3fs:1.80-3
+  privileged: true
+  tty: true
+  cap_add:
+    - SYS_ADMIN
+    - MKNOD
+  environment:
+    S3FS_URL: ${PUPPETCA_S3FS_URL}
+    AWSACCESSKEYID: ${PUPPETCA_S3FS_AWS_ACCESS_KEY_ID}
+    AWSSECRETACCESSKEY: ${PUPPETCA_S3FS_AWS_SECRET_ACCESS_KEY}
+    BUCKETNAME: ${PUPPETCA_S3FS_BUCKETNAME}
+    EXTRA_OPTS: ${PUPPETCA_S3FS_EXTRA_OPTS}
+    DEBUG_LEVEL: info
+    S3FS_GID: '999'
+    S3FS_UID: '999'
+  devices:
+    - /dev/fuse:/dev/fuse:rwm
+  volumes:
+    - /var/lib/s3fs/puppetca:/home/shared/s3:shared
 
 # MCollectived-puppetca (sidekick to Puppet CA)
 mco-puppetca:
