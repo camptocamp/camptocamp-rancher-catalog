@@ -11,6 +11,7 @@ It currently includes the following:
 * [Conplicity](https://github.com/camptocamp/conplicity), a backup tool for Docker volumes
 * A [Gogs](https://gogs.io) setup with an external PostgreSQL database
 * A [Jenkins CI](https://jenkins.io) with one master and global working nodes (in swarm mode)
+* A [Minio](https://www.minio.io) cloud storage stack
 * Mopper, a Docker cleaning stack
 * A full [Puppet](https://puppet.com)/MCollective/Puppetboard stack
 * An [S3fs](https://github.com/s3fs-fuse/s3fs-fuse) stack to mount volumes from S3 buckets
