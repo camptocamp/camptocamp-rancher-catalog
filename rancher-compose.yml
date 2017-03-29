@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "Minio"
-  version: "v2017-03-16-1"
+  version: "v2017-03-16-2"
   description: "Minio Server Stack"
-  uuid: minio-0
+  uuid: minio-1
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "MINIO_ACCESS_KEY"
