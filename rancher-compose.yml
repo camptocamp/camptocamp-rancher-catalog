@@ -1,4 +1,5 @@
 ---
+version: "2"
 .catalog:
   name: "Puppet"
   version: "v2.6.0-14"
