@@ -82,7 +82,6 @@ services:
   puppet:
     image: camptocamp/puppetserver:2.6.0-1
     labels:
-      io.rancher.sidekicks: r10k
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
     environment:
       CA: 'false'
@@ -90,12 +89,12 @@ services:
       GPG_KEY: ${GPG_KEY}
       JAVA_ARGS: ${PUPPET_JAVA_ARGS}
       AUTH_CONF_ALLOW_CATALOG: ${AUTH_CONF_ALLOW_CATALOG}
+    volumes:
+    - puppetcodecache:/etc/puppetlabs/code/environments:ro
     links:
     - activemq
     - puppetca
     - puppetdb
-    volumes_from:
-    - r10k
   
   # Mcollectived Puppet Node
   mco-puppet-node:
@@ -112,9 +111,11 @@ services:
     - puppetca
     - puppetdb
   
-  # R10K (sidekick to Puppet Server)
+  # R10K
   r10k:
     image: camptocamp/r10k:2.2.0-11
+    labels:
+      io.rancher.scheduler.global: true
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       GITHUB_ORG: ${GITHUB_ORG}
