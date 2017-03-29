@@ -1,0 +1,27 @@
+---
+.catalog:
+  name: "Minio"
+  version: "v2017-03-16-2"
+  description: "Minio Server Stack"
+  uuid: minio-1
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "MINIO_ACCESS_KEY"
+      label: "MINIO_ACCESS_KEY"
+      description: "Minio Access Key."
+      type: "string"
+      required: false
+    - variable: "MINIO_SECRET_KEY"
+      label: "MINIO_SECRET_KEY"
+      description: "Minio Secret Key."
+      type: "password"
+      required: false
+
+minio:
+  scale: 1
+  health_check:
+    port: 9000
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
