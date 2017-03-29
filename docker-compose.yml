@@ -1,0 +1,14 @@
+---
+version: "2"
+services:
+  minio:
+    image: minio/minio:RELEASE.2017-03-16T21-50-32Z
+    labels:
+      io.rancher.scheduler.affinity:host_label: data.minio=true
+    volumes:
+      - minioexport:/export
+    environment:
+      MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY}"
+      MINIO_SECRET_KEY: "${MINIO_SECRET_KEY}"
+volumes:
+  minioexport: {}
