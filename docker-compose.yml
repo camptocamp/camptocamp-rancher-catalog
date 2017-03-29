@@ -90,7 +90,7 @@ services:
       JAVA_ARGS: ${PUPPET_JAVA_ARGS}
       AUTH_CONF_ALLOW_CATALOG: ${AUTH_CONF_ALLOW_CATALOG}
     volumes:
-    - puppetcodecache:/etc/puppetlabs/code/environments:ro
+    - puppetcode:/etc/puppetlabs/code/environments:ro
     links:
     - activemq
     - puppetca
@@ -126,8 +126,8 @@ services:
       RSA_PRIVATE_KEY: ${RSA_PRIVATE_KEY}
       MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
     volumes:
-    - puppetcodecache:/etc/puppetlabs/code/environments
-    - puppetr10kcache:/opt/puppetlabs/r10k/cache
+    - puppetcode:/etc/puppetlabs/code/environments
+    - puppetr10k:/opt/puppetlabs/r10k/cache
     links:
     - activemq
     - puppetca
