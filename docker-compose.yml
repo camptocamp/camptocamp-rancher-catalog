@@ -21,6 +21,8 @@ puppetca-s3fs:
   cap_add:
     - SYS_ADMIN
     - MKNOD
+  labels:
+    io.rancher.scheduler.global: true
   environment:
     S3FS_URL: ${PUPPETCA_S3FS_URL}
     AWSACCESSKEYID: ${PUPPETCA_S3FS_AWS_ACCESS_KEY_ID}
