@@ -1,0 +1,56 @@
+---
+.catalog:
+  name: "s3proxy"
+  version: "v1.5.2-travis-985-1"
+  description: "S3proxy Stack"
+  uuid: s3proxy-0
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "S3PROXY_AUTHORIZATION"
+      label: "S3PROXY_AUTHORIZATION"
+      description: "S3proxy Authorization"
+      type: "string"
+      required: true
+      default: "aws-v2"
+    - variable: "S3PROXY_IDENTITY"
+      label: "S3PROXY_IDENTITY"
+      description: "S3proxy local identity"
+      type: "string"
+      required: false
+    - variable: "S3PROXY_CREDENTIAL"
+      label: "S3PROXY_CREDENTIAL"
+      description: "S3proxy local credential"
+      type: "password"
+      required: false
+    - variable: "S3PROXY_CORS_ALLOW_ALL"
+      label: "S3PROXY_CORS_ALLOW_ALL"
+      description: "S3proxy local cors policy"
+      type: "bool"
+      required: false
+      default: false
+    - variable: "JCLOUDS_PROVIDER"
+      label: "JCLOUDS_PROVIDER"
+      description: "JClouds Provider"
+      type: "string"
+      required: true
+      default: "openstack-swift"
+    - variable: "JCLOUDS_ENDPOINT"
+      label: "JCLOUDS_ENDPOINT"
+      description: "JClouds remote endpoint"
+      type: "string"
+      required: true
+    - variable: "JCLOUDS_REGION"
+      label: "JCLOUDS_REGION"
+      description: "JClouds remote region"
+      type: "string"
+      required: false
+    - variable: "JCLOUDS_IDENTITY"
+      label: "JCLOUDS_IDENTITY"
+      description: "JClouds remote identity"
+      type: "string"
+      required: false
+    - variable: "JCLOUDS_CREDENTIAL"
+      label: "JCLOUDS_CREDENTIAL"
+      description: "JClouds remote credential"
+      type: "password"
+      required: false
