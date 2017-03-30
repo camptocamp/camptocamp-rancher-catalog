@@ -1,20 +1,6 @@
 ---
 version: "2"
 services:
-  # Puppet CA
-  puppetca:
-    image: camptocamp/puppetserver:2.6.0-1
-    labels:
-      io.rancher.sidekicks: mco-puppetca
-    environment:
-      CA_KEY: ${CA_KEY}
-      CA_CRT: ${CA_CRT}
-      DNS_ALT_NAMES: ${CA_DNS_ALT_NAMES}
-      JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
-      AUTOSIGN_PSK: ${AUTOSIGN_PSK}
-    volumes:
-      - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
-  
   # Puppet CA storage
   puppetca-s3fs:
     image: camptocamp/s3fs:1.80-3
@@ -39,7 +25,7 @@ services:
     volumes:
       - /var/lib/s3fs/puppetca:/home/shared/s3:shared
   
-  # MCollectived-puppetca (sidekick to Puppet CA)
+  # MCollectived-puppetca (sidekick to Puppet)
   mco-puppetca:
     image: camptocamp/mcollectived-puppetca:1.1.4-2
     environment:
@@ -80,17 +66,21 @@ services:
   
   # Puppet Server
   puppet:
-    image: camptocamp/puppetserver:2.6.0-1
+    image: camptocamp/puppetserver:2.7.2-1
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
+      io.rancher.sidekicks: mco-puppetca
     environment:
-      CA: 'false'
-      DNS_ALT_NAMES: ${DNS_ALT_NAMES}
+      CA_KEY: ${CA_KEY}
+      CA_CRT: ${CA_CRT}
+      AUTOSIGN_PSK: ${AUTOSIGN_PSK}
+      DNS_ALT_NAMES: "${CA_DNS_ALT_NAMES},${DNS_ALT_NAMES}"
       GPG_KEY: ${GPG_KEY}
       JAVA_ARGS: ${PUPPET_JAVA_ARGS}
       AUTH_CONF_ALLOW_CATALOG: ${AUTH_CONF_ALLOW_CATALOG}
     volumes:
     - puppetcode:/etc/puppetlabs/code/environments:ro
+    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
     links:
     - activemq
     - puppetca
