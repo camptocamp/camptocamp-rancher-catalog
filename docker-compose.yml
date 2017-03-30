@@ -42,7 +42,7 @@ services:
   
   # PuppetDB
   puppetdb:
-    image: camptocamp/puppetdb:4.2.2-5
+    image: camptocamp/puppetdb:4.3.2-1
     environment:
       DNS_ALT_NAMES: ${DB_DNS_ALT_NAMES}
       ENABLE_HTTP: 'true'
