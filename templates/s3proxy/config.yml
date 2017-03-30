@@ -1,0 +1,6 @@
+---
+name: S3proxy
+description: |
+  S3proxy Stack
+version: v1.5.2-travis-985-1
+category: "Camptocamp services"
