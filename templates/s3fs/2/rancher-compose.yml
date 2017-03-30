@@ -1,0 +1,54 @@
+---
+.catalog:
+  name: "s3fs"
+  version: "v1.80-3"
+  description: "S3fs Stack"
+  uuid: s3fs-2
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "BUCKETNAME"
+      label: "Bucket name"
+      description: "S3 bucket name."
+      type: "string"
+      required: true
+    - variable: "AWS_ACCESS_KEY_ID"
+      label: "AWS_ACCESS_KEY_ID"
+      description: "AWS Access Key ID."
+      type: "string"
+      required: true
+    - variable: "AWS_SECRET_ACCESS_KEY"
+      label: "AWS_SECRET_ACCESS_KEY"
+      description: "AWS Secret Access Key."
+      type: "password"
+      required: true
+    - variable: "VOLUME"
+      label: "Volume Name"
+      description: "Local volume name."
+      type: "string"
+      required: true
+    - variable: "S3FS_URL"
+      label: "S3FS_URL"
+      description: "S3 URL. Leave blank for AWS."
+      type: "string"
+      required: false
+    - variable: "S3FS_UID"
+      label: "S3FS_UID"
+      description: "User UID for the mount point."
+      type: "string"
+      required: false
+    - variable: "S3FS_GID"
+      label: "S3FS_GID"
+      description: "User GID for the mount point."
+      type: "string"
+      required: false
+    - variable: "DEBUG_LEVEL"
+      label: "DEBUG_LEVEL"
+      description: "Debug Level."
+      type: "string"
+      required: true
+      default: "info"
+    - variable: "EXTRA_OPTS"
+      label: "EXTRA_OPTS"
+      description: "Extra Options for S3fs."
+      type: "string"
+      required: false
