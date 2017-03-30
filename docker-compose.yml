@@ -27,7 +27,7 @@ services:
   
   # MCollectived-puppetca (sidekick to Puppet)
   mco-puppetca:
-    image: camptocamp/mcollectived-puppetca:1.1.4-2
+    image: camptocamp/mcollectived-puppetca:1.1.4-3
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       GITHUB_ORG: ${GITHUB_ORG}
