@@ -15,6 +15,7 @@ It currently includes the following:
 * Mopper, a Docker cleaning stack
 * A full [Puppet](https://puppet.com)/MCollective/Puppetboard stack
 * An [S3fs](https://github.com/s3fs-fuse/s3fs-fuse) stack to mount volumes from S3 buckets
+* An [S3proxy](https://github.com/andrewgaul/s3proxy) stack which can be composed with the S3fs template
 * [Upkick](https://github.com/camptocamp/upkick), a small tool for container unattended upgrades
 
 
