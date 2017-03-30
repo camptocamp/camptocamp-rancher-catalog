@@ -113,7 +113,7 @@ services:
   
   # R10K
   r10k:
-    image: camptocamp/r10k:2.2.0-11
+    image: camptocamp/r10k:2.5.2-1
     labels:
       io.rancher.scheduler.global: true
     environment:
