@@ -2,7 +2,7 @@ version: '2'
 
 services:
   slave:
-    image: camptocamp/jenkins-slave:2.2-16
+    image: camptocamp/jenkins-slave:3.3-1
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: slave.jenkins=true
@@ -20,7 +20,7 @@ services:
       - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
 
   master:
-    image: jenkins:2.32.3
+    image: jenkins:2.46.1
     labels:
       io.rancher.scheduler.affinity:host_label: data.jenkins=true
       io.rancher.sidekicks: master-conf
