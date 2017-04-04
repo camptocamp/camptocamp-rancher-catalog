@@ -1,5 +1,5 @@
 name: Gogs
 description: |
   A painless self-hosted Git service
-version: v0.9.97
+version: v0.11
 category: "Camptocamp services"
