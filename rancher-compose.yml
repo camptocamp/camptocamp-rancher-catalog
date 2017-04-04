@@ -2,9 +2,9 @@
 version: "2"
 .catalog:
   name: "Puppet"
-  version: "v2.7.2-5"
+  version: "v2.7.2-6"
   description: "Puppet Master stack"
-  uuid: puppet-147
+  uuid: puppet-148
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -177,50 +177,51 @@ version: "2"
       type: "password"
       required: false
 
-puppetca:
-  health_check:
-    port: 8140
-    interval: 10000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-
-postgresql:
-  health_check:
-    port: 5432
-    interval: 10000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-
-puppetdb:
-  health_check:
-    port: 8080
-    interval: 10000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-
-activemq:
-  health_check:
-    port: 61613
-    interval: 10000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-
-puppet:
-  health_check:
-    port: 8140
-    interval: 10000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
-
-puppetboard:
-  health_check:
-    port: 80
-    interval: 10000
-    unhealthy_threshold: 3
-    healthy_threshold: 2
-    response_timeout: 2000
+services:
+  puppetca:
+    health_check:
+      port: 8140
+      interval: 10000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  
+  postgresql:
+    health_check:
+      port: 5432
+      interval: 10000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  
+  puppetdb:
+    health_check:
+      port: 8080
+      interval: 10000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  
+  activemq:
+    health_check:
+      port: 61613
+      interval: 10000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  
+  puppet:
+    health_check:
+      port: 8140
+      interval: 10000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+  
+  puppetboard:
+    health_check:
+      port: 80
+      interval: 10000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
