@@ -91,6 +91,7 @@ services:
       AUTH_CONF_ALLOW_CATALOG: ${AUTH_CONF_ALLOW_CATALOG}
     volumes:
     - puppetcode:/etc/puppetlabs/code/environments:ro
+    - puppetr10k:/opt/puppetlabs/r10k/cache:ro
     links:
     - activemq
     - puppetca
