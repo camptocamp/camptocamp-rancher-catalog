@@ -1,7 +1,7 @@
 ---
 version: "2"
 services:
-  s3fs:
+  goofys:
     image: "camptocamp/goofys:v0.0.10-gite2282d1-1"
     cap_add:
       - SYS_ADMIN
