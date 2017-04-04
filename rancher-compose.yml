@@ -1,9 +1,9 @@
 ---
 .catalog:
   name: "goofys"
-  version: "v0.0.10-gite2282d1-1"
+  version: "v0.0.10-gite2282d1-1-2"
   description: "Goofys Stack"
-  uuid: goofys-0
+  uuid: goofys-1
   minimum_rancher_version: v1.0.0
   questions:
     - variable: "BUCKETNAME"
