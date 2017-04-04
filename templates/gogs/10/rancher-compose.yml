@@ -1,0 +1,88 @@
+---
+version: "2"
+.catalog:
+  name: "Gogs"
+  version: "v0.11"
+  description: "A painless self-hosted Git service"
+  uuid: "gogs-10"
+  minimum_rancher_version: "v1.2.0"
+  questions:
+    - variable: "GOGS_DATABASE_SERVICE"
+      label: "Gogs Database Service"
+      description: "The database service to use"
+      required: true
+      type: "service"
+    - variable: "GOGS_SERVER_SSH_PORT"
+      label: "Gogs Ssh Port"
+      description: "ssh port to access gogs cli"
+      required: true
+      default: "10022"
+      type: "int"
+    - variable: "GOGS_SERVER_DOMAIN"
+      label: "Domain name of your server."
+      description: "Domain name of your server."
+      required: true
+      type: "string"
+    - variable: "GOGS_SERVICE_ENABLE_NOTIFY_MAIL"
+      label: "Gogs mail notify watchers"
+      description: "Enable this to send e-mail to watchers of repository when something happens like creating issues, requires Mailer to be enabled."
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_SERVICE_ENABLE_REVERSE_PROXY_AUTHENTICATION"
+      label: "Gogs considers users authenticated if X-Forwarded-User is set"
+      description: "Enable this if you want to use external authentication with a reverse proxy"
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_SERVICE_ENABLE_REVERSE_PROXY_AUTO_REGISTRATION"
+      label: "Gogs auto-creates users using X-Forwarded-User"
+      description: "Enable this if you want gogs to create users if REVERSE_PROXY_AUTHENTICATION is enabled"
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_SERVICE_DISABLE_REGISTRATION"
+      label: "Gogs enable registration of new users"
+      description: "Enable this if you want only administrators to create accounts"
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_SERVICE_SHOW_REGISTRATION_BUTTON"
+      label: "Gogs show registration button on login page"
+      description: "Disable this if you do not want users to create new accounts by clicking on the button"
+      required: true
+      default: "true"
+      type: "boolean"
+    - variable: "GOGS_MAILER_ENABLED"
+      label: "Gogs mail enabled"
+      description: "Enable this to use a mail service."
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GOGS_MAILER_FROM"
+      label: "Gogs mailer from"
+      description: "Mail from address, RFC 5322. This can be just an email address, or the “Name” <email@example.com> format."
+      required: false
+      default: "mail@gogs.example.com"
+      type: "string"
+    - variable: "GOGS_MAILER_HOST"
+      label: "Gogs SMTP mail host address and port (example: smtp.gogs.io:587)"
+      description: "Note, if the port ends with '465', SMTPS will be used. Using STARTTLS on port 587 is recommended per RFC 6409. If the server supports STARTTLS it will always be used.)"
+      required: false
+      default: "smtp.example.com:25"
+      type: "string"
+    - variable: "GOGS_MAILER_USER"
+      label: "Gogs mailer user"
+      description: "User name of mailer (usually just your e-mail address)."
+      required: false
+      type: "string"
+    - variable: "GOGS_MAILER_PASSWD"
+      label: "Gogs mailer password"
+      description: "Password of mailer."
+      required: false
+      type: "password"
+    - variable: "GOGS_MAILER_SKIP_VERIFY"
+      label: "Gogs mailer skip verify self signed certificates"
+      description: "Do not verify the self-signed certificates."
+      default: false
+      type: "boolean"
