@@ -84,7 +84,6 @@ services:
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
     environment:
-      CA: 'false'
       DNS_ALT_NAMES: ${DNS_ALT_NAMES}
       GPG_KEY: ${GPG_KEY}
       JAVA_ARGS: ${PUPPET_JAVA_ARGS}
@@ -92,6 +91,7 @@ services:
     volumes:
     - puppetcode:/etc/puppetlabs/code/environments:ro
     - puppetr10k:/opt/puppetlabs/r10k/cache:ro
+    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
     links:
     - activemq
     - puppetca
