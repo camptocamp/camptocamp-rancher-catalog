@@ -1,0 +1,48 @@
+---
+.catalog:
+  name: "goofys"
+  version: "v0.0.10-gite2282d1-1-2"
+  description: "Goofys Stack"
+  uuid: goofys-1
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "BUCKETNAME"
+      label: "Bucket name"
+      description: "S3 bucket name."
+      type: "string"
+      required: true
+    - variable: "AWS_ACCESS_KEY_ID"
+      label: "AWS_ACCESS_KEY_ID"
+      description: "AWS Access Key ID."
+      type: "string"
+      required: true
+    - variable: "AWS_SECRET_ACCESS_KEY"
+      label: "AWS_SECRET_ACCESS_KEY"
+      description: "AWS Secret Access Key."
+      type: "password"
+      required: true
+    - variable: "VOLUME"
+      label: "Volume Name"
+      description: "Local volume name."
+      type: "string"
+      required: true
+    - variable: "GOOFYS_ENDPOINT"
+      label: "GOOFYS_ENDPOINT"
+      description: "S3 Endpoint. Leave blank for AWS."
+      type: "string"
+      required: false
+    - variable: "GOOFYS_UID"
+      label: "GOOFYS_UID"
+      description: "User UID for the mount point."
+      type: "string"
+      required: false
+    - variable: "GOOFYS_GID"
+      label: "GOOFYS_GID"
+      description: "User GID for the mount point."
+      type: "string"
+      required: false
+    - variable: "EXTRA_OPTS"
+      label: "EXTRA_OPTS"
+      description: "Extra Options for Goofys."
+      type: "string"
+      required: false

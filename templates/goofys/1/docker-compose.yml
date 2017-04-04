@@ -1,0 +1,22 @@
+---
+version: "2"
+services:
+  goofys:
+    image: "camptocamp/goofys:v0.0.10-gite2282d1-1"
+    cap_add:
+      - SYS_ADMIN
+      - MKNOD
+    privileged: true
+    devices:
+      - "/dev/fuse"
+    environment:
+      BUCKETNAME: "${BUCKETNAME}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      GOOFYS_ENDPOINT: "${GOOFYS_ENDPOINT}"
+      GOOFYS_UID: "${GOOFYS_UID}"
+      GOOFYS_GID: "${GOOFYS_GID}"
+      EXTRA_OPTS: "${EXTRA_OPTS}"
+    volumes:
+      - "/var/lib/goofys/${VOLUME}:/var/lib/goofys:shared"
+    tty: true
