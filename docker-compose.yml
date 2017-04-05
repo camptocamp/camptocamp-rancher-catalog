@@ -22,7 +22,7 @@ mopper-conf:
     MOPPER_DEBUG: ${MOPPER_DEBUG}
 
 mopper:
-  image: camptocamp/docker-cleanup:1.10.0
+  image: camptocamp/docker-cleanup:1.10.1
   labels:
     com.camptocamp.mopper: 'true'
     io.rancher.container.start_once: 'true'
