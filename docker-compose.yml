@@ -13,6 +13,8 @@ services:
       JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
     volumes:
     - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
+    links:
+    - puppetca-s3fs
   
   # Puppet CA storage
   puppetca-s3fs:
@@ -52,6 +54,7 @@ services:
     - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
     links:
     - activemq
+    - puppetca-s3fs
   
   # PuppetDB
   puppetdb:
@@ -95,6 +98,7 @@ services:
     - activemq
     - puppetca
     - puppetdb
+    - puppetca-s3fs
   
   # Mcollectived Puppet Node
   mco-puppet-node:
