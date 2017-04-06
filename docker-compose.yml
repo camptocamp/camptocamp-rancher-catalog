@@ -2,7 +2,7 @@
 version: "2"
 services:
   gogs:
-    image: gogs/gogs:0.11
+    image: gogs/gogs:0.11.4
     environment:
       GOGS_CUSTOM: /app/gogs/custom
     labels:
