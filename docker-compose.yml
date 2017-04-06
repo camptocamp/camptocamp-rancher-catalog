@@ -12,7 +12,7 @@ services:
       DNS_ALT_NAMES: "${CA_DNS_ALT_NAMES}"
       JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
     volumes:
-    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
+    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:slave
     links:
     - puppetca-s3fs
   
@@ -51,7 +51,7 @@ services:
       STOMP_PASSWORD: ${STOMP_PASSWORD}
       MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
     volumes:
-    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
+    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:slave
     links:
     - activemq
     - puppetca-s3fs
@@ -93,7 +93,7 @@ services:
     volumes:
     - puppetcode:/etc/puppetlabs/code/environments:ro
     - puppetr10k:/opt/puppetlabs/r10k/cache:ro
-    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:shared
+    - /var/lib/s3fs/puppetca:/etc/puppetlabs/puppet/ssl/ca:slave
     links:
     - activemq
     - puppetca
