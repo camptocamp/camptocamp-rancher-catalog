@@ -2,9 +2,9 @@
 version: "2"
 .catalog:
   name: "Puppet"
-  version: "v2.7.2-9"
+  version: "v2.7.2-10"
   description: "Puppet Master stack"
-  uuid: puppet-151
+  uuid: puppet-152
   minimum_rancher_version: v1.2.0
   questions:
     - variable: "DNS_ALT_NAMES"
@@ -120,31 +120,6 @@ version: "2"
       type: "string"
       default: "-XX:OnOutOfMemoryError=\"kill -9 %p\" -Djava.security.egd=/dev/urandom -Xmx2g -Xms2g -XX:MaxPermSize=256m"
       required: true
-    - variable: "PUPPETCA_S3FS_URL"
-      label: "Puppet CA s3fs URL"
-      description: "Puppet CA s3fs URL. Leave blank for AWS."
-      type: "string"
-      required: false
-    - variable: "PUPPETCA_S3FS_AWS_ACCESS_KEY_ID"
-      label: "Puppet CA s3fs ACCESS_KEY_ID"
-      description: "Puppet CA s3fs ACCESS_KEY_ID."
-      type: "string"
-      required: true
-    - variable: "PUPPETCA_S3FS_AWS_SECRET_ACCESS_KEY"
-      label: "Puppet CA s3fs SECRET_ACCESS_KEY"
-      description: "Puppet CA s3fs SECRET_ACCESS_KEY."
-      type: "password"
-      required: true
-    - variable: "PUPPETCA_S3FS_BUCKETNAME"
-      label: "Puppet CA s3fs bucket name"
-      description: "Puppet CA s3fs bucket name."
-      type: "string"
-      required: true
-    - variable: "PUPPETCA_S3FS_EXTRA_OPTS"
-      label: "Puppet CA s3fs extra options"
-      description: "Puppet CA s3fs extra options."
-      type: "string"
-      required: false
     - variable: "PUPPETBOARD_OVERVIEW_FILTER"
       label: "Puppetboard Overview filter"
       description: "Puppetboard Overview filter"
