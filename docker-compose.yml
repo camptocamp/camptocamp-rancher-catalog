@@ -71,7 +71,7 @@ services:
       io.rancher.container.start_once: 'true'
 
   master-metrics:
-    image: camptocamp/jenkins-metrics-proxy:1.7.5-1
+    image: camptocamp/jenkins-metrics-proxy:1.7.5-2
     labels:
       prometheus_port: 8080
 
