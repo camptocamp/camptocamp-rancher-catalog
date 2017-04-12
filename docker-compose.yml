@@ -24,7 +24,7 @@ services:
       GITHUB_USERS: ${GITHUB_USERS}
       STOMP_PASSWORD: ${STOMP_PASSWORD}
       MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
-    volumes-from:
+    volumes_from:
     - puppetca
     links:
     - activemq
