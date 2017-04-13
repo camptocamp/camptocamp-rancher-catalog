@@ -4,6 +4,7 @@ services:
     image: camptocamp/postgres-proxy-rancher:20170307-1
     environment:
       TIMEOUT: ${HAPROXY_TIMEOUT}
+      RO_REPLICAS_ONLY: ${RO_REPLICAS_ONLY}
     expose:
       - 5432:5432/tcp
       - 5433:5433/tcp
