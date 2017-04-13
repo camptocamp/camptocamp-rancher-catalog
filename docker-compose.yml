@@ -1,7 +1,7 @@
 version: '2'
 services:
   lb:
-    image: camptocamp/postgres-proxy-rancher:20170307-1
+    image: camptocamp/postgres-proxy-rancher:20170413-1
     environment:
       TIMEOUT: ${HAPROXY_TIMEOUT}
       RO_REPLICAS_ONLY: ${RO_REPLICAS_ONLY}
