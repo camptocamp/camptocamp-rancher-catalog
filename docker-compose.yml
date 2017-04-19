@@ -44,7 +44,7 @@ services:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.requested_ip: 10.42.24.101
       prometheus_port: '9103'
-    image: 'camptocamp/statsd-collectd:v0.2.1'
+    image: 'camptocamp/statsd-collectd:v0.2.2'
     stop_signal: 'SIGHUP'
   
   pushgateway:
