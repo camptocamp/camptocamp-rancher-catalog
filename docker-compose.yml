@@ -110,7 +110,7 @@ services:
 
   # R10K Webhook
   webhook:
-    image: camptocamp/r10k-webhook:2.1.0-2
+    image: camptocamp/r10k-webhook:2.6.2-1
     environment:
       HOOKS_SECRET: ${WEBHOOK_SECRET}
       STOMP_PASSWORD: ${STOMP_PASSWORD}
