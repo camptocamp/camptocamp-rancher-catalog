@@ -35,7 +35,7 @@ cleanup:
     - 'logging_logs:/var/log'
 
 agent-conf:
-  image: 'camptocamp/rsyslog-agent-conf:v0.2.0'
+  image: 'camptocamp/rsyslog-agent-conf:v0.2.1'
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.start_once: 'true'
