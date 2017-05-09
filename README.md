@@ -62,9 +62,8 @@ The flow is as follows:
 
 ## HipChat Integration
 
-Room is not yet configurable. Default to 'Jenkins CI' room.
-
 * *HipChat token* (variable JENKINS\_HIPCHAT\_TOKEN)
+* *HipChat room* (variable JENKINS\_HIPCHAT\_ROOM)
 
 ## GitHub Integration<a name="Github-Integration"></a>
 
@@ -107,3 +106,6 @@ Secrets are stored outside the scope of these libraries, these secrets are put i
 ### Upgrading from version prior to "v2.32.3-11"
 Please note that the volume for the Jenkins master's JENKINS\_HOME changed scope. When doing a stack upgrade, the new Jenkins Master container will not have the previous data.
 To recover the data, one can go on the host and find the old volume (which is called "jenkins-home") and copy this data to the new volume which can be found in rancher-ui (the name is generated from a template: *stack\_name* + "\_jenkins-home\_" + *random\_number*).
+
+### Upgrading from version prior to "vv2.46.2-2"
+Please note that in this version, the hipchat room can be defined with variable JENKINS\_HIPCHAT\_ROOM
