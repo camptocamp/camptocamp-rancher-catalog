@@ -58,6 +58,8 @@ agent:
 journald-rate-limit:
   image: 'camptocamp/journald-rate-limit:20170517-1'
   pid: 'host'
+  security_opt:
+  - apparmor=unconfined
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.start_once: 'true'
