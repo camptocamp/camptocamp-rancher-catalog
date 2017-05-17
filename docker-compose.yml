@@ -24,6 +24,8 @@ services:
     stop_signal: 'SIGHUP'
     volumes_from:
     - 'node-conf'
+    security_opt:
+    - apparmor=unconfined
     volumes:
     - /:/rootfs:ro
   
