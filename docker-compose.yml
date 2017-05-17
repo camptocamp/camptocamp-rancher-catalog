@@ -46,7 +46,7 @@ agent:
   image: 'camptocamp/rsyslog-bin:v0.1.4'
   labels:
     io.rancher.scheduler.global: 'true'
-    io.rancher.sidekicks: 'agent-conf'
+    io.rancher.sidekicks: 'agent-conf,journald-rate-limit'
   volumes_from:
   - 'agent-conf'
   volumes:
@@ -55,3 +55,14 @@ agent:
   - 'logging_agent:/var/spool/rsyslog'
   mem_limit: 52428800
 
+journald-rate-limit:
+  image: 'camptocamp/journald-rate-limit:20170517-1'
+  pid: 'host'
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.start_once: 'true'
+  volumes:
+  - '/etc/systemd:/etc/systemd'
+  environment:
+    BURST: '${JOURNALD_BURST}'
+    INTERVAL: '${JOURNALD_INTERVAL}'

@@ -30,6 +30,16 @@
       description: "When disk usage threshold is reached, log files are deleted, olders first"
       type: "string"
       default: "80"
+    - variable: "JOURNALD_BURST"
+      label: "host's journald RateLimitBurst setting"
+      description: "See journald.conf(5) for details"
+      type: "string"
+      default: "1000"
+    - variable: "JOURNALD_INTERVAL"
+      label: "host's journald RateLimitIntervalSec setting"
+      description: "See journald.conf(5) for details"
+      type: "string"
+      default: "30s"
 
 syslog:
   scale: 1
