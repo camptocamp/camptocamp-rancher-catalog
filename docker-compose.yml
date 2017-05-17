@@ -56,7 +56,7 @@ agent:
   mem_limit: 52428800
 
 journald-rate-limit:
-  image: 'camptocamp/journald-rate-limit:20170517-1'
+  image: 'camptocamp/journald-rate-limit:20170517-2'
   pid: 'host'
   security_opt:
   - apparmor=unconfined
