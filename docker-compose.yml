@@ -2,7 +2,7 @@
 version: '2'
 services:
   conplicity:
-    image: camptocamp/conplicity:0.26.0
+    image: camptocamp/conplicity:0.26.1
     command: [ "--hostname-from-rancher" ]
     environment:
       CONPLICITY_FULL_IF_OLDER_THAN: ${CONPLICITY_FULL_IF_OLDER_THAN}
