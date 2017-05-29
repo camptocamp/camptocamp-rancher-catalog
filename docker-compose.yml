@@ -122,7 +122,7 @@ services:
 
   # Puppetboard
   puppetboard:
-    image: camptocamp/puppetboard:0.2.2-1
+    image: camptocamp/puppetboard:0.2.2-git2f347fd6-1
     environment:
       PUPPETBOARD_OVERVIEW_FILTER: ${PUPPETBOARD_OVERVIEW_FILTER}
       PUPPETBOARD_INVENTORY_FACTS: ${PUPPETBOARD_INVENTORY_FACTS}
