@@ -3,7 +3,7 @@ version: "2"
 services:
   # Puppet CA
   puppetca:
-    image: camptocamp/puppetserver:2.7.2-5
+    image: camptocamp/puppetserver:2.7.2-6
     labels:
       io.rancher.sidekicks: mco-puppetca
     environment:
@@ -55,7 +55,7 @@ services:
 
   # Puppet Server
   puppet:
-    image: camptocamp/puppetserver:2.7.2-5
+    image: camptocamp/puppetserver:2.7.2-6
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
     environment:
