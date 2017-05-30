@@ -2,5 +2,5 @@
 name: Jenkins
 description: |
   Jenkins CI setup with global swarm nodes
-version: v2.46.2-3
+version: v2.46.3-1
 category: "Camptocamp services"
