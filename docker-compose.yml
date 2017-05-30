@@ -2,7 +2,7 @@ version: '2'
 
 services:
   slave:
-    image: camptocamp/jenkins-slave:3.3-6
+    image: camptocamp/jenkins-slave:3.4-2
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.scheduler.affinity:host_label: slave.jenkins=true
@@ -20,7 +20,7 @@ services:
       - /home/jenkins-slave/workspace:/home/jenkins-slave/workspace
 
   master:
-    image: jenkinsci/jenkins:2.46.2
+    image: jenkinsci/jenkins:2.46.3
     labels:
       io.rancher.scheduler.affinity:host_label: data.jenkins=true
       io.rancher.sidekicks: master-conf, master-metrics
@@ -63,7 +63,7 @@ services:
       - master-conf
 
   master-conf:
-    image: camptocamp/jenkins-conf:2.46.2-3
+    image: camptocamp/jenkins-conf:2.46.3-1
     environment:
       JENKINS_HOME: /var/jenkins_home
       JENKINS_PLUGINS: ${JENKINS_PLUGINS}
