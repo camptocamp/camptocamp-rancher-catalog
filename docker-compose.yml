@@ -1,0 +1,9 @@
+version: '2'
+services:
+  status:
+    image: camptocamp/rancher-ipsec-status:0.1.4
+      io.rancher.container.start_once: 'true'
+    labels:
+      cron.schedule: "@every 1 minute"
+    environment:
+      PUSHGATEWAY_URL: ${PUSHGATEWAY_URL}
