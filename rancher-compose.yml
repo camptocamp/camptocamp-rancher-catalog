@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: "IPsec Status"
-  version: "v0.3.0-1"
+  version: "v0.4.0-1"
   description: "IPsec Status"
   minimum_rancher_version: v1.2.0
   questions:
