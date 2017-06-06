@@ -1,0 +1,13 @@
+---
+.catalog:
+  name: "IPsec Status"
+  version: "v0.4.0-1"
+  description: "IPsec Status"
+  minimum_rancher_version: v1.2.0
+  questions:
+    - variable: "PUSHGATEWAY_URL"
+      label: "Prometheus Pushgateway URL"
+      description: "Prometheus Pushgateway service to push metrics to."
+      type: "string"
+      default: "http://pushgateway.metrics:9091"
+      required: true
