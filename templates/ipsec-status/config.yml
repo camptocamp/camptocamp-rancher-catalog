@@ -1,0 +1,5 @@
+name: IPsec Status
+description: |
+  Rancher IPsec Status Stack
+version: v0.1.4-1
+category: "Camptocamp services"
