@@ -17,6 +17,7 @@ It currently includes the following:
 * An [S3fs](https://github.com/s3fs-fuse/s3fs-fuse) stack to mount volumes from S3 buckets
 * An [S3proxy](https://github.com/andrewgaul/s3proxy) stack which can be composed with the S3fs template
 * [Upkick](https://github.com/camptocamp/upkick), a small tool for container unattended upgrades
+* An IPsec Status stack to send IPsec tunnel metrics to a Prometheus push gateway.
 
 
 ## How to use
