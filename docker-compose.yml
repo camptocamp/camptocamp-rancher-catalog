@@ -88,7 +88,7 @@ services:
       io.rancher.scheduler.affinity:host_label: monitoring=true
 
   prometheus-server-rules-conf:
-    image: camptocamp/prometheus-server-rules-conf:20170322-1
+    image: camptocamp/prometheus-server-rules-conf:without_prometheus-config-merger
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.scheduler.affinity:host_label: monitoring=true
