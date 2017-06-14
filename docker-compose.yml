@@ -74,7 +74,7 @@ services:
     image: infinityworks/prometheus-rancher-exporter:v0.22.52
   
   prometheus-targets-conf:
-    image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.1'
+    image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.2'
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
       io.rancher.container.hostname_override: container_name
