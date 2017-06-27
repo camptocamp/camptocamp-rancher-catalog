@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: "Conplicity"
-  version: "v0.26.1-2"
+  version: "v0.26.3"
   description: "Conplicity backup"
   uuid: conplicity-44
   minimum_rancher_version: v1.2.0
