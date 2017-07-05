@@ -3,13 +3,14 @@ version: "2"
 services:
   # Puppet CA
   puppetca:
-    image: camptocamp/puppetserver:2.7.2-6
+    image: camptocamp/puppetserver:2.7.2-7
     labels:
       io.rancher.sidekicks: mco-puppetca
     environment:
       CA_ONLY: 'true'
       CA_KEY: ${CA_KEY}
       CA_CRT: ${CA_CRT}
+      CA_WHITELIST: "${CA_WHITELIST}"
       AUTOSIGN_PSK: ${AUTOSIGN_PSK}
       DNS_ALT_NAMES: "${CA_DNS_ALT_NAMES}"
       JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
