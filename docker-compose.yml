@@ -76,7 +76,7 @@ services:
       - HIDE_SYS="false"
   
   prometheus-targets-conf:
-    image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.2'
+    image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.3'
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
       io.rancher.container.hostname_override: container_name
