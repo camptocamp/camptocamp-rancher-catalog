@@ -17,7 +17,7 @@ services:
 
   # MCollectived-puppetca
   mco-puppetca:
-    image: camptocamp/mcollectived-puppetca:1.1.4-3
+    image: camptocamp/mcollectived-puppetca:1.1.4-4
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       GITHUB_ORG: ${GITHUB_ORG}
@@ -75,7 +75,7 @@ services:
 
   # Mcollectived Puppet Node
   mco-puppet-node:
-    image: camptocamp/mcollectived-node:0.3.0-2
+    image: camptocamp/mcollectived-node:0.3.0-4
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       GITHUB_ORG: ${GITHUB_ORG}
@@ -90,7 +90,7 @@ services:
 
   # R10K
   r10k:
-    image: camptocamp/r10k:2.5.2-2
+    image: camptocamp/r10k:2.5.2-3
     labels:
       io.rancher.scheduler.global: true
     environment:
