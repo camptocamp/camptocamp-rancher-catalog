@@ -165,14 +165,6 @@ services:
       healthy_threshold: 2
       response_timeout: 2000
 
-  postgresql:
-    health_check:
-      port: 5432
-      interval: 10000
-      unhealthy_threshold: 3
-      healthy_threshold: 2
-      response_timeout: 2000
-
   puppetdb:
     health_check:
       port: 8080
