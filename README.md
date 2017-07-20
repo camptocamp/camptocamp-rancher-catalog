@@ -18,6 +18,7 @@ It currently includes the following:
 * An [S3proxy](https://github.com/andrewgaul/s3proxy) stack which can be composed with the S3fs template
 * [Upkick](https://github.com/camptocamp/upkick), a small tool for container unattended upgrades
 * An IPsec Status stack to send IPsec tunnel metrics to a Prometheus push gateway.
+* A [Terraboard](https://github.com/camptocamp/terraboard) stack
 
 
 ## How to use
@@ -29,7 +30,7 @@ In order to use this catalog, simply add it to your Rancher server (Admin → Se
 
 ## License
 
-Copyright (c) 2016 [Camptocamp](http://www.camptocamp.com).
+Copyright (c) 2017 [Camptocamp](http://www.camptocamp.com).
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
