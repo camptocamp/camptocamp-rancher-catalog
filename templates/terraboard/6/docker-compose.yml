@@ -1,0 +1,11 @@
+---
+version: "2"
+services:
+  terraboard:
+    image: camptocamp/terraboard:0.5.0
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      AWS_BUCKET: ${AWS_BUCKET}
+      BASE_URL: ${BASE_URL}
