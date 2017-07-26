@@ -10,10 +10,11 @@ services:
       AWS_BUCKET: ${AWS_BUCKET}
       BASE_URL: ${BASE_URL}
       DB_PASSWORD: mypassword
+      DB_HOST: postgresql
     links:
-      - db
+      - postgres:postgresql
 
-  db:
+  postgres:
     image: postgres:9.5
     environment:
       POSTGRES_USER: gorm
