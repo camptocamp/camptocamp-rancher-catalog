@@ -1,0 +1,26 @@
+---
+version: "2"
+services:
+  terraboard:
+    image: camptocamp/terraboard:0.9.0
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      AWS_BUCKET: ${AWS_BUCKET}
+      BASE_URL: ${BASE_URL}
+      DB_PASSWORD: mypassword
+    links:
+      - db
+
+  db:
+    image: postgres:9.5
+    environment:
+      POSTGRES_USER: gorm
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: gorm
+    volumes:
+      - tb-data:/var/lib/postgresql/data
+
+volumes:
+  tb-data: {}
