@@ -2,7 +2,7 @@
 version: "2"
 .catalog:
   name: "Terraboard"
-  version: "0.10.0-1"
+  version: "0.10.0-2"
   description: "Terraform States Dashboard"
   minimum_rancher_version: v1.2.0
   questions:
@@ -36,7 +36,7 @@ version: "2"
 services:
   terraboard:
     health_check:
-      port: 80
+      port: 8080
       interval: 10000
       unhealthy_threshold: 3
       healthy_threshold: 2
