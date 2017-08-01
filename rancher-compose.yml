@@ -2,7 +2,7 @@
 version: "2"
 .catalog:
   name: "Terraboard"
-  version: "0.10.1-1"
+  version: "0.11.0-1"
   description: "Terraform States Dashboard"
   minimum_rancher_version: v1.2.0
   questions:
@@ -26,6 +26,11 @@ version: "2"
       description: "The bucket used for Terraform states"
       type: "string"
       required: true
+    - variable: "AWS_DYNAMODB_TABLE"
+      label: "AWS_DYNAMODB_TABLE"
+      description: "The dynamodb table used to lock Terraform states"
+      type: "string"
+      required: false
     - variable: "BASE_URL"
       label: "BASE_URL"
       description: "BASE_URL"
