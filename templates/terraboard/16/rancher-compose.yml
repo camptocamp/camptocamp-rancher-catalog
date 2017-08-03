@@ -1,0 +1,48 @@
+---
+version: "2"
+.catalog:
+  name: "Terraboard"
+  version: "0.12.0-1"
+  description: "Terraform States Dashboard"
+  minimum_rancher_version: v1.2.0
+  questions:
+    - variable: "AWS_ACCESS_KEY_ID"
+      label: "AWS_ACCESS_KEY_ID"
+      description: "AWS_ACCESS_KEY_ID"
+      type: "string"
+      required: true
+    - variable: "AWS_SECRET_ACCESS_KEY"
+      label: "AWS_SECRET_ACCESS_KEY"
+      description: "AWS_SECRET_ACCESS_KEY"
+      type: "password"
+      required: true
+    - variable: "AWS_REGION"
+      label: "AWS_REGION"
+      description: "AWS_REGION"
+      type: "string"
+      required: true
+    - variable: "AWS_BUCKET"
+      label: "AWS_BUCKET"
+      description: "The bucket used for Terraform states"
+      type: "string"
+      required: true
+    - variable: "AWS_DYNAMODB_TABLE"
+      label: "AWS_DYNAMODB_TABLE"
+      description: "The dynamodb table used to lock Terraform states"
+      type: "string"
+      required: false
+    - variable: "BASE_URL"
+      label: "BASE_URL"
+      description: "BASE_URL"
+      type: "string"
+      required: false
+      default: "/"
+
+services:
+  terraboard:
+    health_check:
+      port: 8080
+      interval: 10000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
