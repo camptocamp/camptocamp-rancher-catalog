@@ -2,7 +2,7 @@
 version: "2"
 services:
   terraboard:
-    image: camptocamp/terraboard:0.12.0
+    image: camptocamp/terraboard:0.13.0
     environment:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
