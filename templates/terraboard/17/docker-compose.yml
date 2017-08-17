@@ -1,0 +1,18 @@
+---
+version: "2"
+services:
+  terraboard:
+    image: camptocamp/terraboard:0.13.0
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      AWS_BUCKET: ${AWS_BUCKET}
+      AWS_DYNAMODB_TABLE: ${AWS_DYNAMODB_TABLE}
+      BASE_URL: ${BASE_URL}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: postgresql
+    external_links:
+    - ${POSTGRES_SERVICE}:postgresql
