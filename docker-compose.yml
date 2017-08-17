@@ -10,19 +10,9 @@ services:
       AWS_BUCKET: ${AWS_BUCKET}
       AWS_DYNAMODB_TABLE: ${AWS_DYNAMODB_TABLE}
       BASE_URL: ${BASE_URL}
-      DB_PASSWORD: mypassword
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
       DB_HOST: postgresql
-    links:
-      - postgres:postgresql
-
-  postgres:
-    image: postgres:9.5
-    environment:
-      POSTGRES_USER: gorm
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: gorm
-    volumes:
-      - tb-data:/var/lib/postgresql/data
-
-volumes:
-  tb-data: {}
+    external_links:
+    - ${POSTGRES_SERVICE}:postgresql

@@ -37,6 +37,28 @@ version: "2"
       type: "string"
       required: false
       default: "/"
+    - variable: "POSTGRES_SERVICE"
+      label: "PostgreSQL"
+      description: "PostgreSQL Service"
+      type: "service"
+      required: true
+    - variable: "DB_USER"
+      label: "DB_USER"
+      description: "Database User"
+      type: "string"
+      required: true
+      default: "terraboard"
+    - variable: "DB_PASSWORD"
+      label: "DB_PASSWORD"
+      description: "Database Password"
+      type: "password"
+      required: true
+    - variable: "DB_NAME"
+      label: "DB_NAME"
+      description: "Database Name"
+      type: "string"
+      required: true
+      default: "terraboard"
 
 services:
   terraboard:
