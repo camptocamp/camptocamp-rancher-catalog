@@ -51,7 +51,6 @@ services:
   
   pushgateway:
     labels:
-      io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
       io.rancher.scheduler.affinity:host_label: monitoring=true
       prometheus_port: '9091'

@@ -52,6 +52,9 @@ services:
   statsd:
     scale: 1
     retain_ip: true
+  pushgateway:
+    scale: 1
+    retain_ip: true
   rancher:
     scale: 1
   prometheus-server:
