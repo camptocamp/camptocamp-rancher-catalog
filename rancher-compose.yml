@@ -47,8 +47,6 @@ version: '2'
       required: true
 
 services:
-  collectd:
-    scale: 1
   statsd:
     scale: 1
     retain_ip: true

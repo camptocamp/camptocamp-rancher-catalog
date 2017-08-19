@@ -153,16 +153,3 @@ services:
       haproxy_stats_port: '8008'
       haproxy_stats_id: 'prometheus'
       haproxy_stats_path: '/stats'
-  
-  # keep this around for backwards compatibility, remove once all the
-  # collectd-based images have switched to write_prometheus.
-  collectd:
-    labels:
-      io.rancher.scheduler.affinity:host_label: monitoring=true
-      prometheus_port: '9103'
-      io.rancher.container.hostname_override: container_name
-    command:
-    - -collectd.listen-address=:25826
-    - -log.format=logger:stdout?json=true
-    image: 'prom/collectd-exporter:0.3.1'
-  
