@@ -13,7 +13,7 @@ services:
     pid: "host"
     command:
     - --port=9104
-  
+
   node:
     labels:
       io.rancher.scheduler.global: 'true'
@@ -28,7 +28,7 @@ services:
     - apparmor=unconfined
     volumes:
     - /:/rootfs:ro
-  
+
   node-conf:
     labels:
       io.rancher.scheduler.global: 'true'
@@ -39,7 +39,7 @@ services:
     command: '-version'
     volumes:
       - /confd
-  
+
   statsd:
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
@@ -48,7 +48,7 @@ services:
       prometheus_port: '9103'
     image: 'camptocamp/statsd-collectd:v0.2.2'
     stop_signal: 'SIGHUP'
-  
+
   pushgateway:
     labels:
       io.rancher.container.hostname_override: container_name
@@ -62,7 +62,7 @@ services:
     command:
     - -persistence.file=/state/pushgateway.state
     - -log.format=logger:stdout?json=true
-  
+
   rancher:
     labels:
       io.rancher.container.create_agent: true
@@ -73,7 +73,7 @@ services:
     image: infinityworks/prometheus-rancher-exporter:v0.22.52
     environment:
       - HIDE_SYS="false"
-  
+
   prometheus-targets-conf:
     image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.3'
     labels:
@@ -81,7 +81,7 @@ services:
       io.rancher.container.hostname_override: container_name
     volumes:
       - 'metrics_prom_targets:/etc/prometheus-targets/'
-  
+
   prometheus-server-conf:
     image: camptocamp/prometheus-server-conf:20170321-1
     labels:
@@ -113,7 +113,7 @@ services:
     - -storage.local.max-chunks-to-persist=131072
     - -storage.local.memory-chunks=262144
     - -log.format=logger:stdout?json=true
-  
+
   prometheus-auth-conf:
     image: 'camptocamp/prometheus-auth-conf:v0.1.3'
     labels:
@@ -128,7 +128,7 @@ services:
     volumes:
       - '/etc/haproxy'
       - '/entrypoint'
-  
+
   prometheus-auth:
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
@@ -148,7 +148,7 @@ services:
     labels:
       io.rancher.container.agent.role: environmentAdmin
       io.rancher.scheduler.affinity:host_label: monitoring=true
-      io.rancher.container.hostname_override: container_name  		
+      io.rancher.container.hostname_override: container_name
       io.rancher.container.create_agent: 'true'
       haproxy_stats_port: '8008'
       haproxy_stats_id: 'prometheus'

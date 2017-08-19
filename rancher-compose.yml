@@ -72,18 +72,18 @@ services:
       config: |-
         global
             log 10.42.24.10:514 local2
-  
+
         defaults
             log           global
             mode      http
             option    httplog
             log-tag   haproxy-promssl
-  
+
         listen stats
             bind *:8008
             stats enable
             stats uri /stats
-  
+
       default_cert: ${SSL_CERTIFICATE}
       port_rules:
       - protocol: ${PROMETHEUS_SCHEME}
