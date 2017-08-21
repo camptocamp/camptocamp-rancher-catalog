@@ -43,7 +43,7 @@ version: '2'
       label: "Grafana URL"
       description: "URL of Grafana instance, which will be added to outgoing CORS headers."
       type: "string"
-      default: "https://grafana.camptocamp.net"
+      default: "https://grafana.camptocamp.com"
       required: true
 
 services:
