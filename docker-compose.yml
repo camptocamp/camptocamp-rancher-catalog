@@ -5,7 +5,7 @@ services:
       io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
       prometheus_port: '9104'
-    image: google/cadvisor:v0.25.0
+    image: google/cadvisor:v0.26.1
     volumes:
     - /var/run:/var/run:rw
     - /sys:/sys:ro
@@ -56,7 +56,7 @@ services:
       prometheus_port: '9091'
       ssh_tunnel.port: '9091'
       io.rancher.container.requested_ip: 10.42.24.102
-    image: 'prom/pushgateway:v0.3.1'
+    image: 'prom/pushgateway:v0.4.0'
     volumes:
     - 'metrics_pushgw:/state'
     command:
