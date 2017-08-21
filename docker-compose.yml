@@ -74,41 +74,51 @@ services:
     environment:
       - HIDE_SYS="false"
 
-  prometheus-targets-conf:
-    image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.3'
+  prometheus-config-merger:
+    image: camptocamp/prometheus-config-merger:0.1.0
+    network_mode: container:prometheus-server
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
-      io.rancher.container.hostname_override: container_name
     volumes:
-      - 'metrics_prom_targets:/etc/prometheus-targets/'
+      - 'metrics_prom_confdir:/etc/prometheus/'
+
+  prometheus-rancher-metadata-conf:
+    image: camptocamp/prometheus-rancher-metadata-conf:v0.3.0
+    labels:
+      io.rancher.scheduler.affinity:host_label: monitoring=true
+    volumes:
+      - 'metrics_prom_confdir:/etc/prometheus/'
 
   prometheus-server-conf:
-    image: camptocamp/prometheus-server-conf:20170321-1
+    image: camptocamp/prometheus-server-conf:20170821-3
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.scheduler.affinity:host_label: monitoring=true
+    volumes:
+      - 'metrics_prom_confdir:/etc/prometheus/'
 
   prometheus-server-rules-conf:
-    image: camptocamp/prometheus-server-rules-conf:without_prometheus-config-merger
+    image: camptocamp/prometheus-server-rules-conf:20170821-3
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.scheduler.affinity:host_label: monitoring=true
+    volumes:
+      - 'metrics_prom_confdir:/etc/prometheus/'
 
   prometheus-server:
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
-      io.rancher.sidekicks: prometheus-server-conf,prometheus-server-rules-conf
+      io.rancher.sidekicks: prometheus-server-conf,prometheus-rancher-metadata-conf,prometheus-server-rules-conf,prometheus-config-merger
       #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
       prometheus_port: '9090'
     image: prom/prometheus:v1.7.1
     volumes:
-      - 'metrics_prom_targets:/etc/prometheus-targets/'
+      - 'metrics_prom_confdir:/etc/prometheus/'
       - 'metrics_tsdb:/prometheus'
     volumes_from:
-    - prometheus-server-conf
     - prometheus-server-rules-conf
     command:
-    - -config.file=/etc/prometheus-config/prometheus.yml
+    - -config.file=/etc/prometheus/prometheus.yml
     - -storage.local.path=/prometheus
     - -storage.local.max-chunks-to-persist=131072
     - -storage.local.memory-chunks=262144
