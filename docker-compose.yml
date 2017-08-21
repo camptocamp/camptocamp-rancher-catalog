@@ -73,6 +73,7 @@ services:
     image: infinityworks/prometheus-rancher-exporter:v0.22.52
     environment:
       - HIDE_SYS="false"
+      - LOG_LEVEL=fatal
 
   prometheus-config-merger:
     image: camptocamp/prometheus-config-merger:0.1.0
