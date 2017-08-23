@@ -57,8 +57,6 @@ services:
     scale: 1
   prometheus-server:
     scale: 1
-  prometheus-auth:
-    scale: 1
   prometheus:
     scale: 1
     health_check:
@@ -67,14 +65,16 @@ services:
       unhealthy_threshold: 3
       healthy_threshold: 2
       response_timeout: 2000
+      strategy: recreate
     start_on_create: true
     lb_config:
+      certs: []
       config: |-
         global
             log 10.42.24.10:514 local2
 
         defaults
-            log           global
+            log       global
             mode      http
             option    httplog
             log-tag   haproxy-promssl
@@ -84,9 +84,22 @@ services:
             stats enable
             stats uri /stats
 
+        userlist prometheus
+            group prometheus
+            user ${PROMETHEUS_USERNAME} insecure-password ${PROMETHEUS_PASSWORD} groups prometheus
+
+        backend 9443_
+            acl valid_user http_auth(prometheus)
+            http-request auth realm Prometheus if !valid_user
+            http-request deny if METH_POST { path_beg /-/ }
+            acl is_delete method DELETE #Pre-defined ACL METH_DELETE does not exist in haproxy 1.6
+            http-request deny if is_delete
+            rspadd Access-Control-Allow-Origin:\ ${GRAFANA_URL}
+            rspadd Access-Control-Allow-Credentials:\ true
+
       default_cert: ${SSL_CERTIFICATE}
       port_rules:
       - protocol: ${PROMETHEUS_SCHEME}
-        service: prometheus-auth
+        service: prometheus-server
         source_port: ${PROMETHEUS_PORT}
-        target_port: 8080
+        target_port: 9090
