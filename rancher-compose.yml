@@ -41,16 +41,68 @@ version: '2'
       default: "https"
 
 services:
+  containers:
+    health_check:
+      port: 9104
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/metrics" "HTTP/1.0"
+  node:
+    health_check:
+      port: 9103
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/metrics" "HTTP/1.0"
   statsd:
     scale: 1
     retain_ip: true
+    health_check:
+      port: 9103
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/metrics" "HTTP/1.0"
   pushgateway:
     scale: 1
     retain_ip: true
+    health_check:
+      port: 9091
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/metrics" "HTTP/1.0"
   rancher:
     scale: 1
+    health_check:
+      port: 9173
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/metrics" "HTTP/1.0"
   prometheus-server:
     scale: 1
+    health_check:
+      port: 9090
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      initializing_timeout: 120000
+      reinitializing_timeout: 120000
+      strategy: recreate
+      request_line: GET "/metrics" "HTTP/1.0"
   prometheus:
     scale: 1
     health_check:
@@ -99,3 +151,11 @@ services:
         target_port: 9090
   haproxy:
     scale: 1
+    health_check:
+      port: 9101
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/metrics" "HTTP/1.0"
