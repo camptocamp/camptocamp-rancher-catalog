@@ -3,7 +3,7 @@ version: "2"
 services:
   # Puppet CA
   puppetca:
-    image: camptocamp/puppetserver:2.7.2-8
+    image: camptocamp/puppetserver:2.7.2-9
     labels:
       io.rancher.sidekicks: mco-puppetca
     environment:
@@ -14,6 +14,8 @@ services:
       AUTOSIGN_PSK: ${AUTOSIGN_PSK}
       DNS_ALT_NAMES: "${CA_DNS_ALT_NAMES}"
       JAVA_ARGS: ${PUPPETCA_JAVA_ARGS}
+    volumes:
+    - puppetca:/etc/puppetlabs/puppet/ssl/ca
 
   # MCollectived-puppetca
   mco-puppetca:
@@ -56,7 +58,7 @@ services:
 
   # Puppet Server
   puppet:
-    image: camptocamp/puppetserver:2.7.2-8
+    image: camptocamp/puppetserver:2.7.2-9
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
     environment:
