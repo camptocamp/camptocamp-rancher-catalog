@@ -5,7 +5,7 @@ services:
       io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
       prometheus_port: '9104'
-    image: google/cadvisor:v0.26.1
+    image: blep/cadvisor_bugfix1556:v0.26.1 # google/cadvisor:v0.26.1 cf https://github.com/google/cadvisor/issues/1556
     volumes:
     - /var/run:/var/run:rw
     - /sys:/sys:ro
