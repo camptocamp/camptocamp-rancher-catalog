@@ -6,6 +6,7 @@ services:
     image: camptocamp/puppetserver:2.7.2-10
     labels:
       io.rancher.sidekicks: mco-puppetca
+      io.rancher.scheduler.affinity:host_label: data.puppetca=true
     environment:
       CA_ONLY: 'true'
       CA_KEY: ${CA_KEY}
