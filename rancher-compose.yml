@@ -87,8 +87,7 @@ services:
             acl valid_user http_auth(prometheus)
             http-request auth realm Prometheus if !valid_user
             http-request deny if METH_POST { path_beg /-/ }
-            acl is_delete method DELETE #Pre-defined ACL METH_DELETE does not exist in haproxy 1.6
-            http-request deny if is_delete
+            http-request deny if { method DELETE } #Pre-defined ACL METH_DELETE does not exist in haproxy 1.6
             rspadd Access-Control-Allow-Origin:\ *
             rspadd Access-Control-Allow-Credentials:\ true
 
