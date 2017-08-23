@@ -34,7 +34,7 @@ services:
 
   # PuppetDB
   puppetdb:
-    image: camptocamp/puppetdb:4.3.2-1
+    image: camptocamp/puppetdb:4.4.0-1
     environment:
       DNS_ALT_NAMES: ${DB_DNS_ALT_NAMES}
       ENABLE_HTTP: 'true'
@@ -77,7 +77,7 @@ services:
 
   # Mcollectived Puppet Node
   mco-puppet-node:
-    image: camptocamp/mcollectived-node:0.3.0-4
+    image: camptocamp/mcollectived-node:0.3.0-5
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       GITHUB_ORG: ${GITHUB_ORG}
