@@ -72,6 +72,7 @@ services:
       config: |-
         global
             log /dev/log local2 debug
+            stats socket /run/haproxy/admin.sock mode 660 level admin
 
         defaults
             log       global
@@ -103,3 +104,5 @@ services:
         service: prometheus-server
         source_port: ${PROMETHEUS_PORT}
         target_port: 9090
+  haproxy:
+    scale: 1

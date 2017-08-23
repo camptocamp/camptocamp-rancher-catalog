@@ -134,8 +134,18 @@ services:
       io.rancher.scheduler.affinity:host_label: monitoring=true
       io.rancher.container.hostname_override: container_name
       io.rancher.container.create_agent: 'true'
-      haproxy_stats_port: '8008'
-      haproxy_stats_id: 'prometheus'
-      haproxy_stats_path: '/stats'
     volumes:
       - /dev/log:/var/lib/haproxy/dev/log
+      - metrics_haproxy_runtime:/run/haproxy
+
+  haproxy:
+    image: prom/haproxy-exporter:v0.7.1
+    volumes:
+      - metrics_haproxy_runtime:/run/haproxy
+    command:
+      - -haproxy.scrape-uri=unix:/run/haproxy/admin.sock
+      - -log.format=logger:stdout?json=true
+      - -haproxy.server-metric-fields=2,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,30,33,35,38,39,40,41,42,43,44,48,49,50,58,59,60,61,79
+    labels:
+      io.rancher.scheduler.affinity:host_label: monitoring=true
+      prometheus_port: '9101'
