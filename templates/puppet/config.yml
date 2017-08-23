@@ -2,5 +2,5 @@
 name: Puppet
 description: |
   Full Puppet Master setup
-version: v2.7.2-19
+version: v2.7.2-20
 category: "Camptocamp services"
