@@ -71,7 +71,7 @@ services:
       certs: []
       config: |-
         global
-            log 10.42.24.10:514 local2
+            log /dev/log local2 debug
 
         defaults
             log       global

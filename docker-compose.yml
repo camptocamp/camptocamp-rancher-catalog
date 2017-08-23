@@ -137,3 +137,5 @@ services:
       haproxy_stats_port: '8008'
       haproxy_stats_id: 'prometheus'
       haproxy_stats_path: '/stats'
+    volumes:
+      - /dev/log:/var/lib/haproxy/dev/log
