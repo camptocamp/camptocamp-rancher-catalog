@@ -83,7 +83,7 @@ services:
             group prometheus
             user ${PROMETHEUS_USERNAME} insecure-password ${PROMETHEUS_PASSWORD} groups prometheus
 
-        backend 9443_
+        backend ${PROMETHEUS_PORT}_
             acl valid_user http_auth(prometheus)
             http-request auth realm Prometheus if !valid_user
             http-request deny if METH_POST { path_beg /-/ }
