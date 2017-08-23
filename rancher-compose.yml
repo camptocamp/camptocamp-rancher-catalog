@@ -39,12 +39,6 @@ version: '2'
         - "https"
         - "http"
       default: "https"
-    - variable: "GRAFANA_URL"
-      label: "Grafana URL"
-      description: "URL of Grafana instance, which will be added to outgoing CORS headers."
-      type: "string"
-      default: "https://grafana.camptocamp.com"
-      required: true
 
 services:
   statsd:
@@ -95,7 +89,7 @@ services:
             http-request deny if METH_POST { path_beg /-/ }
             acl is_delete method DELETE #Pre-defined ACL METH_DELETE does not exist in haproxy 1.6
             http-request deny if is_delete
-            rspadd Access-Control-Allow-Origin:\ ${GRAFANA_URL}
+            rspadd Access-Control-Allow-Origin:\ *
             rspadd Access-Control-Allow-Credentials:\ true
 
       default_cert: ${SSL_CERTIFICATE}
