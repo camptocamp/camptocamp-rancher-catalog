@@ -20,7 +20,7 @@ services:
       io.rancher.container.hostname_override: container_name
       io.rancher.sidekicks: 'node-conf'
       prometheus_port: '9103'
-    image: 'camptocamp/node-collectd:v0.2.3'
+    image: 'camptocamp/node-collectd:v0.3.0'
     stop_signal: 'SIGHUP'
     volumes_from:
     - 'node-conf'
@@ -46,7 +46,7 @@ services:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.requested_ip: 10.42.24.101
       prometheus_port: '9103'
-    image: 'camptocamp/statsd-collectd:v0.2.2'
+    image: 'camptocamp/statsd-collectd:v0.3.0'
     stop_signal: 'SIGHUP'
 
   pushgateway:
