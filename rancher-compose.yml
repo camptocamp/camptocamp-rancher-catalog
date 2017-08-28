@@ -2,7 +2,7 @@
 version: "2"
 .catalog:
   name: "Puppet"
-  version: "v2.7.2-21"
+  version: "v2.7.2-22"
   description: "Puppet Master stack"
   minimum_rancher_version: v1.2.0
   questions:
@@ -95,11 +95,6 @@ version: "2"
       label: "Puppet CA certificate"
       description: "Puppet CA certificate"
       type: "multiline"
-      required: false
-    - variable: "CA_WHITELIST"
-      label: "CA Whitelisted Certificates"
-      description: "Comma-separated list of certificates allowed to query the CA API"
-      type: "string"
       required: false
     - variable: "WEBHOOK_SECRET"
       label: "Webhook secret"
