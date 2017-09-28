@@ -1,0 +1,5 @@
+name: Gitea
+description: |
+  Git with a cup of tea
+version: v1.2.0-rc3
+category: "Camptocamp services"
