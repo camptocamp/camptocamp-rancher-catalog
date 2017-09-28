@@ -16,7 +16,7 @@ services:
       - gitea-conf
 
   gitea-conf:
-    image: camptocamp/gitea-conf:20170928-3
+    image: camptocamp/gitea-conf:20170928-4
     labels:
       io.rancher.container.start_once: 'true'
     environment:
