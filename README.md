@@ -1,63 +1,63 @@
-Rancher catalog template for Gogs
-=================================
+Rancher catalog template for Gitea
+==================================
 
-[Gogs](https://gogs.io) A painless self-hosted Git service.
+[Gitea](https://gitea.io) - Git with a cup of tea
 
 Parameters
 ----------
 
-### GOGS_DATABASE_SERVICE
+### GITEA_DATABASE_SERVICE
 
 The database service to use.
 
-### GOGS_SERVER_SSH_PORT
+### GITEA_SERVER_SSH_PORT
 
-SSH port to access Gogs cli.
+SSH port to access Gitea cli.
 
-### GOGS_SERVER_DOMAIN
+### GITEA_SERVER_DOMAIN
 
 Domain name of your server.
 
-### GOGS_SERVICE_ENABLE_NOTIFY_MAIL
+### GITEA_SERVICE_ENABLE_NOTIFY_MAIL
 
 Enable this to send e-mail to watchers of repository when something happens like creating issues, requires Mailer to be enabled.
 
-### GOGS_SERVICE_ENABLE_REVERSE_PROXY_AUTHENTICATION
+### GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTHENTICATION
 
-Gogs considers users authenticated if X-Forwarded-User is set.
+Gitea considers users authenticated if X-Forwarded-User is set.
 
-### GOGS_SERVICE_ENABLE_REVERSE_PROXY_AUTO_REGISTRATION
+### GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTO_REGISTRATION
 
-Enable this if you want gogs to create users if REVERSE_PROXY_AUTHENTICATION is enabled.
+Enable this if you want gitea to create users if REVERSE_PROXY_AUTHENTICATION is enabled.
 
-### GOGS_SERVICE_DISABLE_REGISTRATION
+### GITEA_SERVICE_DISABLE_REGISTRATION
 
 Enable this if you want only administrators to create accounts.
 
-### GOGS_SERVICE_SHOW_REGISTRATION_BUTTON
+### GITEA_SERVICE_SHOW_REGISTRATION_BUTTON
 
 Disable this if you do not want users to create new accounts by clicking on the button.
 
-### GOGS_MAILER_ENABLED
+### GITEA_MAILER_ENABLED
 
 Enable this to use a mail service.
 
-### GOGS_MAILER_FROM
+### GITEA_MAILER_FROM
 
 Mail from address, RFC 5322. This can be just an email address, or the “Name” <email@example.com> format.
 
-### GOGS_MAILER_HOST
+### GITEA_MAILER_HOST
 
 Note, if the port ends with '465', SMTPS will be used. Using STARTTLS on port 587 is recommended per RFC 6409. If the server supports STARTTLS it will always be used.)
 
-### GOGS_MAILER_USER
+### GITEA_MAILER_USER
 
 User name of mailer (usually just your e-mail address).
 
-### GOGS_MAILER_PASSWD
+### GITEA_MAILER_PASSWD
 
 Password of mailer.
 
-### GOGS_MAILER_SKIP_VERIFY
+### GITEA_MAILER_SKIP_VERIFY
 
 Do not verify the self-signed certificates.
