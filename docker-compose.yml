@@ -3,7 +3,7 @@ version: "2"
 services:
   # Puppet CA
   puppetca:
-    image: camptocamp/puppetserver:2.7.2-11
+    image: camptocamp/puppetserver:2.8.0-2
     labels:
       io.rancher.sidekicks: mco-puppetca
       io.rancher.scheduler.affinity:host_label: data.puppetca=true

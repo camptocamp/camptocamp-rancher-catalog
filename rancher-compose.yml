@@ -2,7 +2,7 @@
 version: "2"
 .catalog:
   name: "Puppet"
-  version: "v2.7.2-22"
+  version: "v2.7.2-23"
   description: "Puppet Master stack"
   minimum_rancher_version: v1.2.0
   questions:
