@@ -13,6 +13,7 @@ services:
     pid: "host"
     command:
     - --port=9104
+    - --disable_metrics=disk,tcp,udp
 
   node:
     labels:
