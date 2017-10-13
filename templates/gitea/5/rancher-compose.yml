@@ -1,0 +1,87 @@
+---
+version: "2"
+.catalog:
+  name: "Gitea"
+  version: "v1.2.0-1"
+  description: "Git with a cup of tea"
+  minimum_rancher_version: "v1.2.0"
+  questions:
+    - variable: "GITEA_DATABASE_SERVICE"
+      label: "Gitea Database Service"
+      description: "The database service to use"
+      required: true
+      type: "service"
+    - variable: "GITEA_SERVER_SSH_PORT"
+      label: "Gitea Ssh Port"
+      description: "ssh port to access gitea cli"
+      required: true
+      default: "10022"
+      type: "int"
+    - variable: "GITEA_SERVER_DOMAIN"
+      label: "Domain name of your server."
+      description: "Domain name of your server."
+      required: true
+      type: "string"
+    - variable: "GITEA_SERVICE_ENABLE_NOTIFY_MAIL"
+      label: "Gitea mail notify watchers"
+      description: "Enable this to send e-mail to watchers of repository when something happens like creating issues, requires Mailer to be enabled."
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTHENTICATION"
+      label: "Gitea considers users authenticated if X-Forwarded-User is set"
+      description: "Enable this if you want to use external authentication with a reverse proxy"
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTO_REGISTRATION"
+      label: "Gitea auto-creates users using X-Forwarded-User"
+      description: "Enable this if you want gitea to create users if REVERSE_PROXY_AUTHENTICATION is enabled"
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GITEA_SERVICE_DISABLE_REGISTRATION"
+      label: "Gitea enable registration of new users"
+      description: "Enable this if you want only administrators to create accounts"
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GITEA_SERVICE_SHOW_REGISTRATION_BUTTON"
+      label: "Gitea show registration button on login page"
+      description: "Disable this if you do not want users to create new accounts by clicking on the button"
+      required: true
+      default: "true"
+      type: "boolean"
+    - variable: "GITEA_MAILER_ENABLED"
+      label: "Gitea mail enabled"
+      description: "Enable this to use a mail service."
+      required: true
+      default: "false"
+      type: "boolean"
+    - variable: "GITEA_MAILER_FROM"
+      label: "Gitea mailer from"
+      description: "Mail from address, RFC 5322. This can be just an email address, or the “Name” <email@example.com> format."
+      required: false
+      default: "mail@gitea.example.com"
+      type: "string"
+    - variable: "GITEA_MAILER_HOST"
+      label: "Gitea SMTP mail host address and port (example: smtp.gitea.io:587)"
+      description: "Note, if the port ends with '465', SMTPS will be used. Using STARTTLS on port 587 is recommended per RFC 6409. If the server supports STARTTLS it will always be used.)"
+      required: false
+      default: "smtp.example.com:25"
+      type: "string"
+    - variable: "GITEA_MAILER_USER"
+      label: "Gitea mailer user"
+      description: "User name of mailer (usually just your e-mail address)."
+      required: false
+      type: "string"
+    - variable: "GITEA_MAILER_PASSWD"
+      label: "Gitea mailer password"
+      description: "Password of mailer."
+      required: false
+      type: "password"
+    - variable: "GITEA_MAILER_SKIP_VERIFY"
+      label: "Gitea mailer skip verify self signed certificates"
+      description: "Do not verify the self-signed certificates."
+      default: false
+      type: "boolean"
