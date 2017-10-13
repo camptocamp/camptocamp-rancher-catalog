@@ -2,7 +2,7 @@
 version: "2"
 services:
   gitea:
-    image: gitea/gitea:1.2.0-rc3
+    image: gitea/gitea:1.2.0
     environment:
       GITEA_CUSTOM: /app/gitea/custom
     labels:

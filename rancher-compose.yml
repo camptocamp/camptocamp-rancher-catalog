@@ -2,9 +2,8 @@
 version: "2"
 .catalog:
   name: "Gitea"
-  version: "v1.2.0-rc3-4"
+  version: "v1.2.0-1"
   description: "Git with a cup of tea"
-  uuid: "gitea-4"
   minimum_rancher_version: "v1.2.0"
   questions:
     - variable: "GITEA_DATABASE_SERVICE"
