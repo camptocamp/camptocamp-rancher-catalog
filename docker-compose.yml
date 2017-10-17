@@ -127,7 +127,7 @@ services:
     - -log.format=logger:stdout?json=true
 
   prometheus:
-    image: rancher/lb-service-haproxy:v0.7.6
+    image: rancher/lb-service-haproxy:v0.7.9
     ports:
       - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}/tcp
     labels:
