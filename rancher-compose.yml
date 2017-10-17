@@ -159,3 +159,11 @@ services:
       response_timeout: 2000
       strategy: recreate
       request_line: HEAD "/" "HTTP/1.0"
+
+  collectd-conf:
+    scale: 1
+    start_on_create: true
+
+  collectd:
+    scale: 1
+    start_on_create: true

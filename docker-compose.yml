@@ -150,3 +150,25 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
       prometheus_port: '9101'
+
+  collectd-confd:
+    image: camptocamp/confd:v0.12.0-alpha3
+    entrypoint:
+    - /confd/confd
+    volumes:
+    - /confd
+    command:
+    - -version
+    labels:
+      io.rancher.container.pull_image: always
+      io.rancher.container.start_once: 'true'
+
+  collectd:
+    image: camptocamp/rancher-network-check:20171016-1
+    volumes_from:
+    - confd
+    labels:
+      io.rancher.sidekicks: confd
+      io.rancher.container.pull_image: always
+      prometheus_port: '9103'
+      io.rancher.scheduler.global: 'true'
