@@ -166,9 +166,9 @@ services:
   collectd:
     image: camptocamp/rancher-network-check:20171016-1
     volumes_from:
-    - confd
+    - collectd-confd
     labels:
-      io.rancher.sidekicks: confd
+      io.rancher.sidekicks: collectd-confd
       io.rancher.container.pull_image: always
       prometheus_port: '9103'
       io.rancher.scheduler.global: 'true'
