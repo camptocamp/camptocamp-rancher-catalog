@@ -1,0 +1,36 @@
+---
+version: "2"
+services:
+  gitea:
+    image: gitea/gitea:1.2.1
+    environment:
+      GITEA_CUSTOM: /app/gitea/custom
+    labels:
+      io.rancher.scheduler.affinity:host_label: data.gitea=true
+      io.rancher.sidekicks: gitea-conf
+    external_links:
+      - ${GITEA_DATABASE_SERVICE}:db
+    volumes:
+      - gitea-data:/data
+    volumes_from:
+      - gitea-conf
+
+  gitea-conf:
+    image: camptocamp/gitea-conf:20170928-4
+    labels:
+      io.rancher.container.start_once: 'true'
+    environment:
+      GITEA_SERVER_DOMAIN: ${GITEA_SERVER_DOMAIN}
+      GITEA_SERVER_ROOT_URL: https://${GITEA_SERVER_DOMAIN}/
+      GITEA_SERVER_SSH_PORT: ${GITEA_SERVER_SSH_PORT}
+      GITEA_SERVICE_ENABLE_NOTIFY_MAIL: ${GITEA_SERVICE_ENABLE_NOTIFY_MAIL}
+      GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTHENTICATION: ${GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTHENTICATION}
+      GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTO_REGISTRATION: ${GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTO_REGISTRATION}
+      GITEA_SERVICE_DISABLE_REGISTRATION: ${GITEA_SERVICE_DISABLE_REGISTRATION}
+      GITEA_SERVICE_SHOW_REGISTRATION_BUTTON: ${GITEA_SERVICE_HOW_REGISTRATION_BUTTON}
+      GITEA_MAILER_ENABLED: ${GITEA_MAILER_ENABLED}
+      GITEA_MAILER_FROM: ${GITEA_MAILER_FROM}
+      GITEA_MAILER_HOST: ${GITEA_MAILER_HOST}
+      GITEA_MAILER_USER: ${GITEA_MAILER_USER}
+      GITEA_MAILER_PASSWD: ${GITEA_MAILER_PASSWD}
+      GITEA_MAILER_SKIP_VERIFY: ${GITEA_MAILER_SKIP_VERIFY}
