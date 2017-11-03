@@ -68,6 +68,7 @@ services:
       - OS_REGION_NAME=${OS_REGION_NAME}
     labels:
       io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label: ${PGHOARD_LABEL}
     links:
       - lb
     volumes:

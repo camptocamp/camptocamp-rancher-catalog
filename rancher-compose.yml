@@ -1,9 +1,8 @@
 version: '2'
 .catalog:
   name: "Posgresql-cluster"
-  version: "v42"
+  version: "v43"
   description: "PostgreSQL Cluster"
-  uuid: postgres-cluster-42
   minimum_rancher_version: v1.2.0
   questions:
     - variable: "POSTGRES_IMAGE"
@@ -60,6 +59,12 @@ version: '2'
     - variable: "LB_LABEL"
       label: "Load Balancer label"
       description: "Load Balancer label"
+      type: "string"
+      default: "database=true"
+      required: true
+    - variable: "PGHOARD_LABEL"
+      label: "PGHoard label"
+      description: "PGHoard label"
       type: "string"
       default: "database=true"
       required: true
