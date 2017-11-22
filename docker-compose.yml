@@ -37,7 +37,7 @@ cleanup:
     - 'logging_logs:/var/log'
 
 agent-conf:
-  image: 'camptocamp/rsyslog-agent-conf:v0.2.1'
+  image: 'camptocamp/rsyslog-agent-conf:v0.2.2'
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.start_once: 'true'
@@ -55,6 +55,7 @@ agent:
   - '/run/log/journal:/run/log/journal:ro'
   - '/var/log:/hostfs/var/log:ro'
   - 'logging_agent:/var/spool/rsyslog'
+  - 'logging_devlog:/logging_agent/dev/'
   mem_limit: 52428800
 
 journald-rate-limit:
