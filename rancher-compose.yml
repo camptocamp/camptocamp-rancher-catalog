@@ -2,7 +2,7 @@
 version: "2"
 .catalog:
   name: "Terraboard"
-  version: "0.13.0-1"
+  version: "0.14.1-1"
   description: "Terraform States Dashboard"
   minimum_rancher_version: v1.2.0
   questions:
@@ -29,6 +29,11 @@ version: "2"
     - variable: "AWS_DYNAMODB_TABLE"
       label: "AWS_DYNAMODB_TABLE"
       description: "The dynamodb table used to lock Terraform states"
+      type: "string"
+      required: false
+    - variable: "AWS_FILE_EXTENSION"
+      label: "AWS_FILE_EXTENSION"
+      description: "The file extension to detect state files in the S3 bucket"
       type: "string"
       required: false
     - variable: "BASE_URL"
