@@ -1,0 +1,60 @@
+lb:
+  image: camptocamp/postgres-proxy-rancher:20160921-1
+  expose:
+    - 5432:5432/tcp
+    - 5433:5433/tcp
+  labels:
+    io.rancher.container.pull_image: always
+  links:
+    - postgres:postgres
+
+postgres:
+  image: ${POSTGRES_IMAGE}
+  entrypoint: ["/postgres-c2c-conf/docker-entrypoint.sh"]
+  environment:
+    POSTGRES_USER: ${POSTGRES_USER}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    REPLICATOR_PASSWORD: ${REPLICATOR_PASSWORD}
+  command: "postgres ${POSTGRES_PARAMS}"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.scheduler.global: 'true'
+    io.rancher.sidekicks: postgres-cluster-conf
+    com.camptocamp.monitoring.postgres: 'true'
+  volumes:
+    - ${POSTGRES_VOLUME_NAME}:/var/lib/postgresql/data
+  volumes_from:
+    - postgres-cluster-conf
+
+postgres-cluster-conf:
+  image: camptocamp/postgres-cluster-conf:20160923-2
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.start_once: true
+
+pghoard:
+  image: camptocamp/pghoard:9.5
+  environment:
+    - PG_HOST=lb
+    - PG_PORT=5432
+    - PG_USER=replicator
+    - PG_PASSWORD=${REPLICATOR_PASSWORD}
+    - PGHOARD_STORAGE_TYPE=${PGHOARD_STORAGE_TYPE}
+    - PGHOARD_ACTIVE_BACKUP_MODE=${PGHOARD_ACTIVE_BACKUP_MODE}
+    - PGHOARD_BASEBACKUP_COUNT=${PGHOARD_BASEBACKUP_COUNT}
+    - PGHOARD_BASEBACKUP_INTERVAL_HOURS=${PGHOARD_BASEBACKUP_INTERVAL_HOURS}
+    - PGHOARD_STATSD_ADDRESS=10.42.24.101
+    - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    - AWS_BUCKETNAME=${PGHOARD_STORAGE_TARGET}
+    - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    - OS_USERNAME=${OS_USERNAME}
+    - OS_PASSWORD=${OS_PASSWORD}
+    - OS_AUTH_URL=${OS_AUTH_URL}
+    - OS_CONTAINER_NAME=${PGHOARD_STORAGE_TARGET}
+    - OS_TENANT_NAME=${OS_TENANT_NAME}
+    - OS_REGION_NAME=${OS_REGION_NAME}
+  labels:
+    io.rancher.container.pull_image: always
+  links:
+    - lb
