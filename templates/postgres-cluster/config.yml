@@ -1,0 +1,6 @@
+---
+name: "PostgreSQL-cluster"
+description: |
+  PostgreSQL Cluster with incremental backups
+version: v43
+category: "Camptocamp services"
