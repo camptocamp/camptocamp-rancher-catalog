@@ -1,0 +1,25 @@
+---
+master:
+  image: camptocamp/postgresql:9.5
+  labels:
+    io.rancher.container.pull_image: always
+  volumes:
+    pgdata:/var/lib/postgresql/data
+
+pgbackup:
+  image: camptocamp/pghoard:9.5
+  environment:
+    - PG_HOST=master
+    - PG_PORT=5432
+    - PG_USER=replicator
+    - PG_PASSWORD=replicator
+    - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    - AWS_BUCKETNAME=${AWS_BUCKETNAME}
+    - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+  labels:
+    io.rancher.container.pull_image: always
+  links:
+    - master
+  volumes:
+    pgdata:/home/postgres/master

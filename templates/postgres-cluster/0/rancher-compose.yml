@@ -1,0 +1,30 @@
+---
+.catalog:
+  name: "Postgres-cluster"
+  version: "0"
+  description: "PostgreSQL Incremental Backup Cluster"
+  uuid: "postgres-cluster-0"
+  minimum_rancher_version: "v1.0.0"
+  questions:
+    - variable: "AWS_ACCESS_KEY_ID"
+      label: "AWS_ACCESS_KEY_ID"
+      description: "AWS_ACCESS_KEY_ID"
+      type: "string"
+      required: true
+    - variable: "AWS_SECRET_ACCESS_KEY"
+      label: "AWS_SECRET_ACCESS_KEY"
+      description: "AWS_SECRET_ACCESS_KEY"
+      type: "password"
+      required: true
+    - variable: "AWS_BUCKETNAME"
+      label: "AWS_BUCKETNAME"
+      description: "AWS_BUCKETNAME"
+      type: "string"
+      default: "pghoard"
+      required: true
+    - variable: "AWS_DEFAULT_REGION"
+      label: "AWS_DEFAULT_REGION"
+      description: "AWS_DEFAULT_REGION"
+      type: "string"
+      default: "eu-west-1"
+      required: true
