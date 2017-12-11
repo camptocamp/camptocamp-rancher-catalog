@@ -3,7 +3,7 @@ dispatcher-conf:
   labels:
     io.rancher.container.start_once: 'true'
     io.rancher.container.hostname_override: container_name
-    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.scheduler.affinity:host_label: logging=true
   environment:
     TARGET: '${TARGET}'
     TOKEN: '${TOKEN}'
@@ -14,7 +14,7 @@ dispatcher-conf:
 syslog:
   image: 'camptocamp/rsyslog-bin:v0.1.5'
   labels:
-    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.scheduler.affinity:host_label: logging=true
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: dispatcher-conf
     io.rancher.container.requested_ip: 10.42.24.10
@@ -29,7 +29,7 @@ syslog:
 cleanup:
   image: 'camptocamp/rsyslog-bin:v0.1.5'
   labels:
-    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.scheduler.affinity:host_label: logging=true
     io.rancher.container.hostname_override: container_name
   entrypoint: '/bin/sh'
   command: '/usr/local/bin/cleanup-old-logs.sh ${CLEANUP_DAYS} ${CLEANUP_DF_PCT}'
