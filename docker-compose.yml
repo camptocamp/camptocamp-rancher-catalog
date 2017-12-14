@@ -22,6 +22,7 @@ services:
       io.rancher.sidekicks: 'node-conf'
       prometheus_port: '9103'
     image: 'camptocamp/node-collectd:v0.3.0'
+    network_mode: host
     stop_signal: 'SIGHUP'
     volumes_from:
     - 'node-conf'
