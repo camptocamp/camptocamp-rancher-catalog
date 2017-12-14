@@ -122,8 +122,7 @@ services:
     command:
     - -config.file=/etc/prometheus/prometheus.yml
     - -storage.local.path=/prometheus
-    - -storage.local.max-chunks-to-persist=131072
-    - -storage.local.memory-chunks=262144
+    - -storage.local.target-heap-size=1073741824
     - -log.format=logger:stdout?json=true
 
   prometheus:
