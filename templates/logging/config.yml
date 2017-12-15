@@ -1,0 +1,5 @@
+name: Logging
+description: |
+  Central docker logging service
+version: v11
+category: "Camptocamp services"
