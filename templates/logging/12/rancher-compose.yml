@@ -1,0 +1,50 @@
+.catalog:
+  name: "logging"
+  version: "v12"
+  description: "Camptocamp logging service. Add mandatory 'monitoring=true' label on exactly one host before installing."
+  uuid: logging-12
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "TOKEN"
+      label: "ELK Token"
+      description: "Client token to be used when forwarding logs to camptocamp's ELK service. Leave empty if you haven't subscribed to this service."
+      type: "string"
+      default: ""
+    - variable: "TARGET"
+      label: "ELK entrypoint"
+      description: "IP address of the ELK entrypoint. Same as above, leave empty by default."
+      type: "string"
+      default: ""
+    - variable: "EXTRA"
+      label: "Extra fields to add to structured logs"
+      description: "JSON hash of key-values to add to each log. Example: {\"foo\":\"bar\"}"
+      type: "string"
+      default: "{}"
+    - variable: "CLEANUP_DAYS"
+      label: "Log files retention (days)"
+      description: "Log files older than N days will be deleted"
+      type: "string"
+      default: "10"
+    - variable: "CLEANUP_DF_PCT"
+      label: "Diskfull threshold (percentage)"
+      description: "When disk usage threshold is reached, log files are deleted, olders first"
+      type: "string"
+      default: "80"
+    - variable: "JOURNALD_BURST"
+      label: "host's journald RateLimitBurst setting"
+      description: "See journald.conf(5) for details"
+      type: "string"
+      default: "1000"
+    - variable: "JOURNALD_INTERVAL"
+      label: "host's journald RateLimitIntervalSec setting"
+      description: "See journald.conf(5) for details"
+      type: "string"
+      default: "30s"
+
+syslog:
+  scale: 1
+  retain_ip: true
+dispatcher-conf:
+  scale: 1
+cleanup:
+  scale: 1
