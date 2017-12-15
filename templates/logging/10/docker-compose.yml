@@ -1,0 +1,70 @@
+dispatcher-conf:
+  image: 'camptocamp/rsyslog-dispatcher-conf:v0.2.3'
+  labels:
+    io.rancher.container.start_once: 'true'
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+  environment:
+    TARGET: '${TARGET}'
+    TOKEN: '${TOKEN}'
+    EXTRA: '${EXTRA}'
+  volumes:
+    - '/etc/rsyslog-confd'
+
+syslog:
+  image: 'camptocamp/rsyslog-bin:v0.1.4'
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: dispatcher-conf
+    io.rancher.container.requested_ip: 10.42.24.10
+  volumes_from:
+  - 'dispatcher-conf'
+  volumes:
+    - 'logging_logs:/var/log'
+    - 'logging_spool:/var/spool/rsyslog'
+
+cleanup:
+  image: 'camptocamp/rsyslog-bin:v0.1.4'
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.hostname_override: container_name
+  entrypoint: '/bin/sh'
+  command: '/usr/local/bin/cleanup-old-logs.sh ${CLEANUP_DAYS} ${CLEANUP_DF_PCT}'
+  volumes:
+    - 'logging_logs:/var/log'
+
+agent-conf:
+  image: 'camptocamp/rsyslog-agent-conf:v0.2.1'
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.start_once: 'true'
+  volumes:
+  - '/etc/rsyslog-confd'
+
+agent:
+  image: 'camptocamp/rsyslog-bin:v0.1.4'
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.sidekicks: 'agent-conf,journald-rate-limit'
+  volumes_from:
+  - 'agent-conf'
+  volumes:
+  - '/run/log/journal:/run/log/journal:ro'
+  - '/var/log:/hostfs/var/log:ro'
+  - 'logging_agent:/var/spool/rsyslog'
+  mem_limit: 52428800
+
+journald-rate-limit:
+  image: 'camptocamp/journald-rate-limit:20170517-2'
+  pid: 'host'
+  security_opt:
+  - apparmor=unconfined
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.start_once: 'true'
+  volumes:
+  - '/etc/systemd:/etc/systemd'
+  environment:
+    BURST: '${JOURNALD_BURST}'
+    INTERVAL: '${JOURNALD_INTERVAL}'
