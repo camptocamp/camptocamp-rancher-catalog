@@ -124,7 +124,7 @@ services:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.create_agent: 'true'
     volumes:
-      - /dev/log:/var/lib/haproxy/dev/log
+      - logging_devlog:/var/lib/haproxy/dev/
       - metrics_haproxy_runtime:/run/haproxy
 
   haproxy:
