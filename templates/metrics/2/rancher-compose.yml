@@ -1,0 +1,73 @@
+.catalog:
+  name: "metrics"
+  version: "v2"
+  description: "Camptocamp Prometheus-based monitoring system"
+  uuid: metrics-2
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "SSL_CERTIFICATE"
+      label: "SSL Certificate"
+      description: "A valid certificate from Rancher's infrastructure. Consider using Letsencrypt from the community catalog if you don't have any. The CN must match the 'Prometheus address' below."
+      type: "string"
+      required: true
+    - variable: "PROMETHEUS_USERNAME"
+      label: "Prometheus username"
+      description: "Credentials used to access the prometheus API endpoint over HTTP."
+      type: "string"
+      required: true
+    - variable: "PROMETHEUS_PASSWORD"
+      label: "Prometheus password"
+      description: "See Prometheus username"
+      type: "password"
+      required: true
+    - variable: "PROMETHEUS_FQDN"
+      label: "Prometheus address"
+      description: "The public FQDN (or IP address) where prometheus can be reached. Leave blank if you don't want this instance to be part of the central federation system."
+      type: "string"
+      required: false
+    - variable: "PROMETHEUS_PORT"
+      label: "Prometheus port"
+      description: "The port used to access prometheus."
+      type: "string"
+      default: "9443"
+      required: true
+    - variable: "GRAFANA_URL"
+      label: "Grafana URL"
+      description: "URL of Grafana instance, which will be added to outgoing CORS headers."
+      type: "string"
+      default: "https://grafana.camptocamp.net"
+      required: true
+
+collectd:
+  scale: 1
+statsd:
+  scale: 1
+rancher:
+  scale: 1
+prometheus-server:
+  scale: 1
+prometheus-auth:
+  scale: 1
+prometheus:
+  scale: 1
+  load_balancer_config:
+    haproxy_config:
+      defaults: |-
+        mode       http
+                log-format %{+Q}o{\"client_ip\":%ci,\"client_port\":%cp,\"verb\":%HM,\"timegenerated_gmt\":\"%t\",\"response.bytes\":%U,\"request.bytes\":%B,\"rawrequest\":%r,\"requestprotocol\":%HV,\"uri\":%HU,\"response\":%ST,\"actconn\":%ac,\"feconn\":%fc,\"beconn\":%bc,\"srv_conn\":%sc,\"retries\":%rc,\"srv_queue\":%sq,\"backend_queue\":%bq,\"timer_client\":%Tq,\"timer_queues\":%Tw,\"timer_backend\":%Tc,\"timer_response\":%Tr,\"timer_total\":%Tt,\"backend_name\":%b,\"frontend_name\":%ft,\"server_name\":%s,\"termination_state\":\"%tsc\"}
+
+                backend b_stats
+                        stats enable
+                        stats uri /stats
+
+                frontend f_stats
+                        bind *:8008
+                        default_backend b_stats
+      global: log 10.42.24.10:1514 local2
+  default_cert: ${SSL_CERTIFICATE}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
