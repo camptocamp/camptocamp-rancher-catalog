@@ -1,0 +1,147 @@
+containers:
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.hostname_override: container_name
+    prometheus_port: '9104'
+  image: google/cadvisor:v0.24.1
+  volumes:
+  - /:/rootfs:ro
+  - /var/run:/var/run:rw
+  - /sys:/sys:ro
+  - /var/log:/var/log:ro
+  - /var/lib/docker/:/var/lib/docker:ro
+  pid: "host"
+  command:
+  - --port=9104
+
+node:
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: 'node-conf'
+    prometheus_port: '9103'
+  image: 'camptocamp/node-collectd:v0.2.1'
+  stop_signal: 'SIGHUP'
+  volumes_from:
+  - 'node-conf'
+  volumes:
+  - /:/rootfs:ro
+
+node-conf:
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.start_once: 'true'
+    io.rancher.container.hostname_override: container_name
+  image: 'camptocamp/confd:v0.12.0-alpha3'
+  entrypoint: '/confd/confd'
+  command: '-version'
+  volumes:
+    - /confd
+
+statsd:
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.hostname_override: container_name
+    io.rancher.container.requested_ip: 10.42.24.101
+    prometheus_port: '9103'
+  image: 'camptocamp/statsd-collectd:v0.2.1'
+  stop_signal: 'SIGHUP'
+
+pushgateway:
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    prometheus_port: '9091'
+    io.rancher.container.requested_ip: 10.42.24.102
+  image: 'prom/pushgateway:v0.3.1'
+  volumes:
+  - 'metrics_pushgw:/state'
+  command:
+  - -persistence.file=/state/pushgateway.state
+  - -log.format=logger:stdout?json=true
+
+rancher:
+  labels:
+    io.rancher.container.create_agent: true
+    io.rancher.container.agent.role: environment
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    prometheus_port: '9173'
+  image: infinityworks/prometheus-rancher-exporter:v0.22.40
+
+prometheus-server-conf:
+  image: 'camptocamp/prometheus-rancher-metadata-conf:v0.2.0'
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.hostname_override: container_name
+  volumes:
+    - 'metrics_prom_targets:/etc/prometheus-targets/'
+
+prometheus-server:
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
+    prometheus_port: '9090'
+  image: 'camptocamp/prometheus-server:v1.4.1'
+  volumes:
+    - 'metrics_prom_targets:/etc/prometheus-targets/'
+    - 'metrics_tsdb:/prometheus'
+  command:
+  - -config.file=/etc/prometheus-config/prometheus.yml
+  - -storage.local.path=/prometheus
+  - -storage.local.max-chunks-to-persist=131072
+  - -storage.local.memory-chunks=262144
+  - -log.format=logger:stdout?json=true
+
+prometheus-auth-conf:
+  image: 'camptocamp/prometheus-auth-conf:v0.1.3'
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.start_once: 'true'
+    io.rancher.container.hostname_override: container_name
+  environment:
+    USERNAME: '${PROMETHEUS_USERNAME}'
+    PASSWORD: '${PROMETHEUS_PASSWORD}'
+    GRAFANA_URL: '${GRAFANA_URL}'
+    RESOLVER: '169.254.169.250'
+  volumes:
+    - '/etc/haproxy'
+    - '/entrypoint'
+
+prometheus-auth:
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.sidekicks: prometheus-auth-conf
+    io.rancher.container.hostname_override: container_name
+  image: haproxy:1.6-alpine
+  entrypoint: /entrypoint/run.sh
+  volumes_from:
+    - 'prometheus-auth-conf'
+
+prometheus:
+  ports:
+  - ${PROMETHEUS_PORT}:8080
+  links:
+  - prometheus-auth:prometheus-auth
+  labels:
+    io.rancher.loadbalancer.ssl.ports: '${PROMETHEUS_PORT}'
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    haproxy_stats_path: '/stats'
+    haproxy_stats_port: '8008'
+    haproxy_stats_id: 'prometheus'
+  image: rancher/load-balancer-service
+
+# keep this around for backwards compatibility, remove once all the
+# collectd-based images have switched to write_prometheus.
+collectd:
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    prometheus_port: '9103'
+    io.rancher.container.hostname_override: container_name
+  command:
+  - -collectd.listen-address=:25826
+  - -log.format=logger:stdout?json=true
+  image: 'prom/collectd-exporter:0.3.1'
+
