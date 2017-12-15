@@ -1,0 +1,22 @@
+.catalog:
+  name: "logging"
+  version: "v1"
+  description: "Camptocamp logging service. Add mandatory 'monitoring=true' label on exactly one host before installing."
+  uuid: logging-1
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "TOKEN"
+      label: "ELK Token"
+      description: "Client token to be used when forwarding logs to camptocamp's ELK service. Leave empty if you haven't subscribed to this service."
+      type: "string"
+      default: ""
+    - variable: "TARGET"
+      label: "ELK entrypoint"
+      description: "IP address of the ELK entrypoint. Same as above, leave empty by default."
+      type: "string"
+      default: ""
+
+syslog:
+  scale: 1
+cleanup:
+  scale: 1

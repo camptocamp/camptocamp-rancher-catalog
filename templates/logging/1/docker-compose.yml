@@ -1,0 +1,46 @@
+rsyslog-conf:
+  image: 'camptocamp/rsyslog-shipper-conf:v0.1.2'
+  labels:
+    io.rancher.container.start_once: 'true'
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+  environment:
+    TARGET: '${TARGET}'
+    TOKEN: '${TOKEN}'
+  volumes:
+    - '/etc/rsyslog-confd'
+
+syslog:
+  image: 'camptocamp/rsyslog-shipper:v0.1.1'
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.hostname_override: container_name
+    io.rancher.sidekicks: rsyslog-conf
+    io.rancher.container.requested_ip: 10.42.24.10
+  volumes_from:
+  - 'rsyslog-conf'
+  volumes:
+    - 'logging_logs:/var/log'
+    - 'logging_spool:/var/spool/rsyslog'
+
+cleanup:
+  image: 'camptocamp/rsyslog-shipper:v0.1.1'
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.hostname_override: container_name
+  entrypoint: '/bin/sh'
+  command: '/usr/local/bin/cleanup-old-logs.sh 10'
+  volumes:
+    - 'logging_logs:/var/log'
+
+logspout:
+  environment:
+    ROUTE_URIS: syslog+udp://10.42.24.10:1514
+    SYSLOG_FORMAT: rfc3164
+  labels:
+    io.rancher.scheduler.global: 'true'
+  image: 'gliderlabs/logspout:v3.1'
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  stdin_open: true
+
