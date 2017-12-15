@@ -74,7 +74,7 @@ services:
       - 'metrics_prom_confdir:/etc/prometheus/'
 
   prometheus-rancher-metadata-conf:
-    image: camptocamp/prometheus-rancher-metadata-conf:v0.3.1
+    image: camptocamp/prometheus-rancher-metadata-conf:v0.3.2
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
     volumes:
@@ -140,9 +140,7 @@ services:
       prometheus_port: '9101'
 
   rancher-network-confd:
-    image: camptocamp/confd:v0.12.0-alpha3
-    entrypoint:
-    - /confd/confd
+    image: camptocamp/confd:v0.14.0
     volumes:
     - /confd
     command:
