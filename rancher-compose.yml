@@ -39,6 +39,18 @@ version: '2'
         - "https"
         - "http"
       default: "https"
+    - variable: "PROMETHEUS_HEAP_SIZE"
+      label: "Prometheus heap size"
+      description: "See doc for storage.local.target-heap-size"
+      type: "string"
+      default: "1073741824"
+      required: true
+    - variable: "PROMETHEUS_EXTRA_PARAMS"
+      label: "Prometheus custom parameters"
+      description: "Non-default prometheus command-line parameters"
+      type: "string"
+      default: ""
+      required: false
 
 services:
   containers:
