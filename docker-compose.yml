@@ -111,7 +111,7 @@ services:
     command: '-config.file=/etc/prometheus/prometheus.yml -storage.local.path=/prometheus -log.format=logger:stdout?json=true -storage.local.target-heap-size=${PROMETHEUS_HEAP_SIZE} ${PROMETHEUS_EXTRA_PARAMS}'
 
   prometheus:
-    image: rancher/lb-service-haproxy:v0.7.9
+    image: rancher/lb-service-haproxy:v0.7.15
     ports:
       - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}/tcp
     labels:
