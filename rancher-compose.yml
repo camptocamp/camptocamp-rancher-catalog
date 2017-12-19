@@ -28,8 +28,8 @@ version: '2'
     - variable: "PROMETHEUS_PORT"
       label: "Prometheus port"
       description: "The port used to access prometheus."
-      type: "string"
-      default: "9443"
+      type: "int"
+      default: 9443
       required: true
     - variable: "PROMETHEUS_SCHEME"
       label: "Prometheus scheme"
@@ -42,8 +42,8 @@ version: '2'
     - variable: "PROMETHEUS_HEAP_SIZE"
       label: "Prometheus heap size"
       description: "See doc for storage.local.target-heap-size"
-      type: "string"
-      default: "1073741824"
+      type: "int"
+      default: 1073741824
       required: true
     - variable: "PROMETHEUS_EXTRA_PARAMS"
       label: "Prometheus custom parameters"
