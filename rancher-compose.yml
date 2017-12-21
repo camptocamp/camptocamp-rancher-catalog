@@ -1,7 +1,7 @@
 version: '2'
 .catalog:
   name: "Posgresql-cluster"
-  version: "v43"
+  version: "v44"
   description: "PostgreSQL Cluster"
   minimum_rancher_version: v1.2.0
   questions:
@@ -21,6 +21,8 @@ version: '2'
       options:
         - "9.5"
         - "9.6"
+        - "10.0"
+        - "10.1"
       required: true
       default: "9.6"
     - variable: "POSTGRES_PARAMS"
