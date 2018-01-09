@@ -1,0 +1,220 @@
+---
+.catalog:
+  name: "Jenkins"
+  version: "v2.89.2-3"
+  description: "Jenkins build farm"
+  uuid: jenkins-128
+  minimum_rancher_version: v1.0.0
+  questions:
+    - variable: "JENKINS_ROOT_URL"
+      label: "Jenkins root url"
+      description: "Jenkins root url"
+      type: "string"
+      default: "http://jenkins.example.com"
+      required: true
+    - variable: "JENKINS_ADMIN_GROUPNAME"
+      label: "Admin Groupname (LDAP)"
+      description: "Jenkins Admin Groupname"
+      type: "string"
+      default: "admin"
+      required: true
+    - variable: "JENKINS_LDAP_SERVER"
+      label: "LDAP Servers"
+      description: "LDAP Servers"
+      type: "string"
+      default: "ldaps://ldap.example.com"
+      required: true
+    - variable: "JENKINS_LDAP_CA_CRT"
+      label: "LDAP CA Certificate"
+      description: "LDAP CA Certificate"
+      type: "multiline"
+      required: false
+    - variable: "JENKINS_LDAP_ROOT_DN"
+      label: "LDAP Root DN"
+      description: "This is the suffix common for every single LDAP search by Jenkins"
+      type: "string"
+      default: "cn=accounts,cn=example,cn=com"
+      required: true
+    - variable: "JENKINS_LDAP_USER_SEARCH_BASE"
+      label: "LDAP User Search Base"
+      description: "Prefixed to LDAP Root DN it will become the Complete BaseDN for User Search"
+      type: "string"
+      default: "cn=Users"
+      required: true
+    - variable: "JENKINS_LDAP_USER_SEARCH_FILTER"
+      label: "LDAP User Search Base Filter"
+      description: "This is the LDAP query filter used to find the UserDN with the username"
+      type: "string"
+      default: "uid={0}"
+      required: true
+    - variable: "JENKINS_LDAP_GROUP_SEARCH_BASE"
+      label: "LDAP Group Search Base"
+      description: "Prefixed to LDAP Root DN it will become the Complete BaseDN for Group Search"
+      type: "string"
+      default: "cn=Groups"
+      required: true
+    - variable: "JENKINS_LDAP_GROUP_SEARCH_FILTER"
+      label: "LDAP Group Search Base Filter"
+      description: "This is the query filter used to find the GroupDN with the group name"
+      type: "string"
+      default: "cn={0}"
+      required: true
+    - variable: "JENKINS_LDAP_MANAGER_USER_DN"
+      label: "LDAP Manager User"
+      description: "Service Account DN, used to perform initial LDAP queries (e.g. finding the UserDN when the user tries to login)"
+      type: "string"
+      default: "uid=jenkins,cn=Users,cn=accounts,cn=example,cn=com"
+      required: true
+    - variable: "JENKINS_LDAP_MANAGER_USER_PASSWORD"
+      label: "LDAP Manager User Password"
+      description: "Password of the Service Account"
+      type: "password"
+      default: "jenkins"
+      required: true
+    - variable: "JENKINS_MAIL_USER"
+      label: "Jenkins Mail User"
+      description: "Jenkins Mail User"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_PASSWORD"
+      label: "Jenkins Mail Password"
+      description: "Jenkins Mail Password"
+      type: "password"
+      default: "password"
+      required: true
+    - variable: "JENKINS_MAIL_ADDRESS"
+      label: "Jenkins Mail Adress"
+      description: "Jenkins Mail Adress"
+      type: "string"
+      default: "jenkins@example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_HOST"
+      label: "Jenkins Mail Smtp Host"
+      description: "Jenkins Mail Smtp Host"
+      type: "string"
+      default: "smtp.example.com"
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_SSL"
+      label: "Jenkins Mail Smtp SSL"
+      description: "Jenkins Mail Smtp SSL"
+      type: "boolean"
+      default: true
+      required: true
+    - variable: "JENKINS_MAIL_SMTP_PORT"
+      label: "Jenkins Mail Smtp Port"
+      description: "Jenkins Mail Smtp Port"
+      type: "integer"
+      default: 465
+      required: true
+    - variable: "JENKINS_HIPCHAT_TOKEN"
+      label: "HipChat token"
+      description: "HipChat token"
+      type: "string"
+      default: "HipChatToken1234"
+      required: false
+    - variable: "JENKINS_HIPCHAT_ROOM"
+      label: "HipChat room"
+      description: "HipChat room"
+      type: "string"
+      default: "Jenkins"
+      required: false
+    - variable: "JENKINS_GITHUB_ORG"
+      label: "Github Organisation"
+      description: "Github Organisation"
+      type: "string"
+      default: "my-organisation"
+      required: true
+    - variable: "JENKINS_GITHUB_USER"
+      label: "Github User"
+      description: "Github User (with org/team view permission)"
+      type: "string"
+      default: "my-user"
+      required: true
+    - variable: "JENKINS_GITHUB_TOKEN"
+      label: "Github Token"
+      description: "Github Token"
+      type: "string"
+      default: "my-secret-token"
+      required: true
+    - variable: "JENKINS_GITHUB_SSH_PRIVATE_KEY"
+      label: "Github SSH private key"
+      description: "Github SSH private key"
+      type: "multiline"
+      default: "PRIVATE KEY"
+      required: true
+    - variable: "JENKINS_GITHUB_PIPELINE_TOKEN"
+      label: "Github Pipeline Token"
+      description: "Github PipelineToken"
+      type: "string"
+      default: ""
+      required: false
+    - variable: "JENKINS_PIPELINE_LIB_NAME"
+      label: "Shared Pipeline Library Name"
+      description: "Shared Pipeline Library Name"
+      type: "string"
+      default: ""
+      required: false
+    - variable: "JENKINS_PIPELINE_LIB_REPO"
+      label: "Shared Pipeline Library Repository"
+      description: "Shared Pipeline Library Repository"
+      type: "string"
+      default: ""
+      required: false
+    - variable: "JENKINS_INITIAL_DSL_REPO"
+      label: "The Repository containing the initial dsl script"
+      description: "You can use the provided public repository for teams configuration or use your own script"
+      type: "string"
+      default: "https://github.com/camptocamp/jenkins-initial-dsl-job.git"
+      required: false
+    - variable: "JENKINS_INITIAL_DSL_BRANCH"
+      label: "The branch of the repository containing the initial dsl script"
+      description: "The branch of the repository containing the initial dsl script"
+      type: "string"
+      default: "master"
+      required: false
+    - variable: "JENKINS_GITHUB_CONFIG_REPO"
+      label: "Custom configuration repository"
+      description: "Custom configuration repository with teams configs. Please give just the name of the repo, as we already know the owner. Teams configuration will be skipped when empty"
+      type: "string"
+      default: ""
+      required: false
+    - variable: "JENKINS_TIMEZONE"
+      label: "Time Zone"
+      description: "Time Zone"
+      type: "string"
+      default: "Europe/Zurich"
+      required: true
+    - variable: "JENKINS_PLUGINS"
+      label: "Plugins"
+      description: "Jenkins additional plugins to install"
+      type: "multiline"
+      required: false
+      default: ""
+    - variable: "NODE_LABELS"
+      label: "Node Labels"
+      description: "Which labels to apply to slave nodes"
+      type: "docker"
+      required: true
+      default: "swarm docker"
+    - variable: "SLAVE_EXECUTORS"
+      label: "Slave executors"
+      description: "Number of executors per slave"
+      type: "int"
+      required: true
+    - variable: "JENKINS_SWARM_USERNAME"
+      label: "Slave username used to join"
+      description: "Slave username used to join"
+      type: "string"
+      required: true
+    - variable: "JENKINS_SWARM_PASSWORD"
+      label: "Slave password used to join"
+      description: "Slave password used to join"
+      type: "password"
+      required: true
+    - variable: "JENKINS_MASTER_DATA_VOLUME_DRIVER"
+      label: "Docker Volume Driver for jenkins master data"
+      description: "The driver to use for the volume that will store the Jenkins Master data (AKA JENKINS_HOME)"
+      type: "string"
+      required: true
+      default: local
