@@ -1,7 +1,7 @@
 version: '2'
 .catalog:
   name: "metrics"
-  version: "v46"
+  version: "v47"
   description: "Camptocamp Prometheus-based monitoring system. Add mandatory 'monitoring=true' label on exactly one host before installing."
   minimum_rancher_version: v1.2.0
   questions:
