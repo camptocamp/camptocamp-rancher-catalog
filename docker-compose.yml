@@ -89,7 +89,7 @@ services:
       - 'metrics_prom_confdir:/etc/prometheus/'
 
   prometheus-server-rules-conf:
-    image: camptocamp/prometheus-server-rules-conf:20180130-1
+    image: camptocamp/prometheus-server-rules-conf:20180213-1
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.scheduler.affinity:host_label: monitoring=true
@@ -102,13 +102,13 @@ services:
       io.rancher.sidekicks: prometheus-server-conf,prometheus-rancher-metadata-conf,prometheus-server-rules-conf,prometheus-config-merger
       #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
       prometheus_port: '9090'
-    image: prom/prometheus:v1.8.2
+    image: prom/prometheus:v2.1.0
     volumes:
       - 'metrics_prom_confdir:/etc/prometheus/'
       - 'metrics_tsdb:/prometheus'
     volumes_from:
     - prometheus-server-rules-conf
-    command: '-config.file=/etc/prometheus/prometheus.yml -storage.local.path=/prometheus -log.format=logger:stdout?json=true -storage.local.target-heap-size=${PROMETHEUS_HEAP_SIZE} ${PROMETHEUS_EXTRA_PARAMS}'
+    command: '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle ${PROMETHEUS_EXTRA_PARAMS}'
 
   prometheus:
     image: rancher/lb-service-haproxy:v0.7.15
