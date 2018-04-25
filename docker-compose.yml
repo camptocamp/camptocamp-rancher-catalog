@@ -108,7 +108,7 @@ services:
       - 'metrics_tsdb:/prometheus'
     volumes_from:
     - prometheus-server-rules-conf
-    command: '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle ${PROMETHEUS_EXTRA_PARAMS}'
+    command: '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle --web.enable-admin-api ${PROMETHEUS_EXTRA_PARAMS}'
 
   prometheus:
     image: rancher/lb-service-haproxy:v0.7.15
