@@ -108,7 +108,7 @@ services:
       initializing_timeout: 120000
       reinitializing_timeout: 120000
       strategy: recreate
-      request_line: GET "/-/ready" "HTTP/1.0"
+      request_line: GET "/-/healthy" "HTTP/1.0"
   prometheus:
     scale: 1
     health_check:
