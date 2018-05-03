@@ -2,7 +2,7 @@
 version: '2'
 services:
   upkick:
-    image: camptocamp/upkick:0.6.0
+    image: camptocamp/upkick:0.7.0
     command: [ "--hostname-from-rancher" ]
     environment:
       UPKICK_LOG_LEVEL: ${UPKICK_LOG_LEVEL}
