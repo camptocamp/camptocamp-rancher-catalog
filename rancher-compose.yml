@@ -167,10 +167,6 @@ services:
       strategy: recreate
       request_line: HEAD "/" "HTTP/1.0"
 
-  rancher-network-confd:
-    scale: 1
-    start_on_create: true
-
   rancher-network:
     scale: 1
     start_on_create: true
