@@ -60,7 +60,7 @@ services:
       prometheus_port: '9173'
     expose:
       - 9173:9173
-    image: infinityworks/prometheus-rancher-exporter:v0.22.88
+    image: infinityworks/prometheus-rancher-exporter:v0.22.94
     environment:
       - HIDE_SYS="false"
       - LOG_LEVEL=fatal
