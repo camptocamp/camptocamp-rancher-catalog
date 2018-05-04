@@ -138,6 +138,5 @@ services:
   rancher-network:
     image: camptocamp/rancher-network-check:20180504-1
     labels:
-      io.rancher.container.pull_image: always
       prometheus_port: '9103'
       io.rancher.scheduler.global: 'true'
