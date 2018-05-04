@@ -20,7 +20,7 @@ services:
       io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
       prometheus_port: '9103'
-    image: 'camptocamp/node-collectd:v0.3.2'
+    image: 'camptocamp/node-collectd:v20180504-1'
     network_mode: host
     stop_signal: 'SIGHUP'
     security_opt:
@@ -34,7 +34,7 @@ services:
       io.rancher.container.hostname_override: container_name
       io.rancher.container.requested_ip: 10.42.24.101
       prometheus_port: '9103'
-    image: 'camptocamp/statsd-collectd:v0.3.2'
+    image: 'camptocamp/statsd-collectd:v20180504-1'
     stop_signal: 'SIGHUP'
 
   pushgateway:
