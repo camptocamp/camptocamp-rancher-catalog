@@ -96,10 +96,27 @@ services:
     volumes:
       - 'metrics_prom_confdir:/etc/prometheus/'
 
+  prometheus-v1-cleanup:
+    image: busybox
+    command:
+    - find
+    - /prometheus/
+    - -user
+    - '0'
+    - -mtime
+    - '+15'
+    - -print
+    - -delete
+    labels:
+      io.rancher.scheduler.affinity:host_label: monitoring=true
+      io.rancher.container.start_once: 'true'
+    volumes:
+    - metrics_tsdb:/prometheus
+
   prometheus-server:
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
-      io.rancher.sidekicks: prometheus-server-conf,prometheus-rancher-metadata-conf,prometheus-server-rules-conf,prometheus-config-merger
+      io.rancher.sidekicks: prometheus-server-conf,prometheus-rancher-metadata-conf,prometheus-server-rules-conf,prometheus-config-merger,prometheus-v1-cleanup
       #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
       prometheus_port: '9090'
     image: prom/prometheus:v2.2.1
