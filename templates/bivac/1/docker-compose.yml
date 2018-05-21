@@ -1,0 +1,27 @@
+---
+version: '2'
+services:
+  bivac:
+    image: ${BIVAC_IMAGE_REPOSITORY}:${BIVAC_IMAGE_TAG}
+    environment:
+      BIVAC_FULL_IF_OLDER_THAN: ${BIVAC_FULL_IF_OLDER_THAN}
+      BIVAC_REMOVE_OLDER_THAN: ${BIVAC_REMOVE_OLDER_THAN}
+      BIVAC_VOLUMES_BLACKLIST: ${BIVAC_VOLUMES_BLACKLIST}
+      BIVAC_NO_VERIFY: ${BIVAC_NO_VERIFY}
+      BIVAC_LOG_LEVEL: ${BIVAC_LOG_LEVEL}
+      BIVAC_JSON_OUTPUT: ${JSON_OUTPUT}
+      BIVAC_TARGET_URL: ${BIVAC_TARGET_URL}
+      PUSHGATEWAY_URL: ${PUSHGATEWAY_URL}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      SWIFT_AUTHURL: ${SWIFT_AUTHURL}
+      SWIFT_TENANTNAME: ${SWIFT_TENANTNAME}
+      SWIFT_USERNAME: ${SWIFT_USERNAME}
+      SWIFT_PASSWORD: ${SWIFT_PASSWORD}
+      SWIFT_REGIONNAME: ${SWIFT_REGIONNAME}
+    labels:
+      cron.schedule: 0 ${BIVAC_RUN_TIME}
+      io.rancher.container.start_once: 'true'
+	  io.rancher.container.agent.role: environmentAdmin
+	  io.rancher.container.agent_service.drain_provider: 'true'
+	  io.rancher.container.create_agent: 'true'
