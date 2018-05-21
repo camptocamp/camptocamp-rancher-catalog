@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: Bivac
-  version: 1.0.4
+  version: 1.0.5
   description: "Bivac : Backup Interface for Volumes Attached to Containers"
   minimum_rancher_version: v1.2.0
   questions:
@@ -39,6 +39,7 @@
       label: Volumes blacklist
       description: Comma separated list of named volumes to blacklist.
       type: string
+      default: rancher-agent-state,rancher-cni-driver
       required: false
     - variable: BIVAC_NO_VERIFY
       label: No verify
