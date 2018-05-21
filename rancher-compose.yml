@@ -1,8 +1,8 @@
 ---
 .catalog:
   name: Bivac
-  version: 1.0.0
-  description: Bivac : Backup Interface for Volumes Attached to Containers
+  version: 1.0.1
+  description: "Bivac : Backup Interface for Volumes Attached to Containers"
   minimum_rancher_version: v1.2.0
   questions:
     - variable: BIVAC_IMAGE_REPOSITORY
