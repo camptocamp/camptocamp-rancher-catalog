@@ -1,5 +1,5 @@
 name: Bivac
 description: |
-  Bivac : Backup Interface for Volumes Attached to Containers
+  Backup Interface for Volumes Attached to Containers
 version: 1.0.0
 category: Camptocamp services
