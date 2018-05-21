@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: Bivac
-  version: 1.0.3
+  version: 1.0.4
   description: "Bivac : Backup Interface for Volumes Attached to Containers"
   minimum_rancher_version: v1.2.0
   questions:
@@ -56,6 +56,11 @@
       description: Prometheus Pushgateway service to push metrics to.
       type: string
       default: http://pushgateway.metrics:9091
+      required: true
+    - variable: RESTIC_PASSWORD
+      label: Restic Password
+      description: Restic Password
+      type: password
       required: true
     - variable: AWS_ACCESS_KEY_ID
       label: AWS_ACCESS_KEY_ID
