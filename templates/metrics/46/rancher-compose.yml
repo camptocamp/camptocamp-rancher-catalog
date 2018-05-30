@@ -1,0 +1,181 @@
+version: '2'
+.catalog:
+  name: "metrics"
+  version: "v46"
+  description: "Camptocamp Prometheus-based monitoring system. Add mandatory 'monitoring=true' label on exactly one host before installing."
+  minimum_rancher_version: v1.2.0
+  questions:
+    - variable: "SSL_CERTIFICATE"
+      label: "SSL Certificate"
+      description: "A valid certificate from Rancher's infrastructure. Consider using Letsencrypt from the community catalog if you don't have any. The CN must match the 'Prometheus FQDN' below."
+      type: "string"
+      required: true
+    - variable: "PROMETHEUS_USERNAME"
+      label: "Prometheus username"
+      description: "Credentials used to access the prometheus API endpoint over HTTP."
+      type: "string"
+      required: true
+    - variable: "PROMETHEUS_PASSWORD"
+      label: "Prometheus password"
+      description: "See Prometheus username"
+      type: "password"
+      required: true
+    - variable: "PROMETHEUS_FQDN"
+      label: "Prometheus FQDN. Must match the CN from the 'SSL Certificate' above."
+      description: "The public FQDN (or IP address) where prometheus can be reached. Leave blank if you don't want this instance to be part of the central federation system."
+      type: "string"
+      required: false
+    - variable: "PROMETHEUS_PORT"
+      label: "Prometheus port"
+      description: "The port used to access prometheus."
+      type: "int"
+      default: 9443
+      required: true
+    - variable: "PROMETHEUS_SCHEME"
+      label: "Prometheus scheme"
+      description: "Don't change the default unless you know what you're doing."
+      type: "enum"
+      options:
+        - "https"
+        - "http"
+      default: "https"
+    - variable: "PROMETHEUS_HEAP_SIZE"
+      label: "Prometheus heap size"
+      description: "See doc for storage.local.target-heap-size"
+      type: "int"
+      default: 1073741824
+      required: true
+    - variable: "PROMETHEUS_EXTRA_PARAMS"
+      label: "Prometheus custom parameters"
+      description: "Non-default prometheus command-line parameters"
+      type: "string"
+      default: ""
+      required: false
+
+services:
+  containers:
+    health_check:
+      port: 9104
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: HEAD "/" "HTTP/1.0"
+  node:
+    health_check:
+      port: 9103
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+  statsd:
+    scale: 1
+    retain_ip: true
+    health_check:
+      port: 9103
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+  pushgateway:
+    scale: 1
+    retain_ip: true
+    health_check:
+      port: 9091
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: GET "/" "HTTP/1.0"
+  rancher:
+    scale: 1
+    health_check:
+      port: 9173
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: HEAD "/" "HTTP/1.0"
+  prometheus-server:
+    scale: 1
+    health_check:
+      port: 9090
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      initializing_timeout: 120000
+      reinitializing_timeout: 120000
+      strategy: recreate
+      request_line: GET "/-/ready" "HTTP/1.0"
+  prometheus:
+    scale: 1
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+    start_on_create: true
+    lb_config:
+      certs: []
+      config: |-
+        global
+            log /dev/log local2 debug
+            stats socket /run/haproxy/admin.sock mode 660 level admin
+
+        defaults
+            log       global
+            mode      http
+            option    httplog
+            log-tag   haproxy-promssl
+
+        listen stats
+            bind *:8008
+            stats enable
+            stats uri /stats
+
+        userlist prometheus
+            group prometheus
+            user ${PROMETHEUS_USERNAME} insecure-password ${PROMETHEUS_PASSWORD} groups prometheus
+
+        backend ${PROMETHEUS_PORT}_
+            acl valid_user http_auth(prometheus)
+            http-request auth realm Prometheus if !valid_user
+            http-request deny if METH_POST { path_beg /-/ }
+            http-request deny if { method DELETE } #Pre-defined ACL METH_DELETE does not exist in haproxy 1.6
+            rspadd Access-Control-Allow-Origin:\ *
+            rspadd Access-Control-Allow-Credentials:\ true
+
+      default_cert: ${SSL_CERTIFICATE}
+      port_rules:
+      - protocol: ${PROMETHEUS_SCHEME}
+        service: prometheus-server
+        source_port: ${PROMETHEUS_PORT}
+        target_port: 9090
+  haproxy:
+    scale: 1
+    health_check:
+      port: 9101
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
+      strategy: recreate
+      request_line: HEAD "/" "HTTP/1.0"
+
+  rancher-network-confd:
+    scale: 1
+    start_on_create: true
+
+  rancher-network:
+    scale: 1
+    start_on_create: true
