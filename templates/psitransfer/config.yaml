@@ -1,0 +1,5 @@
+name: psitransfer                                                                                                                                                                                                                                          
+description: |
+  Transfer service
+version: v1
+category: "Camptocamp services"
