@@ -1,0 +1,13 @@
+version: '2'
+services:
+  psitransfer:
+    image: psitrax/psitransfer:latest
+    volumes:
+      - "psitransfer-data:/data"
+    ports:
+      - "3000:3000"
+    environment:
+      PSITRANSFER_ADMIN_PASS: ${PSITRANSFER_ADMIN_PASS}
+
+volumes:
+  psitransfer-data:
