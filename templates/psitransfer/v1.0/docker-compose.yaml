@@ -1,8 +1,0 @@
-version: '2'
-services:
-  psitransfer:
-    image: psitrax/psitransfer:latest
-    volumes:
-      - "psitransfer-data:/data"
-    environment:
-      PSITRANSFER_ADMIN_PASS: ${PSITRANSFER_ADMIN_PASS}
