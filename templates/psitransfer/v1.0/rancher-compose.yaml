@@ -1,0 +1,10 @@
+version: '2'
+.catalog:
+  name: "psitransfer"
+  version: "v1.2.0"
+  questions:
+    - variable: "PSITRANSFER_ADMIN_PASS"
+      label: "Admin password"
+      description: "Admin password of psitransfer"
+      type: "string"
+      required: true
