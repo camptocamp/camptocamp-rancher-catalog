@@ -89,7 +89,7 @@ services:
       - 'metrics_prom_confdir:/etc/prometheus/'
 
   prometheus-server-rules-conf:
-    image: camptocamp/prometheus-server-rules-conf:20180704-2
+    image: camptocamp/prometheus-server-rules-conf:20180711-2
     labels:
       io.rancher.container.start_once: 'true'
       io.rancher.scheduler.affinity:host_label: monitoring=true
