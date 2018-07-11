@@ -32,6 +32,10 @@ Whether to skip verification of volume backups.
 
 Target URL passed to backup engine. The hostname and the name of the volume to backup are added to the path as directory levels.
 
+### BIVAC_ENGINE
+
+The engine that Bivac should use to make a backup.
+
 ### PUSHGATEWAY_URL
 
 Prometheus Pushgateway service to push metrics to.

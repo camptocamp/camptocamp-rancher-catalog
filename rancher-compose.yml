@@ -52,6 +52,12 @@
       description: Target URL passed to backup engine. The hostname and the name of the volume to backup are added to the path as directory levels.
       type: string
       required: true
+    - variable: BIVAC_ENGINE
+      label: Bivac engine
+      description: The engine that Bivac should use to make a backup.
+      type: string
+      required: false
+      default: restic
     - variable: PUSHGATEWAY_URL
       label: Prometheus Pushgateway URL
       description: Prometheus Pushgateway service to push metrics to.
