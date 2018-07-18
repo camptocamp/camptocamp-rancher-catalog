@@ -3,7 +3,7 @@ version: "2"
 services:
   # Puppet CA
   puppetca:
-    image: camptocamp/puppetserver:2.8.1-3
+    image: camptocamp/puppetserver:5.3.4-1-rancher
     labels:
       io.rancher.sidekicks: mco-puppetca
       io.rancher.scheduler.affinity:host_label: data.puppetca=true
@@ -35,7 +35,7 @@ services:
 
   # PuppetDB
   puppetdb:
-    image: camptocamp/puppetdb:4.4.0-1
+    image: camptocamp/puppetdb:5.2.4-1-rancher
     environment:
       DNS_ALT_NAMES: ${DB_DNS_ALT_NAMES}
       ENABLE_HTTP: 'true'
@@ -59,7 +59,7 @@ services:
 
   # Puppet Server
   puppet:
-    image: camptocamp/puppetserver:2.8.1-3
+    image: camptocamp/puppetserver:5.3.4-1-rancher
     labels:
       io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/puppet
     environment:
