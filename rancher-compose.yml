@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: "Upkick"
-  version: "v0.7.0-1"
+  version: "v0.7.1-1"
   description: "Unattended upgrades for Docker containers"
   minimum_rancher_version: v1.2.0
   questions:
