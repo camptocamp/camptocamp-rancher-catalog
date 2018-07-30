@@ -99,6 +99,18 @@
       label: SWIFT_REGIONNAME
       description: SWIFT_REGIONNAME
       type: string
+    - variable: SWIFT_USER_DOMAIN_NAME
+      label: SWIFT_USER_DOMAIN_NAME
+      description: SWIFT_USER_DOMAIN_NAME
+      type: string
+    - variable: SWIFT_PROJECT_NAME
+      label: SWIFT_PROJECT_NAME
+      description: SWIFT_PROJECT_NAME
+      type: string
+    - variable: SWIFT_PROJECT_DOMAIN_NAME
+      label: SWIFT_PROJECT_DOMAIN_NAME
+      description: SWIFT_PROJECT_DOMAIN_NAME
+      type: string
     - variable: JSON_OUTPUT
       label: JSON Output
       description: Output logs as JSON
