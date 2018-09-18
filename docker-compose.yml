@@ -30,3 +30,4 @@ services:
       io.rancher.container.start_once: 'true'
       io.rancher.container.agent.role: environmentAdmin
       io.rancher.container.create_agent: 'true'
+      io.upkick.warn_only: 'false'
