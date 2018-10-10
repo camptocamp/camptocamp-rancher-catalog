@@ -84,37 +84,37 @@
       description: AWS_SECRET_ACCESS_KEY
       type: password
       required: false
-    - variable: SWIFT_AUTHURL
-      label: SWIFT_AUTHURL
-      description: SWIFT_AUTHURL
+    - variable: OS_AUTH_URL
+      label: OS_AUTH_URL
+      description: OS_AUTH_URL
       type: string
-    - variable: SWIFT_TENANTNAME
-      label: SWIFT_TENANTNAME
-      description: SWIFT_TENANTNAME
+    - variable: OS_TENANT_NAME
+      label: OS_TENANT_NAME
+      description: OS_TENANT_NAME
       type: string
-    - variable: SWIFT_USERNAME
-      label: SWIFT_USERNAME
-      description: SWIFT_USERNAME
+    - variable: OS_USERNAME
+      label: OS_USERNAME
+      description: OS_USERNAME
       type: string
-    - variable: SWIFT_PASSWORD
-      label: SWIFT_PASSWORD
-      description: SWIFT_PASSWORD
+    - variable: OS_PASSWORD
+      label: OS_PASSWORD
+      description: OS_PASSWORD
       type: password
-    - variable: SWIFT_REGIONNAME
-      label: SWIFT_REGIONNAME
-      description: SWIFT_REGIONNAME
+    - variable: OS_REGION_NAME
+      label: OS_REGION_NAME
+      description: OS_REGION_NAME
       type: string
-    - variable: SWIFT_USER_DOMAIN_NAME
-      label: SWIFT_USER_DOMAIN_NAME
-      description: SWIFT_USER_DOMAIN_NAME
+    - variable: OS_USER_DOMAIN_NAME
+      label: OS_USER_DOMAIN_NAME
+      description: OS_USER_DOMAIN_NAME
       type: string
-    - variable: SWIFT_PROJECT_NAME
-      label: SWIFT_PROJECT_NAME
-      description: SWIFT_PROJECT_NAME
+    - variable: OS_PROJECT_NAME
+      label: OS_PROJECT_NAME
+      description: OS_PROJECT_NAME
       type: string
-    - variable: SWIFT_PROJECT_DOMAIN_NAME
-      label: SWIFT_PROJECT_DOMAIN_NAME
-      description: SWIFT_PROJECT_DOMAIN_NAME
+    - variable: OS_PROJECT_DOMAIN_NAME
+      label: OS_PROJECT_DOMAIN_NAME
+      description: OS_PROJECT_DOMAIN_NAME
       type: string
     - variable: JSON_OUTPUT
       label: JSON Output
