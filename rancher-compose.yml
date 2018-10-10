@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: Bivac
-  version: '1.0.10'
+  version: '1.1.0'
   description: "Bivac : Backup Interface for Volumes Attached to Containers"
   minimum_rancher_version: v1.2.0
   questions:
