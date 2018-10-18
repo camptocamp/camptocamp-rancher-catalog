@@ -1,0 +1,62 @@
+version: '2'
+catalog:
+  name: "Nextcloud"
+  version: "v13.0.7-1"
+  description: | 
+    Nextcloud : an open source, self-hosted file share and communication platform.
+  minimum_rancher_version: "v1.2.0"
+  questions:
+    - variable: "NEXTCLOUD_DB_NAME"
+      label: "Databse name"
+      description: "Postgres database name for nextcloud"
+      required: true
+      default: "nextcloud"
+      type: "string"
+    - variable: "NEXTCLOUD_DB_USER"
+      label: "Database username"
+      description: "Postgres username for nextcloud"
+      required: true
+      default: "nextcloud"
+      type: "string"
+    - variable: "NEXTCLOUD_DB_PASSWORD"
+      label: "Database password"
+      description: "Postgres password for nextcloud"
+      required: true
+      type: "password"
+    - variable: "NEXTCLOUD_ADMIN_USER"
+      label: "Nextcloud admin user"
+      description: "Nextcloud administrator user"
+      required: true
+      default: "admin"
+      type: "string"
+    - variable: "NEXTCLOUD_ADMIN_PASSWORD"
+      label: "Nextcloud admin password"
+      description: "Nextcloud administrator password"
+      required: true
+      type: "password"
+    - variable: "NEXTCLOUD_TRUSTED_DOMAINS"
+      label: "Nextcloud site domain"
+      description: "Nextcloud base domaine name"
+      required: false
+      type: "string"
+services:
+  nextcloud:
+    scale: 1
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 80
+      unhealthy_threshold: 3
+      interval: 10000
+      strategy: recreate
+  postgres:
+    scale: 1
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 5432
+      unhealthy_threshold: 3
+      interval: 10000
+      strategy: recreate
