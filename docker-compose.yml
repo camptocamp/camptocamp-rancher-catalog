@@ -25,6 +25,7 @@ syslog:
   volumes:
     - 'logging_logs:/var/log'
     - 'logging_spool:/var/spool/rsyslog'
+  stop_grace_period: 1m
 
 cleanup:
   image: 'camptocamp/rsyslog-bin:v0.1.5'
@@ -56,6 +57,7 @@ agent:
   - '/var/log:/hostfs/var/log:ro'
   - 'logging_agent:/var/spool/rsyslog'
   - 'logging_devlog:/logging_agent/dev/'
+  stop_grace_period: 1m
   mem_limit: 52428800
 
 journald-rate-limit:
