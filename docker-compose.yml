@@ -1,5 +1,5 @@
 dispatcher-conf:
-  image: 'camptocamp/rsyslog-dispatcher-conf:v0.2.5'
+  image: 'camptocamp/rsyslog-dispatcher-conf:v0.2.6'
   labels:
     io.rancher.container.start_once: 'true'
     io.rancher.container.hostname_override: container_name
@@ -12,7 +12,7 @@ dispatcher-conf:
     - '/etc/rsyslog-confd'
 
 syslog:
-  image: 'camptocamp/rsyslog-bin:v0.1.5'
+  image: 'camptocamp/rsyslog-bin:v0.1.6'
   labels:
     io.rancher.scheduler.affinity:host_label: logging=true
     io.rancher.container.hostname_override: container_name
@@ -28,7 +28,7 @@ syslog:
   stop_grace_period: 1m
 
 cleanup:
-  image: 'camptocamp/rsyslog-bin:v0.1.5'
+  image: 'camptocamp/rsyslog-bin:v0.1.6'
   labels:
     io.rancher.scheduler.affinity:host_label: logging=true
     io.rancher.container.hostname_override: container_name
@@ -38,7 +38,7 @@ cleanup:
     - 'logging_logs:/var/log'
 
 agent-conf:
-  image: 'camptocamp/rsyslog-agent-conf:v0.2.2'
+  image: 'camptocamp/rsyslog-agent-conf:v0.2.3'
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.container.start_once: 'true'
@@ -46,7 +46,7 @@ agent-conf:
   - '/etc/rsyslog-confd'
 
 agent:
-  image: 'camptocamp/rsyslog-bin:v0.1.5'
+  image: 'camptocamp/rsyslog-bin:v0.1.6'
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.sidekicks: 'agent-conf,journald-rate-limit'
