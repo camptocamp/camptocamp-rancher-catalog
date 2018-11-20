@@ -1,3 +1,5 @@
+---
+version: '2'
 .catalog:
   name: "logging"
   version: "v12"
@@ -40,14 +42,14 @@
       description: "See journald.conf(5) for details"
       type: "string"
       default: "30s"
-
-syslog:
-  scale: 1
-  retain_ip: true
-dispatcher-conf:
-  scale: 1
-cleanup:
-  scale: 1
-monitoring-rules:
-  scale: 1
-  start_on_create: true
+services:
+  syslog:
+    scale: 1
+    retain_ip: true
+  dispatcher-conf:
+    scale: 1
+  cleanup:
+    scale: 1
+  monitoring-rules:
+    scale: 1
+    start_on_create: true
