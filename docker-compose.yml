@@ -73,3 +73,15 @@ journald-rate-limit:
   environment:
     BURST: '${JOURNALD_BURST}'
     INTERVAL: '${JOURNALD_INTERVAL}'
+
+monitoring-rules:
+  image: camptocamp/prometheus-custom-rules:logging
+  volumes:
+  - metrics_prom_confdir:/etc/prometheus/
+  user: root
+  command:
+  - logging
+  labels:
+    io.rancher.scheduler.affinity:host_label: monitoring=true
+    io.rancher.container.start_once: 'true'
+    io.rancher.container.pull_image: always

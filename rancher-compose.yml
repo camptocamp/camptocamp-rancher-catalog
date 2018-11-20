@@ -48,3 +48,6 @@ dispatcher-conf:
   scale: 1
 cleanup:
   scale: 1
+monitoring-rules:
+  scale: 1
+  start_on_create: true
