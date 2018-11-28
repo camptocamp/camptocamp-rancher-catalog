@@ -1,0 +1,101 @@
+version: '2'
+catalog:
+  name: "Nextcloud"
+  version: "v14.0.4-1"
+  description: |
+    Nextcloud : an open source, self-hosted file share and communication platform.
+  minimum_rancher_version: "v1.2.0"
+  questions:
+    - variable: "NEXTCLOUD_DB_HOST"
+      label: "Databse host"
+      description: "Postgres database host for nextcloud"
+      required: true
+      default: "postgres"
+      type: "string"
+    - variable: "NEXTCLOUD_DB_NAME"
+      label: "Databse name"
+      description: "Postgres database name for nextcloud"
+      required: true
+      default: "nextcloud"
+      type: "string"
+    - variable: "NEXTCLOUD_DB_USER"
+      label: "Database username"
+      description: "Postgres username for nextcloud"
+      required: true
+      default: "nextcloud"
+      type: "string"
+    - variable: "NEXTCLOUD_DB_PASSWORD"
+      label: "Database password"
+      description: "Postgres password for nextcloud"
+      required: true
+      type: "password"
+    - variable: "NEXTCLOUD_ADMIN_USER"
+      label: "Nextcloud admin user"
+      description: "Nextcloud administrator user"
+      required: true
+      default: "admin"
+      type: "string"
+    - variable: "NEXTCLOUD_ADMIN_PASSWORD"
+      label: "Nextcloud admin password"
+      description: "Nextcloud administrator password"
+      required: true
+      type: "password"
+    - variable: "NEXTCLOUD_TRUSTED_DOMAINS"
+      label: "Nextcloud site domain (optional)"
+      description: "Nextcloud base domaine name"
+      required: false
+      type: "string"
+    - variable: "NEXTCLOUD_S3_BUCKET"
+      label: "S3 Bucket (optional)"
+      description: "Nextcloud S3 bucket name"
+      required: false
+      type: "string"
+    - variable: "NEXTCLOUD_S3_KEY"
+      label: "S3 key (optional)"
+      description: "Nextcloud S3 key"
+      required: false
+      type: "string"
+    - variable: "NEXTCLOUD_S3_SECRET"
+      label: "S3 secret (optional)"
+      description: "Nextcloud S3 secret"
+      required: false
+      type: "string"
+    - variable: "NEXTCLOUD_S3_SERVER"
+      label: "S3 server (optional)"
+      description: "Nextcloud S3 server"
+      required: false
+      type: "string"
+    - variable: "NEXTCLOUD_S3_PORT"
+      label: "S3 port (optional)"
+      description: "Nextcloud S3 port"
+      required: false
+      default: 443
+      type: "int"
+    - variable: "NEXTCLOUD_S3_USE_SSL"
+      label: "S3 use SSL (optional)"
+      description: "Nextcloud S3 enable SSL"
+      required: false
+      default: true
+      type: "boolean"
+    - variable: "NEXTCLOUD_S3_REGION"
+      label: "S3 region (optional)"
+      description: "Nextcloud S3 bucket region"
+      required: false
+      type: "string"
+    - variable: "NEXTCLOUD_AUTH_BRUTEFORCE"
+      label: "Bruteforce protection"
+      description: "Nextcloud auth bruteforce protection"
+      required: true
+      default: false
+      type: "boolean"
+services:
+  nextcloud:
+    scale: 1
+    start_on_create: true
+    health_check:
+      healthy_threshold: 2
+      response_timeout: 2000
+      port: 80
+      unhealthy_threshold: 3
+      interval: 10000
+      strategy: recreate
