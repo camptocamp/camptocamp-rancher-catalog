@@ -44,12 +44,12 @@ services:
       prometheus_port: '9091'
       ssh_tunnel.port: '9091'
       io.rancher.container.requested_ip: 10.42.24.102
-    image: 'prom/pushgateway:v0.4.0'
+    image: 'prom/pushgateway:v0.6.0'
     volumes:
     - 'metrics_pushgw:/state'
     command:
-    - -persistence.file=/state/pushgateway.state
-    - -log.format=logger:stdout?json=true
+    - --persistence.file=/state/pushgateway-20180523.state
+    - --log.format=logger:stdout?json=true
 
   rancher:
     labels:

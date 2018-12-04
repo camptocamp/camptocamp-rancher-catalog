@@ -86,7 +86,7 @@ services:
       healthy_threshold: 2
       response_timeout: 2000
       strategy: recreate
-      request_line: GET "/" "HTTP/1.0"
+      request_line: GET "/-/healthy" "HTTP/1.0"
   rancher:
     scale: 1
     health_check:
