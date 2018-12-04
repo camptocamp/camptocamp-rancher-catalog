@@ -41,7 +41,7 @@ services:
       - 'logging_logs:/var/log'
 
   agent-conf:
-    image: 'camptocamp/rsyslog-agent-conf:v0.2.4'
+    image: 'camptocamp/rsyslog-agent-conf:v0.2.5'
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.container.start_once: 'true'
@@ -61,7 +61,7 @@ services:
     - 'logging_agent:/var/spool/rsyslog'
     - 'logging_devlog:/logging_agent/dev/'
     stop_grace_period: 1m
-    mem_limit: 52428800
+    mem_limit: 157286400
 
   journald-rate-limit:
     image: 'camptocamp/journald-rate-limit:20170517-2'
