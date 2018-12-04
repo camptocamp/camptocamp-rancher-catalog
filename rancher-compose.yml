@@ -42,6 +42,11 @@ version: '2'
       description: "See journald.conf(5) for details"
       type: "string"
       default: "30s"
+    - variable: "AGENT_MEM_LIMIT"
+      label: "agent containers memory limit"
+      description: "mem_limit parameter, in bytes, for agent containers"
+      type: "int"
+      default: 157286400
 services:
   syslog:
     scale: 1

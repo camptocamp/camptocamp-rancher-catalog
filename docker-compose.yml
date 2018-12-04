@@ -61,7 +61,7 @@ services:
     - 'logging_agent:/var/spool/rsyslog'
     - 'logging_devlog:/logging_agent/dev/'
     stop_grace_period: 1m
-    mem_limit: 157286400
+    mem_limit: ${AGENT_MEM_LIMIT}
 
   journald-rate-limit:
     image: 'camptocamp/journald-rate-limit:20170517-2'
