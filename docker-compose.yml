@@ -128,7 +128,7 @@ services:
     command: '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle --web.enable-admin-api ${PROMETHEUS_EXTRA_PARAMS}'
 
   prometheus:
-    image: rancher/lb-service-haproxy:v0.9.1
+    image: rancher/lb-service-haproxy:v0.9.3
     ports:
       - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}/tcp
     labels:
