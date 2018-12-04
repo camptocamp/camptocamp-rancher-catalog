@@ -5,7 +5,7 @@ services:
       io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
       prometheus_port: '9104'
-    image: google/cadvisor:v0.28.3
+    image: google/cadvisor:v0.31.0
     volumes:
     - /var/run:/var/run:rw
     - /sys:/sys:ro
@@ -13,7 +13,7 @@ services:
     pid: "host"
     command:
     - --port=9104
-    - --disable_metrics=disk,tcp,udp
+    - --disable_metrics=disk,tcp,udp,sched
 
   node:
     labels:
