@@ -1,37 +1,24 @@
 ---
 version: '2'
 services:
-  dispatcher-conf:
-    image: 'camptocamp/rsyslog-dispatcher-conf:v0.2.6'
-    labels:
-      io.rancher.container.start_once: 'true'
-      io.rancher.container.hostname_override: container_name
-      io.rancher.scheduler.affinity:host_label: logging=true
-    environment:
-      TARGET: '${TARGET}'
-      TOKEN: '${TOKEN}'
-      EXTRA: '${EXTRA}'
-    volumes:
-      - '/etc/rsyslog-confd'
-
   syslog:
-    image: 'camptocamp/rsyslog-bin:v0.1.6'
+    image: 'camptocamp/rsyslog-dispatcher-conf:v0.3.1'
     labels:
       io.rancher.scheduler.affinity:host_label: logging=true
       io.rancher.container.hostname_override: container_name
-      io.rancher.sidekicks: dispatcher-conf
       io.rancher.container.requested_ip: 10.42.24.10
     environment:
       TERM: 'xterm'
-    volumes_from:
-    - 'dispatcher-conf'
+      TARGET: '${TARGET}'
+      TOKEN: '${TOKEN}'
+      EXTRA: '${EXTRA}'
     volumes:
       - 'logging_logs:/var/log'
       - 'logging_spool:/var/spool/rsyslog'
     stop_grace_period: 1m
 
   cleanup:
-    image: 'camptocamp/rsyslog-agent-conf:v0.3.1'
+    image: 'camptocamp/rsyslog-dispatcher-conf:v0.3.1'
     labels:
       io.rancher.scheduler.affinity:host_label: logging=true
       io.rancher.container.hostname_override: container_name

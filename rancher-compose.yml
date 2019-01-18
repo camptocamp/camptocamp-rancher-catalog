@@ -71,10 +71,11 @@ services:
       interval: 10000
       strategy: recreate
       reinitializing_timeout: 60000
-  dispatcher-conf:
-    scale: 1
   cleanup:
     scale: 1
+    start_on_create: true
   monitoring-rules:
     scale: 1
+    start_on_create: true
+  journald-rate-limit:
     start_on_create: true
