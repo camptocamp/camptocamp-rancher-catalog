@@ -55,7 +55,7 @@ services:
       INTERVAL: '${JOURNALD_INTERVAL}'
 
   monitoring-rules:
-    image: camptocamp/prometheus-custom-rules:logging-20190118-1
+    image: camptocamp/prometheus-custom-rules:r-logging-20190118-2
     volumes:
     - metrics_prom_confdir:/etc/prometheus/
     user: root
