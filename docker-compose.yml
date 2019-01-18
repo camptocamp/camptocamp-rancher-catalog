@@ -55,7 +55,7 @@ services:
       INTERVAL: '${JOURNALD_INTERVAL}'
 
   monitoring-rules:
-    image: camptocamp/prometheus-custom-rules:logging
+    image: camptocamp/prometheus-custom-rules:logging-20190118-1
     volumes:
     - metrics_prom_confdir:/etc/prometheus/
     user: root
@@ -64,4 +64,3 @@ services:
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
       io.rancher.container.start_once: 'true'
-      io.rancher.container.pull_image: always
