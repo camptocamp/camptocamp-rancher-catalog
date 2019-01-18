@@ -51,6 +51,17 @@ services:
   syslog:
     scale: 1
     retain_ip: true
+  agent:
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 9514
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 10000
+      strategy: recreate
+      reinitializing_timeout: 60000
   dispatcher-conf:
     scale: 1
   cleanup:
