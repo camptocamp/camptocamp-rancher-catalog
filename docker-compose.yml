@@ -129,13 +129,14 @@ services:
     command: '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle --web.enable-admin-api ${PROMETHEUS_EXTRA_PARAMS} --log.format=json'
 
   prometheus:
-    image: rancher/lb-service-haproxy:v0.9.3
+    image: rancher/lb-service-haproxy:v0.9.6
     ports:
       - ${PROMETHEUS_PORT}:${PROMETHEUS_PORT}/tcp
     labels:
-      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.agent.role: environmentAdmin,agent
       io.rancher.scheduler.affinity:host_label: monitoring=true
       io.rancher.container.hostname_override: container_name
+      io.rancher.container.agent_service.drain_provider: 'true'
       io.rancher.container.create_agent: 'true'
       ssh_tunnel.port: '8008'
     volumes:
