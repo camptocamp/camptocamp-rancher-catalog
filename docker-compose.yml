@@ -120,13 +120,13 @@ services:
       #io.rancher.container.hostname_override: container_name # NB: breaks prometheus
       prometheus_port: '9090'
       ssh_tunnel.port: '9090'
-    image: prom/prometheus:v2.4.3
+    image: prom/prometheus:v2.7.0
     volumes:
       - 'metrics_prom_confdir:/etc/prometheus/'
       - 'metrics_tsdb:/prometheus'
     volumes_from:
     - prometheus-server-rules-conf
-    command: '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle --web.enable-admin-api ${PROMETHEUS_EXTRA_PARAMS}'
+    command: '--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.enable-lifecycle --web.enable-admin-api ${PROMETHEUS_EXTRA_PARAMS} --log.format=json'
 
   prometheus:
     image: rancher/lb-service-haproxy:v0.9.3
