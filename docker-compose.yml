@@ -74,7 +74,7 @@ services:
       - 'metrics_prom_confdir:/etc/prometheus/'
 
   prometheus-rancher-metadata-conf:
-    image: camptocamp/prometheus-rancher-metadata-conf:v0.4.1
+    image: camptocamp/prometheus-rancher-metadata-conf:v0.4.2
     labels:
       io.rancher.scheduler.affinity:host_label: monitoring=true
     volumes:
