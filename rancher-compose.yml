@@ -1,7 +1,7 @@
 ---
 .catalog:
   name: Bivac
-  version: '2.0.0-rc1'
+  version: '2.0.0'
   description: "Bivac : Backup Interface for Volumes Attached to Containers"
   minimum_rancher_version: v1.2.0
   questions:
@@ -15,7 +15,7 @@
       label: Image tag
       description: The image tag to use.
       type: string
-      default: 2.0.0-rc1
+      default: 2.0.0
       required: true
     - variable: BIVAC_VOLUMES_BLACKLIST
       label: Volumes blacklist
@@ -36,13 +36,13 @@
     - variable: BIVAC_VERBOSE
       label: Verbose
       description: Enable verbose mode.
-      type: bool
-      default: false
+      type: string
+      default: "false"
       required: false
     - variable: BIVAC_SERVER_PSK
       label: Server's PSK
       description: Bivac instance's pre-shared key
-      type: string
+      type: password
       required: true
     - variable: BIVAC_LOG_SERVER
       label: Bivac logging server
