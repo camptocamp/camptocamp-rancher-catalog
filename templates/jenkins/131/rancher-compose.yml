@@ -107,18 +107,6 @@
       type: "integer"
       default: 465
       required: true
-    - variable: "JENKINS_HIPCHAT_TOKEN"
-      label: "HipChat token"
-      description: "HipChat token"
-      type: "string"
-      default: "HipChatToken1234"
-      required: false
-    - variable: "JENKINS_HIPCHAT_ROOM"
-      label: "HipChat room"
-      description: "HipChat room"
-      type: "string"
-      default: "Jenkins"
-      required: false
     - variable: "JENKINS_GITHUB_ORG"
       label: "Github Organisation"
       description: "Github Organisation"
@@ -230,6 +218,3 @@
       type: "string"
       default: "docker"
       required: true
-
-
-

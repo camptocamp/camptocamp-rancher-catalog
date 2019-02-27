@@ -93,9 +93,6 @@ For email sending:
 * *Jenkins Mail Smtp Port* (variable JENKINS\_MAIL\_SMTP\_PORT)
 * *Jenkins Mail Smtp SSL* (variable JENKINS\_MAIL\_SMTP\_SSL)
 
-For HipChat integration:
-
-* *HipChat token* (variable JENKINS\_HIPCHAT\_TOKEN)
 
 ## Upgrade Notes
 
