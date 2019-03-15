@@ -11,8 +11,10 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
     pid: "host"
+    network_mode: "host"
     command:
     - --port=9104
+    - --enable_load_reader=true
 
   node:
     labels:
