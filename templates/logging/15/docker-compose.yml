@@ -1,0 +1,66 @@
+---
+version: '2'
+services:
+  syslog:
+    image: 'camptocamp/rsyslog-dispatcher-conf:v0.3.1'
+    labels:
+      io.rancher.scheduler.affinity:host_label: logging=true
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.requested_ip: 10.42.24.10
+    environment:
+      TERM: 'xterm'
+      TARGET: '${TARGET}'
+      TOKEN: '${TOKEN}'
+      EXTRA: '${EXTRA}'
+    volumes:
+      - 'logging_logs:/var/log'
+      - 'logging_spool:/var/spool/rsyslog'
+    stop_grace_period: 1m
+
+  cleanup:
+    image: 'camptocamp/rsyslog-dispatcher-conf:v0.3.1'
+    labels:
+      io.rancher.scheduler.affinity:host_label: logging=true
+      io.rancher.container.hostname_override: container_name
+    entrypoint: '/bin/sh'
+    command: '/usr/local/bin/cleanup-old-logs.sh ${CLEANUP_DAYS} ${CLEANUP_DF_PCT}'
+    volumes:
+      - 'logging_logs:/var/log'
+
+  agent:
+    image: 'camptocamp/rsyslog-agent-conf:v0.3.1'
+    labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.sidekicks: 'journald-rate-limit'
+    volumes:
+    - '/run/log/journal:/run/log/journal:ro'
+    - '/var/log:/hostfs/var/log:ro'
+    - 'logging_agent:/var/spool/rsyslog'
+    - 'logging_devlog:/logging_agent/dev/'
+    stop_grace_period: 1m
+    mem_limit: ${AGENT_MEM_LIMIT}
+
+  journald-rate-limit:
+    image: 'camptocamp/journald-rate-limit:20170517-2'
+    pid: 'host'
+    security_opt:
+    - apparmor=unconfined
+    labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.container.start_once: 'true'
+    volumes:
+    - '/etc/systemd:/etc/systemd'
+    environment:
+      BURST: '${JOURNALD_BURST}'
+      INTERVAL: '${JOURNALD_INTERVAL}'
+
+  monitoring-rules:
+    image: camptocamp/prometheus-custom-rules:logging-20190118-1
+    volumes:
+    - metrics_prom_confdir:/etc/prometheus/
+    user: root
+    command:
+    - logging
+    labels:
+      io.rancher.scheduler.affinity:host_label: monitoring=true
+      io.rancher.container.start_once: 'true'

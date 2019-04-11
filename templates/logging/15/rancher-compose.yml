@@ -1,0 +1,81 @@
+---
+version: '2'
+.catalog:
+  name: "logging"
+  version: "v15"
+  description: "Camptocamp logging service. Add mandatory 'logging=true' label on exactly one host before installing."
+  uuid: logging-15
+  minimum_rancher_version: v1.6.0
+  questions:
+    - variable: "TOKEN"
+      label: "ELK Token"
+      description: "Client token to be used when forwarding logs to camptocamp's ELK service. Leave empty if you haven't subscribed to this service."
+      type: "string"
+      default: ""
+    - variable: "TARGET"
+      label: "ELK entrypoint"
+      description: "IP address of the ELK entrypoint. Same as above, leave empty by default."
+      type: "string"
+      default: ""
+    - variable: "EXTRA"
+      label: "Extra fields to add to structured logs"
+      description: "JSON hash of key-values to add to each log. Example: {\"foo\":\"bar\"}"
+      type: "string"
+      default: "{}"
+    - variable: "CLEANUP_DAYS"
+      label: "Log files retention (days)"
+      description: "Log files older than N days will be deleted"
+      type: "string"
+      default: "10"
+    - variable: "CLEANUP_DF_PCT"
+      label: "Diskfull threshold (percentage)"
+      description: "When disk usage threshold is reached, log files are deleted, olders first"
+      type: "string"
+      default: "80"
+    - variable: "JOURNALD_BURST"
+      label: "host's journald RateLimitBurst setting"
+      description: "See journald.conf(5) for details"
+      type: "string"
+      default: "1000"
+    - variable: "JOURNALD_INTERVAL"
+      label: "host's journald RateLimitIntervalSec setting"
+      description: "See journald.conf(5) for details"
+      type: "string"
+      default: "30s"
+    - variable: "AGENT_MEM_LIMIT"
+      label: "agent containers memory limit"
+      description: "mem_limit parameter, in bytes, for agent containers"
+      type: "int"
+      default: 157286400
+services:
+  syslog:
+    scale: 1
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 514
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 10000
+      strategy: recreate
+      reinitializing_timeout: 60000
+    retain_ip: true
+  agent:
+    start_on_create: true
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 9514
+      unhealthy_threshold: 3
+      initializing_timeout: 60000
+      interval: 10000
+      strategy: recreate
+      reinitializing_timeout: 60000
+  cleanup:
+    scale: 1
+    start_on_create: true
+  monitoring-rules:
+    scale: 1
+    start_on_create: true
+  journald-rate-limit:
+    start_on_create: true
