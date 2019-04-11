@@ -114,9 +114,9 @@ services:
 
   # R10K Webhook
   webhook:
-    image: camptocamp/r10k-webhook:2.6.2-1
+    image: camptocamp/r10k-webhook:2.1.1-1
     environment:
-      HOOKS_SECRET: ${WEBHOOK_SECRET}
+      HOOK_SECRET: ${WEBHOOK_SECRET}
       STOMP_PASSWORD: ${STOMP_PASSWORD}
       MCOLLECTIVE_SERVER_KEY: ${MCOLLECTIVE_SERVER_KEY}
       MCOLLECTIVE_CLIENT_USER: webhook
