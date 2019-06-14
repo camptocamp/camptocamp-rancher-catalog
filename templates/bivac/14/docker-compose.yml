@@ -1,0 +1,31 @@
+---
+version: '2'
+services:
+  bivac:
+    image: ${BIVAC_IMAGE_REPOSITORY}:${BIVAC_IMAGE_TAG}
+    command:
+      - manager
+    environment:
+      BIVAC_VOLUMES_BLACKLIST: ${BIVAC_VOLUMES_BLACKLIST}
+      BIVAC_VOLUMES_WHITELIST: ${BIVAC_VOLUMES_WHITELIST}
+      BIVAC_VERBOSE: ${BIVAC_VERBOSE}
+      BIVAC_TARGET_URL: ${BIVAC_TARGET_URL}
+      BIVAC_SERVER_PSK: ${BIVAC_SERVER_PSK}
+      BIVAC_LOG_SERVER: ${BIVAC_LOG_SERVER}
+      BIVAC_AGENT_IMAGE: ${BIVAC_AGENT_IMAGE}
+      RESTIC_PASSWORD: ${RESTIC_PASSWORD}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      OS_AUTH_URL: ${OS_AUTH_URL}
+      OS_TENANT_NAME: ${OS_TENANT_NAME}
+      OS_USERNAME: ${OS_USERNAME}
+      OS_PASSWORD: ${OS_PASSWORD}
+      OS_REGION_NAME: ${OS_REGION_NAME}
+      OS_USER_DOMAIN_NAME: ${OS_USER_DOMAIN_NAME}
+      OS_PROJECT_NAME: ${OS_PROJECT_NAME}
+      OS_PROJECT_DOMAIN_NAME: ${OS_PROJECT_DOMAIN_NAME}
+    labels:
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
+      io.upkick.warn_only: 'false'
+      prometheus_port: 8182
