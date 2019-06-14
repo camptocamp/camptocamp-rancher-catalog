@@ -15,7 +15,7 @@
       label: Image tag
       description: The image tag to use.
       type: string
-      default: 2.0.0
+      default: 2.1
       required: true
     - variable: BIVAC_VOLUMES_BLACKLIST
       label: Volumes blacklist
@@ -49,6 +49,12 @@
       description: Address of a Bivac log receiver.
       type: string
       required: false
+    - variable: BIVAC_AGENT_IMAGE
+      label: Agent's Docker image
+      label: Docker image the Bivac agents should use.
+      type: string
+      required: true
+      default: camptocamp/bivac:2.1
     - variable: RESTIC_PASSWORD
       label: Restic Password
       description: Restic Password
