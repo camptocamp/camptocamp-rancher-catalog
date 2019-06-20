@@ -66,6 +66,8 @@ services:
       - OS_CONTAINER_NAME=${PGHOARD_STORAGE_TARGET}
       - OS_TENANT_NAME=${OS_TENANT_NAME}
       - OS_REGION_NAME=${OS_REGION_NAME}
+      - ENCRYPTION_KEYS_PUBLIC=${ENCRYPTION_KEYS_PUBLIC}
+      - ENCRYPTION_KEYS_PRIVATE=${ENCRYPTION_KEYS_PRIVATE}
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: ${PGHOARD_LABEL}

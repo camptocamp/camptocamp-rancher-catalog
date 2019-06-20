@@ -149,6 +149,16 @@ version: '2'
       type: "boolean"
       default: "false"
       required: true
+    - variable: "ENCRYPTION_KEYS_PRIVATE"
+      label: "Private encryption key"
+      description: "Provide the private key for encryption. This must look like this : -----BEGIN PRIVATE KEY----- ..."
+      type: "string"
+      required: false
+    - variable: "ENCRYPTION_KEYS_PUBLIC"
+      label: "Public encryption key"
+      description: "Enable encryption of backups, you also need to setup `ENCRYPTION_KEYS_PRIVATE`. This must be a RSA key like: ----BEGIN PUBLIC KEY----- ..."
+      type: "string"
+      required: false
 
 services:
   postgres:

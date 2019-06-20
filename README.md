@@ -116,7 +116,7 @@ AWS_DEFAULT_REGION=eu-west-1
 ```
 
 ## Test scenario to understand how it works
- 
+
 1. first of all, run the following command:
 
         docker-compose up
