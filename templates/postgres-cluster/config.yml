@@ -2,5 +2,5 @@
 name: "PostgreSQL-cluster"
 description: |
   PostgreSQL Cluster with incremental backups
-version: v44
+version: v45
 category: "Camptocamp services"

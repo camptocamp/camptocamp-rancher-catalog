@@ -1,7 +1,7 @@
 version: '2'
 .catalog:
   name: "Posgresql-cluster"
-  version: "v44"
+  version: "v45"
   description: "PostgreSQL Cluster"
   minimum_rancher_version: v1.2.0
   questions:
