@@ -124,7 +124,6 @@ services:
       config: |-
         global
             log /var/lib/haproxy/dev/log local2 debug
-            log /dev/log                 local2 debug
             stats socket /run/haproxy/admin.sock mode 660 level admin
 
         defaults
