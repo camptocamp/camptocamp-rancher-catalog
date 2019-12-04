@@ -141,6 +141,9 @@ services:
       io.rancher.container.agent_service.drain_provider: 'true'
       io.rancher.container.create_agent: 'true'
       ssh_tunnel.port: '8008'
+      camptocamp.com/federation/username: "${PROMETHEUS_USERNAME}"
+      camptocamp.com/federation/password: "${PROMETHEUS_PASSWORD}"
+      camptocamp.com/federation/scrape: 'true'
     volumes:
       - logging_devlog:/var/lib/haproxy/dev/
       - metrics_haproxy_runtime:/run/haproxy
