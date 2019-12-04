@@ -1,5 +1,5 @@
 name: Metrics
 description: |
   Prometheus monitoring suite
-version: v44
+version: v63
 category: "Camptocamp services"
