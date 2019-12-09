@@ -4,7 +4,7 @@ services:
     labels:
       io.rancher.scheduler.global: 'true'
       io.rancher.container.hostname_override: container_name
-      prometheus_port: '9104'
+      prometheus_port: '9338'
     image: google/cadvisor:v0.33.0
     volumes:
     - /var/run:/var/run:rw
@@ -13,7 +13,7 @@ services:
     pid: "host"
     network_mode: "host"
     command:
-    - --port=9104
+    - --port=9338
     - --enable_load_reader=true
 
   node:

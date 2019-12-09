@@ -1,7 +1,7 @@
 version: '2'
 .catalog:
   name: "metrics"
-  version: "v63"
+  version: "v64"
   description: "Camptocamp Prometheus-based monitoring system. Add mandatory 'monitoring=true' label on exactly one host before installing."
   minimum_rancher_version: v1.2.0
   questions:
@@ -49,7 +49,7 @@ version: '2'
 services:
   containers:
     health_check:
-      port: 9104
+      port: 9338
       interval: 2000
       unhealthy_threshold: 3
       healthy_threshold: 2
