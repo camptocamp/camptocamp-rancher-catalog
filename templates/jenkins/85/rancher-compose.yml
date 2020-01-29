@@ -107,12 +107,6 @@
       type: "integer"
       default: 465
       required: true
-    - variable: "JENKINS_HIPCHAT_TOKEN"
-      label: "HipChat token"
-      description: "HipChat token"
-      type: "string"
-      default: "HipChatToken1234"
-      required: false
     - variable: "JENKINS_GITHUB_ORG"
       label: "Github Organisation"
       description: "Github Organisation"
@@ -186,7 +180,6 @@
         lockable-resources
         ssh-agent
         prometheus
-        hipchat
     - variable: "NODE_LABELS"
       label: "Node Labels"
       description: "Which labels to apply to slave nodes"

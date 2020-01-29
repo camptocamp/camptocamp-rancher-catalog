@@ -107,12 +107,6 @@
       type: "integer"
       default: 465
       required: true
-    - variable: "JENKINS_HIPCHAT_TOKEN"
-      label: "HipChat token"
-      description: "HipChat token"
-      type: "string"
-      default: "HipChatToken1234"
-      required: false
     - variable: "JENKINS_GITHUB_ORG"
       label: "Github Organisation"
       description: "Github Organisation"
@@ -175,7 +169,6 @@
         job-dsl:1.58
         github-api:1.85
         matrix-project:1.8
-        hipchat:2.1.1
         pipeline-model-declarative-agent:1.0.2
         docker-workflow:1.10
         blueocean-git-pipeline:1.0.0-b24

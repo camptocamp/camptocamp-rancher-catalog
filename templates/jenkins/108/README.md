@@ -60,12 +60,6 @@ The flow is as follows:
 * *Jenkins Mail Smtp Port* (variable JENKINS\_MAIL\_SMTP\_PORT)
 * *Jenkins Mail Smtp SSL* (variable JENKINS\_MAIL\_SMTP\_SSL)
 
-## HipChat Integration
-
-Room is not yet configurable. Default to 'Jenkins CI' room.
-
-* *HipChat token* (variable JENKINS\_HIPCHAT\_TOKEN)
-
 ## GitHub Integration<a name="Github-Integration"></a>
 
 This Jenkins instance will be setup for github integration. All teams integration steps are performed using the initial groovy script. The script is fetched from the repository defined in *Initial Groovy DSL Repository* (variable JENKINS\_INITIAL\_DSL\_REPO).

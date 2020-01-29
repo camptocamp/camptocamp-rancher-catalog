@@ -180,7 +180,6 @@
         lockable-resources
         ssh-agent
         prometheus
-        hipchat
     - variable: "NODE_LABELS"
       label: "Node Labels"
       description: "Which labels to apply to slave nodes"
